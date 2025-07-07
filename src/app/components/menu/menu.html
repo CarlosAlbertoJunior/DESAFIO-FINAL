@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">
+      <img src="/img/LOGO AZUL E BRANCA.png" alt="Logo da Empresa" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="isMenuCollapsed = !isMenuCollapsed"
+      aria-controls="navbarSupportedContent"
+      [attr.aria-expanded]="!isMenuCollapsed"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      [(ngbCollapse)]="isMenuCollapsed"
+    >
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" (click)="onHome()">Inicio</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onSobre()">Sobre</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onFotos()">Fotos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onAgenda()">Agenda</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onApoiar()">Apoiar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onContato()">Contato</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onInscricao()">Inscrições/Editais</a>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            id="dropdownCosnecte"
+            ngbDropdownToggle
+            aria-expanded="false"
+          >
+            Cosnect-se
+          </a>
+          <ul
+            ngbDropdownMenu
+            aria-labelledby="dropdownCosnecte"
+            class="dropdown-menu"
+          >
+            <li><a class="dropdown-item" (click)="onEventos()">Eventos</a></li>
+            <li>
+              <a class="dropdown-item" (click)="onCoordenacao()">Coordenação</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="onCoslovers()">Cos Lovers</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="onCncosplay()">CN Cosplay</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <a class="navbar-brand" routerLink="/agenda">
+        <div class="event-highlight-container">
+          <div class="event-highlight-icon">
+            <img src="/img/10.png" alt="Ícone de Calendário" />
+          </div>
+          <p class="event-highlight-date">JULHO 27/07</p>
+        </div>
+      </a>
+      <form class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Pesquise"
+          aria-label="Search"
+        />
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

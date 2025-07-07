@@ -1,0 +1,220 @@
+
+:root {
+  --menu-background: #212529;
+  --menu-text-light: #f8f9fa;
+  --menu-link-hover: #0d6efd;
+  --menu-link-active: #ffffff;
+  --menu-link-disabled: #6c757d;
+  --brand-text-color: #ffffff;
+  --border-color-light: rgba(255, 255, 255, 0.1);
+  --button-outline-success: #28a745;
+
+  --cor-fonte-principal: aliceblue;
+  --cor-fonte-secundaria: #eeeeee;
+  --cor-fonte-bordas: white;
+  --cor-menu: #000000;
+  --cor-footer: #000000;
+  --cor-preto: #000000;
+  --cor-corpo: #09122c;
+  --cor-span: #4ab5f3;
+  --cor-button: #071952;
+  --cor-ouro:#ffbf10;
+}
+
+
+/* Estilos para o componente Navbar */
+.navbar {
+  background-color: #212529 !important; /* Fundo escuro para o navbar */
+  padding: 1rem 0; /* Espaçamento vertical */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+}
+
+/* Estilo para a marca (logo/texto "CN") */
+.navbar-brand {
+  /* display: flex; */
+  align-items: center;
+  font-weight: bold;
+  color: #ffffff; /* Cor do texto da marca */
+  font-size: 1.5rem; /* Tamanho da fonte */
+}
+.navbar-brand p {
+  padding: 0.2em;
+}
+
+.navbar-brand img {
+  height: 100px; /* Altura da imagem do logo */
+  margin-right: 10px; /* Espaçamento à direita da imagem */
+  padding: 0;
+}
+
+.navbar-brand:hover {
+  color: #ffffff; /* Cor ao passar o mouse na marca */
+}
+
+/* Estilos para o botão de toggle (hambúrguer) */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.1); /* Borda do botão */
+}
+.dropdown-menu {
+  background-color: #343a40; /* Fundo escuro para a caixa do dropdown */
+  border: 1px solid rgba(0, 0, 0, 0.2); /* Borda suave */
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra para o dropdown */
+  padding: 0.5rem 0; /* Espaçamento interno */
+  cursor: pointer;
+}
+.dropdown-item {
+  color: #f8f9fa; /* Cor do texto dos itens (quase branco) */
+  background-color: transparent; /* Garante que o fundo padrão não interfira */
+  padding: 0.5rem 1.5rem; /* Espaçamento interno de cada item */
+  transition: all 0.2s ease-in-out; /* Transição suave para hover */
+
+}
+.dropdown-item:hover,
+.dropdown-item:focus { /* Bootstrap usa :focus para navegação com teclado */
+  color: #ffbf10; /* Cor do texto ao passar o mouse (azul primário) */
+  background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente visível no hover */
+
+}
+.dropdown-divider {
+  border-top-color: rgba(255, 255, 255, 0.15); /* Cor da linha divisória */
+}
+
+/* Se houver algum item ativo (embora menos comum em dropdowns puros, pode ocorrer) */
+.dropdown-item.active {
+  color: #ffffff; /* Texto branco puro */
+  background-color: #007bff; /* Fundo azul para o item ativo */
+}
+
+.navbar-toggler-icon {
+  /* Para mudar a cor do ícone do hambúrguer, você precisa ajustar o 'stroke' no SVG */
+  /* Troque o '#f8f9fa' (branco) pela cor desejada para o ícone */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23f8f9fa' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(13, 102, 253, 0.5); /* Sombra ao focar (azul) */
+}
+
+
+/* Estilos para a lista de navegação (ul) */
+.navbar-nav .nav-item {
+  margin-right: 20px; /* Espaço maior entre os itens do menu */
+}
+
+.navbar-nav .nav-item:last-child {
+  margin-right: 0;
+}
+
+.navbar-nav .nav-link {
+  color: #f8f9fa; /* Cor padrão dos links */
+  font-weight: 500;
+  padding: 0.8rem 1.2rem; /* Padding um pouco maior */
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease; /* Transições suaves */
+  cursor: pointer;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ffbf10; /* Cor ao passar o mouse */
+  /* background-color: rgba(255, 255, 255, 0.15); Fundo levemente visível no hover */
+  border-radius: 4px; /* Bordas mais arredondadas */
+}
+
+.navbar-nav .nav-link.active {
+  color: #ffffff; /* Cor do link ativo */
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-bottom: 3px solid #ffbf10; /* Linha inferior com a cor de hover */
+  /* background-color: rgba(255, 255, 255, 0.08); Fundo sutil para o ativo */
+  border-radius: 8px 8px 0 0; /* Apenas as bordas superiores arredondadas */
+}
+
+.navbar-nav .nav-link.disabled {
+  color: #6c757d; /* Cor para links desabilitados */
+  pointer-events: none; /* Desabilita interações do mouse */
+  opacity: 0.6; /* Menos visível */
+}
+
+
+/* Estilos para o formulário de busca */
+.form-control {
+  border-radius: 25px; /* Bordas bem arredondadas */
+  background-color: rgba(255, 255, 255, 0.2); /* Fundo levemente transparente */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  color: #ffffff; /* Cor do texto digitado */
+  padding-left: 15px; /* Padding interno */
+}
+
+.form-control::placeholder {
+  color: rgba(248, 249, 250, 0.7); /* Cor do placeholder */
+  opacity: 1; /* Garante que o placeholder seja visível */
+}
+
+.form-control:focus {
+  border-color: #ffffff; /* Borda azul ao focar */
+  box-shadow: 0 0 0 0.25rem rgba(253, 237, 13, 0.25); /* Sombra suave */
+  color: #ffffff;
+}
+.event-highlight-container {
+  text-align: center; /* ESTE É O PRINCIPAL PARA CENTRALIZAR O TEXTO E ELEMENTOS INLINE */
+  color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.event-highlight-icon img {
+  width: 60px;
+  height: auto;
+  display: block; /* MUITO IMPORTANTE: Transforma a imagem em um elemento de bloco */
+  margin: 0 auto 10px auto; /* ESTE É O PRINCIPAL PARA CENTRALIZAR A IMAGEM COMO BLOCO */
+  filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.7));
+}
+
+.event-highlight-date {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffc107;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+.btn-outline-success {
+  border-radius: 25px; /* Bordas bem arredondadas */
+  border-color: #ffbf10; /* Cor da borda do botão */
+  color: #ffffff; /* Cor do texto do botão */
+  font-weight: 600; /* Negrito */
+  transition: all 0.3s ease; /* Transição suave */
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745; /* Fundo verde no hover */
+  color: #ffffff; /* Texto branco no hover */
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); /* Sombra no hover */
+}
+
+
+/* Media query para telas menores (responsividade) */
+@media (max-width: 991.98px) {
+  .navbar-nav {
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+  .navbar-nav .nav-item {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+
+  .navbar-collapse {
+    text-align: center;
+  }
+  .form-control,
+  .btn-outline-success {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+  }
+  .btn-outline-success {
+    margin-bottom: 10px;
+  }
+}
