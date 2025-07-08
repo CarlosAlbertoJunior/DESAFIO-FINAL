@@ -24,7 +24,7 @@
 
 /* Estilos para o componente Navbar */
 .navbar {
-  background-color: #212529 !important; /* Fundo escuro para o navbar */
+  background-color: #000000 !important; /* Fundo escuro para o navbar */
   padding: 1rem 0; /* Espaçamento vertical */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
 }
@@ -56,7 +56,7 @@
   border-color: rgba(255, 255, 255, 0.1); /* Borda do botão */
 }
 .dropdown-menu {
-  background-color: #343a40; /* Fundo escuro para a caixa do dropdown */
+  background-color: #000000; /* Fundo escuro para a caixa do dropdown */
   border: 1px solid rgba(0, 0, 0, 0.2); /* Borda suave */
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra para o dropdown */
   padding: 0.5rem 0; /* Espaçamento interno */
