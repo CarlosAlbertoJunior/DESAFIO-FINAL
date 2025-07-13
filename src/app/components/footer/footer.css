@@ -1,0 +1,56 @@
+/* Estilos específicos para a imagem do footer */
+.footer-image {
+  max-width: 100px; /* Limita a largura máxima da imagem do footer em telas grandes */
+  height: auto; /* Mantém a proporção */
+  object-fit: contain; /* Garante que a imagem se ajuste sem cortar */
+  padding: 10px 0; /* Pequeno padding para cima e para baixo da imagem dentro do footer */
+}
+.footer-main-logo {
+  max-width: 230px; /* Tamanho atual */
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+}
+
+/* Opcional: Se a imagem do footer tiver um fundo ligeiramente diferente do bg-dark,
+   você pode ajustar a cor de fundo do footer para um preto exato: */
+.footer.bg-dark {
+    background-color: #000000 !important; /* Ou use o código da cor preta exata do seu banner */
+}
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-color: var(--cor-fonte-bordas) !important; /* Borda branca */
+  color: var(--cor-fonte-bordas) !important;       /* Cor do ícone */
+  background-color: transparent !important;         /* Garante que o fundo seja transparente inicialmente */
+  transition: all 0.3s ease-in-out;                 /* Transição para todas as propriedades */
+  /* Adicione uma transição específica para transform se preferir separá-la */
+}
+
+.social-btn:hover {
+  background-color: transparent !important;         /* Garante que o fundo NÃO MUDE para branco */
+  border-color: var(--cor-fonte-bordas) !important; /* Mantém a borda branca */
+  transform: scale(1.1);                            /* Amplia o botão em 10% (ajuste o valor) */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);   /* Um brilho suave ao redor (opcional, mas legal) */
+}
+
+/* Garanta que o ícone também tenha uma transição para a escala,
+   se ele tiver um tamanho diferente do botão ou se quiser um efeito mais sutil */
+.social-icon {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease-in-out; /* Adicione transição para a escala do ícone */
+}
+
+/* Opcional: Fazer o ícone ampliar um pouco MAIS que o botão, para um efeito "pulando" */
+.social-btn:hover .social-icon {
+  transform: scale(1.15); /* Ícone amplia 15% (mais que o botão) */
+}
+
+
+/* Pequeno ajuste para telas menores se a imagem ficar muito grande */
+@media (max-width: 767.98px) {
+  .footer-image {
+    max-width: 95%; /* Reduz um pouco mais em telas menores */
+  }
+}

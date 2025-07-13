@@ -1,1 +1,54 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --cor-fonte-principal: aliceblue;
+  --cor-fonte-secundaria: #eeeeee;
+  --cor-fonte-bordas: white;
+  --cor-menu: #000000;
+  --cor-footer: #000000;
+  --cor-preto: #000000;
+  --cor-corpo: #09122c;
+  --cor-span: #4ab5f3;
+  --cor-button: #071952;
+  --cor-ouro:#ffbf10;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body { /* <-- ADICIONADAS ESTAS LINHAS */
+  height: 100%; /* Garante que o html e o body ocupem 100% da altura da viewport */
+  margin: 0; /* Garante que não haja margens externas */
+  padding: 0; /* Garante que não haja paddings externos */
+}
+
+body { /* <-- ADICIONADAS ESTAS LINHAS */
+  font-family: "Roboto", sans-serif;
+  background-color: rgb(255, 255, 255);
+  /* background: rgb(0, 0, 0);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 1) 8%,
+    rgba(8, 4, 52, 1) 50%,
+    rgba(0, 0, 0, 1) 92%
+  ); */
+  padding-top: 150px;
+  display: flex; /* <-- TRANSFORMA O BODY EM UM CONTÊINER FLEX */
+  flex-direction: column; /* <-- ORGANIZA SEUS FILHOS (menu, main, footer) EM UMA COLUNA */
+  min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
+}
+
+/* Opcional: Se seu componente de menu tiver um seletor próprio como <app-menu>,
+   pode ser útil adicionar flex-shrink: 0; para que ele não encolha. */
+app-menu {
+  flex-shrink: 0;
+}
+
+/* Opcional: Para o seu rodapé, se ele estiver dentro de <app-footer> */
+app-footer {
+  flex-shrink: 0; /* Garante que o footer não encolha */
+  /* Não precisa de 'margin-top: auto;' aqui, pois o main-content-wrapper terá 'flex-grow: 1' */
+}

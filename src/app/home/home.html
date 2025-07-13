@@ -1,1 +1,172 @@
-<app-carocel></app-carocel>
+<main>
+  <app-carocel></app-carocel>
+
+  <div class="container my-5">
+    <div class="row align-items-center jus">
+      <div class="col-md-6 mb-3 mb-md-0">
+        <img
+          src="img/INTRO/geral.jpg"
+          class="img-fluid rounded shadow-sm"
+          alt="Descrição do Recurso"
+        />
+      </div>
+      <div class="col-md-6">
+        <h2
+          class="display-5 fw-bold text-info mb-4 "
+        >
+          Cosnection, Cosnectando você ao <span>MUNDO GEEK</span>!
+        </h2>
+        <p class="lead" style="color: var(--cor-menu); text-align: justify">
+          A Cosnection é uma porta de entrada para o mundo geek! Desde a nossa
+          fundação, levamos a cultura nerd a quem ainda não teve a chance de
+          explorá-la. Em nossos eventos, temos atividades imersivas, como
+          desfiles de cosplay que destacam a criatividade dos participantes,
+          concursos animados, gincanas geek e conversas repletas de referências
+          e novidades. Tudo isso em um ambiente acolhedor e vibrante, que faz
+          com que geeks de todas as idades se sintam em casa. Essa é a
+          Cosnection: Cosnectando você ao MUNDO GEEK!
+        </p>
+        <p class="text" style="color: var(--cor-menu)">
+          Conheça mais sobre como podemos impulsionar o seu evento e
+          transformar a sua experiência em algo excepcional.
+        </p>
+        <a  class="btn btn-primary btn-lg mt-3"
+          (click)="onCoordenacao()">Saiba Mais</a
+        >
+      </div>
+    </div>
+  </div>
+  <div class="container text-center my-5 bg-light p-5 rounded">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h2 class="display-5 fw-bold text-info mb-4">Conheça a COSNECTION!!</h2>
+        <p class="lead text-secondary mb-5">
+          Cosnection: Compromisso com o Cliente, bem-estar e a Criatividade dos
+          Cosplayers.
+        </p>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-md-4 mb-4">
+        <!-- <img src="assets/icone-suporte.svg" class="img-fluid rounded-circle mb-3 border border-info border-3" style="width: 150px; height: 150px; object-fit: cover;" alt="Ícone de Suporte"> -->
+        <h3 class="h4 fw-bold text-info">Suporte Excepcional</h3>
+        <p class="text-muted">
+          Aos cosplayers, a Cosnection dedica um suporte atencioso e completo,
+          visando proporcionar uma experiência excepcional e um cuidado
+          diferenciado. Nosso compromisso é que cada cosplayer, do iniciante ao
+          veterano, sinta a mesma paixão e emoção, recebendo toda a atenção e
+          suporte necessários para brilhar em nossos eventos
+        </p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <!-- <img src="assets/icone-inovacao.svg" class="img-fluid rounded-circle mb-3 border border-info border-3" style="width: 150px; height: 150px; object-fit: cover;" alt="Ícone de Inovação"> -->
+        <h3 class="h4 fw-bold text-info">Inovação Constante</h3>
+        <p class="text-muted">
+          Nossa busca por inovação é constante, impulsionada pelo desejo de
+          apresentar experiências inéditas que engajem o público. Desenvolvemos
+          atividades diversificadas, incluindo jogos interativos, dinâmicas para
+          toda a família e sessões de bate-papo aprofundadas, garantindo um
+          envolvimento imersivo e memorável em cada evento
+        </p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <!-- <img src="assets/icone-resultados.svg" class="img-fluid rounded-circle mb-3 border border-info border-3" style="width: 150px; height: 150px; object-fit: cover;" alt="Ícone de Resultados"> -->
+        <h3 class="h4 fw-bold text-info">Foco em Resultados</h3>
+        <p class="text-muted">
+          Nosso compromisso é com a entrega de eventos de alta imersão,
+          especialmente projetados para atrair e cativar o público não
+          familiarizado com o universo geek. Buscamos despertar a curiosidade e
+          proporcionar a todos uma experiência verdadeiramente diferenciada e
+          envolvente.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container my-5">
+    <h2 class="display-5 fw-bold text-info mb-4 text-center">
+      Nossos Momentos Especiais
+    </h2>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div
+          #container1
+          class="image-scroll-container rounded shadow"
+          (mouseenter)="onMouseEnter(image1, container1)"
+          (mouseleave)="onMouseLeave(image1)"
+        >
+          <img
+            #image1
+            id="image1"
+            src="/img/INTRO/02.webp"
+            alt="Bastidores Cosplay"
+            class="img-fluid image-to-scroll"
+          />
+        </div>
+        <p class="text-center mt-3" style="color: var(--cor-menu)">
+          BSC GEEK - 2ª Edição.
+        </p>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div
+          #container2
+          class="image-scroll-container rounded shadow"
+          (mouseenter)="onMouseEnter(image2, container2)"
+          (mouseleave)="onMouseLeave(image2)"
+        >
+          <img
+            #image2
+            id="image2"
+            src="/img/INTRO/03.webp"
+            alt="Bastidores Cosplay"
+            class="img-fluid image-to-scroll"
+          />
+        </div>
+        <p class="text-center mt-3" style="color: var(--cor-menu)">
+          CARNA Wild - Parque Shopping Bahia.
+        </p>
+      </div>
+
+      <div class="col-md-6 col-lg-4 mb-4">
+        <div
+          #container3
+          class="image-scroll-container rounded shadow"
+          (mouseenter)="onMouseEnter(image3, container3)"
+          (mouseleave)="onMouseLeave(image3)"
+        >
+          <img
+            #image3
+            id="image3"
+            src="/img/INTRO/04.webp"
+            alt="Bastidores Cosplay"
+            class="img-fluid image-to-scroll"
+          />
+        </div>
+        <p class="text-center mt-3" style="color: var(--cor-menu)">
+          Orgulho Geek 5ª Edição - 10 Anos da Cosnection.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid py-4" style="background-color: rgb(255, 255, 255)">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-12 col-md-10 col-lg-8">
+        <h2 class="display-5 fw-bold text-info mb-4 text-center">PATROCÍNIO</h2>
+        <div class="sponsor-banner-container rounded  p-2 ">
+          <a
+            href="https://www.instagram.com/parqueshoppingba/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="/img/INTRO/PATROCINIO.png"
+              class="img-fluid d-block mx-auto"
+              alt="Parque Shopping Bahia - Patrocinador Oficial"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

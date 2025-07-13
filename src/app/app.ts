@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; // Módulo comum do Angular (para diretivas como ngIf, ngFor)
 import { RouterOutlet } from '@angular/router';
-import { Menu } from "./components/menu/menu"; // Necessário para o roteamento do Angular
+import { Menu } from "./components/menu/menu";
+import { Footer } from "./components/footer/footer"; // Necessário para o roteamento do Angular
 
 
 
@@ -11,7 +12,8 @@ import { Menu } from "./components/menu/menu"; // Necessário para o roteamento 
   imports: [
     CommonModule,
     RouterOutlet,
-    Menu
+    Menu,
+    Footer
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'

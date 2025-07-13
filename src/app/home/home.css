@@ -1,0 +1,56 @@
+.home-intro {
+color: aliceblue;
+  justify-items: center;
+}
+.home-titulo {
+  color: aliceblue;
+}
+
+/* Estilos para o efeito de rolagem da imagem */
+.image-scroll-container {
+  width: 100%; /* Largura total da coluna Bootstrap */
+  height: 350px; /* Altura visível do seu slide (ajuste conforme necessário) */
+  overflow: hidden; /* ESSENCIAL: Esconde o que está fora da altura definida */
+  position: relative; /* Para posicionar a imagem dentro */
+  cursor: pointer; /* Indica que é interativo */
+  border: 1px solid #ddd; /* Borda sutil */
+}
+
+.image-to-scroll {
+  width: 100%;
+  height: auto; /* A altura será maior que o container */
+  display: block; /* Remove espaços extras abaixo da imagem */
+  position: absolute; /* Permite controlar a posição com top */
+  top: 0; /* Começa mostrando a parte superior da imagem */
+  transition: top 4s ease-in-out; /* Velocidade e tipo da transição (8 segundos é bem lento para demonstrar) */
+  /* Ajuste o tempo (8s) para controlar a velocidade da rolagem */
+}
+
+.image-scroll-container:hover .image-to-scroll {
+  /* Move a imagem para cima para mostrar a parte inferior */
+  /* O valor é negativo e baseado na altura total da imagem menos a altura do container */
+  /* Exemplo: se a imagem tem 1000px de altura e o container 350px, o valor seria -(1000-350)px = -650px */
+  /* Para um cálculo mais preciso em tempo real, precisaríamos de JS.
+     Por enquanto, ajuste este valor manualmente ou use porcentagem se a imagem for bem comprida. */
+  top: -80%; /* Exemplo: move 80% da imagem para cima. Ajuste conforme sua imagem. */
+  /* Se a imagem for muito alta, 'top: -100%;' pode ser demais,
+     ou use 'transform: translateY(-calc(100% - 350px));' (se souber a altura real da imagem) */
+}
+
+/* Opcional: Efeito sutil de zoom no contêiner ao passar o mouse */
+.image-scroll-container:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease-out;
+}
+
+.image-scroll-container {
+  transition: transform 0.3s ease-out; /* Transição para o zoom */
+}
+
+/* Para telas menores, as colunas do Bootstrap já se empilham */
+/* Se precisar de ajustes específicos para responsividade da altura, adicione media queries */
+@media (max-width: 767.98px) {
+  .image-scroll-container {
+    height: 300px; /* Um pouco menor em celulares */
+  }
+}

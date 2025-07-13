@@ -1,11 +1,18 @@
-import { Component } from '@angular/core';
+// src/app/footer/footer.component.ts
+import { Component, OnInit } from '@angular/core'; // Adicione OnInit
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './footer.html',
-  styleUrl: './footer.css'
+  styleUrls: ['./footer.css']
 })
-export class Footer {
+export class Footer implements OnInit { // Implemente OnInit
+  currentYear: number = 0; // Variável para armazenar o ano atual
 
+  ngOnInit(): void {
+    this.currentYear = new Date().getFullYear(); // Obtém o ano atual
+  }
 }

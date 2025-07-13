@@ -1,8 +1,9 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top" [class.scrolled]="isScrolled">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">
-      <img src="/img/LOGO AZUL E BRANCA.png" alt="Logo da Empresa" />
+      <img src="/img/LOGO MENU-RODAPÉ/2-LOGO PRETA NOME.png" alt="Logo da Empresa" class="navbar-logo" />
     </a>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -13,6 +14,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div
       class="collapse navbar-collapse"
       id="navbarSupportedContent"
@@ -20,25 +22,25 @@
     >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" (click)="onHome()">Inicio</a>
+          <a class="nav-link" (click)="onHome()">INICIO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onSobre()">Sobre</a>
+          <a class="nav-link" (click)="onSobre()">SOBRE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onFotos()">Fotos</a>
+          <a class="nav-link" (click)="onFotos()">FOTOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onAgenda()">Agenda</a>
+          <a class="nav-link" (click)="onAgenda()">AGENDAR</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onApoiar()">Apoiar</a>
+          <a class="nav-link" (click)="onApoiar()">APOIAR</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onContato()">Contato</a>
+          <a class="nav-link" (click)="onContato()">CONTATO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onInscricao()">Inscrições/Editais</a>
+          <a class="nav-link" (click)="onInscricao()">INSCRIÇÕES/EDITAIS</a>
         </li>
         <li class="nav-item dropdown" ngbDropdown>
           <a
@@ -48,22 +50,22 @@
             ngbDropdownToggle
             aria-expanded="false"
           >
-            Cosnect-se
+            COSNECT-SE
           </a>
           <ul
             ngbDropdownMenu
             aria-labelledby="dropdownCosnecte"
             class="dropdown-menu"
           >
-            <li><a class="dropdown-item" (click)="onEventos()">Eventos</a></li>
+            <li><a class="dropdown-item" (click)="onEventos()">EVENTOS</a></li>
             <li>
-              <a class="dropdown-item" (click)="onCoordenacao()">Coordenação</a>
+              <a class="dropdown-item" (click)="onCoordenacao()">COORDENAÇÃO</a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="onCoslovers()">Cos Lovers</a>
+              <a class="dropdown-item" (click)="onCoslovers()">COS LOVERS</a>
             </li>
             <li>
-              <a class="dropdown-item" (click)="onCncosplay()">CN Cosplay</a>
+              <a class="dropdown-item" (click)="onCncosplay()">CN COSPLAY</a>
             </li>
           </ul>
         </li>
@@ -71,7 +73,7 @@
       <a class="navbar-brand" routerLink="/agenda">
         <div class="event-highlight-container">
           <div class="event-highlight-icon">
-            <img src="/img/10.png" alt="Ícone de Calendário" />
+            <img src="/img/LOGO MENU-RODAPÉ/1.webp" alt="Ícone de Calendário" class="event-highlight-icon-img" />
           </div>
           <p class="event-highlight-date">JULHO 27/07</p>
         </div>
