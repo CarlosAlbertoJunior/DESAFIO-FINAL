@@ -6,6 +6,8 @@ import { Footer } from "./components/footer/footer"; // Necessário para o rotea
 
 
 
+
+
 @Component({
   selector: 'app-root',     // O seletor HTML que você usará para este componente (ex: <app-root></app-root>)
   standalone: true,         // Indica que este é um componente autônomo (Angular 17+)
@@ -13,7 +15,8 @@ import { Footer } from "./components/footer/footer"; // Necessário para o rotea
     CommonModule,
     RouterOutlet,
     Menu,
-    Footer
+    Footer,
+
 ],
   templateUrl: './app.html',
   styleUrl: './app.css'

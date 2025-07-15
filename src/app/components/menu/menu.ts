@@ -1,9 +1,11 @@
 // src/app/menu/menu.component.ts
-import { Component, HostListener, OnInit, OnDestroy } from '@angular/core'; // Adicione HostListener, OnInit, OnDestroy
+
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { filter } from 'rxjs';
+import { AuthService } from '../../auth'; // <--- IMPORTE O AUTHSERVICE AQUI!
 
 @Component({
   selector: 'app-menu',
@@ -11,21 +13,25 @@ import { filter } from 'rxjs';
   imports: [
     CommonModule,
     NgbDropdownModule,
-    NgbCollapseModule
+    NgbCollapseModule,
+    RouterLink,
+
+    // Não precisa de RouterLink, pois está usando (click) e Router.navigate
   ],
   templateUrl: './menu.html',
-  styleUrls: ['./menu.css'] // Use styleUrls para consistência
+  styleUrls: ['./menu.css']
 })
-export class Menu implements OnInit, OnDestroy { // Renomeado para MenuComponent para seguir convenções
+export class Menu implements OnInit, OnDestroy {
+
 
   isMenuCollapsed = true;
-  isScrolled = false; // Nova variável para controlar o estado da rolagem
+  isScrolled = false;
   routerSubscription: any;
 
-  constructor(private router: Router) { }
+  // Injetamos o AuthService aqui
+  constructor(private router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
-    // Lógica existente para fechar o menu ao navegar
     this.routerSubscription = this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd)
@@ -34,7 +40,6 @@ export class Menu implements OnInit, OnDestroy { // Renomeado para MenuComponent
         this.isMenuCollapsed = true;
       });
 
-    // Inicializa o estado de rolagem na carga da página
     this.checkScroll();
   }
 
@@ -42,53 +47,43 @@ export class Menu implements OnInit, OnDestroy { // Renomeado para MenuComponent
     if (this.routerSubscription) {
       this.routerSubscription.unsubscribe();
     }
-    // Não é necessário remover o HostListener manualmente; o Angular faz isso.
   }
 
-  // HostListener para detectar eventos de rolagem na janela
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.checkScroll();
   }
 
   private checkScroll() {
-    // Define o limite de rolagem (ex: 50 pixels) para o menu diminuir
-    const scrollThreshold = 50; // Ajuste este valor conforme necessário
+    const scrollThreshold = 50;
     this.isScrolled = window.pageYOffset > scrollThreshold;
   }
 
   // Seus métodos de navegação existentes
-  onCncosplay(): void {
-    this.router.navigate(['/cncosplay']);
+  onCncosplay(): void { this.router.navigate(['/cncosplay']); }
+  onCoslovers(): void { this.router.navigate(['/coslovers']); }
+  onCoordenacao(): void { this.router.navigate(['/coordenacao']); }
+  onEventos(): void { this.router.navigate(['/eventos']); }
+  onInscricao(): void { this.router.navigate(['/inscricao']); }
+  onContato(): void { this.router.navigate(['/contato']); }
+  onApoiar(): void { this.router.navigate(['/apoiar']); }
+  onAgenda(): void { this.router.navigate(['/agenda']); }
+  onFotos(): void { this.router.navigate(['/fotos']); }
+  onSobre(): void { this.router.navigate(['/sobre']); }
+  onHome(): void { this.router.navigate(['/home']); }
+  onCadastro(): void { this.router.navigate(['/cadastro']); }
+  onLogin(): void { this.router.navigate(['/login']); }
+  onAdminPanel() {this.router.navigate(['/admin']);
+}
+
+  // NOVO MÉTODO para lidar com o clique em 'Sair'
+  onLogout(): void {
+    this.authService.logout();
+    // O AuthService já redireciona para /cadastro após o logout
   }
-  onCoslovers(): void {
-    this.router.navigate(['/coslovers']);
-  }
-  onCoordenacao(): void {
-    this.router.navigate(['/coordenacao']);
-  }
-  onEventos(): void {
-    this.router.navigate(['/eventos']);
-  }
-  onInscricao(): void {
-    this.router.navigate(['/inscricao']);
-  }
-  onContato(): void {
-    this.router.navigate(['/contato']);
-  }
-  onApoiar(): void {
-    this.router.navigate(['/apoiar']);
-  }
-  onAgenda(): void {
-    this.router.navigate(['/agenda']);
-  }
-  onFotos(): void {
-    this.router.navigate(['/fotos']);
-  }
-  onSobre(): void {
-    this.router.navigate(['/sobre']);
-  }
-  onHome(): void {
-    this.router.navigate(['/home']);
+
+  // NOVO MÉTODO para navegar para 'Meu Perfil'
+  onMeuPerfil(): void {
+    this.router.navigate(['/perfil']); // Você precisará criar uma rota para '/perfil' se ainda não o fez
   }
 }

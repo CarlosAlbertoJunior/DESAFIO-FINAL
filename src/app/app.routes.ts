@@ -10,25 +10,37 @@ import { Eventos } from './eventos/eventos';
 import { Coordenacao } from './coordenacao/coordenacao';
 import { Coslovers } from './coslovers/coslovers';
 import { Cncosplay } from './cncosplay/cncosplay';
+import { Cadastro } from './cadastro/cadastro';
+import { AuthGuard } from './auth';
+import { Login } from './login/login';
+import { Perfil } from './perfil/perfil';
+import { Admin } from './admin/admin';
 
 
 export const routes: Routes = [
-  // Rota padrão: redireciona para 'inicio' quando a URL é '/'
+  // Rotas de Autenticação (protegidas pelo AuthGuard para evitar acesso se já logado)
+  { path: 'cadastro', component: Cadastro, canActivate: [AuthGuard] },
+  { path: 'login', component: Login, canActivate: [AuthGuard] },
+  { path: 'perfil', component: Perfil, canActivate: [AuthGuard] },
+  { path: 'admin', component: Admin, canActivate: [AuthGuard] },
+
+  // Rota Padrão: Redireciona para 'home' (que será protegida)
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-  // Rotas para as suas páginas
-  { path: 'home', component: Home },
+  // Rotas da Aplicação (algumas protegidas pelo AuthGuard, outras públicas)
+  { path: 'home', component: Home}, // Exemplo: Home precisa de login
   { path: 'sobre', component: Sobre },
   { path: 'fotos', component: Fotos },
   { path: 'agenda', component: Agenda },
   { path: 'apoiar', component: Apoiar },
   { path: 'contato', component: Contato },
-  { path: 'inscricao', component: Inscricao }, // Note a convenção de kebab-case para URLs
+  { path: 'inscricao', component: Inscricao },
   { path: 'eventos', component: Eventos },
   { path: 'coordenacao', component: Coordenacao },
   { path: 'coslovers', component: Coslovers },
   { path: 'cncosplay', component: Cncosplay },
 
 
+  // Rota Curinga: Redireciona para 'home' se nenhuma rota acima for encontrada
   { path: '**', redirectTo: '/home' }
 ];
