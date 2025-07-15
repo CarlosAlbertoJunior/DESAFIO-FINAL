@@ -15,21 +15,21 @@ export class EventService {
   private mockEvents: EventItem[] = [
     {
       id: 'evt001',
-      title: 'Cosnection Summer Fest 2025',
+      title: 'COSDAY',
       date: '27/07/2025',
-      time: '10:00 - 18:00',
-      location: 'Parque Shopping Bahia - Salvador',
-      description: 'Nosso maior festival anual com concursos de cosplay, painéis, estandes e muita diversão geek!',
+      time: '13:00 - 19:00',
+      location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
+      description: 'Em comemoração ao dia do cosplay, o Parque shopping Bahia e a Cosnection prepararam um mega evento para todos os amantes da cultura geek!!',
       image: 'assets/img/agenda/summer-fest.jpg', // Certifique-se de que a imagem existe!
       status: 'upcoming',
       link: 'https://forms.gle/exemplo-inscricao'
     },
     {
       id: 'evt002',
-      title: 'Batalha de Cosplay: Heróis e Vilões',
-      date: '15/08/2025',
-      time: '14:00',
-      location: 'Shopping da Bahia - Palco Principal',
+      title: 'HALLOWEEN CN',
+      date: '01/09/2025',
+      time: '13:00 - 20:30',
+      location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
       description: 'Prepare seu melhor cosplay para o nosso concurso temático. Prêmios incríveis te esperam!',
       image: 'assets/img/agenda/batalha-cosplay.jpg',
       status: 'upcoming',
@@ -37,23 +37,34 @@ export class EventService {
     },
     {
       id: 'evt003',
-      title: 'Geek Conecta 2024',
+      title: 'ORGULHO GEEK 5ª Edição',
       date: '10/11/2024',
       time: '09:00 - 19:00',
-      location: 'Centro de Convenções de Salvador',
+      location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
       description: 'Um dia inteiro de painéis, workshops, feira de artistas e muito networking geek. Não perca!',
-      image: 'assets/img/agenda/geek-conecta.jpg',
+      image: '/img/AGENDA/@orgulho geek dia2_1435.jpg',
       status: 'past',
       link: 'https://galeria.cosnection.com.br/geekconecta2024'
     },
     {
       id: 'evt004',
-      title: 'Halloween Geek Party',
-      date: '31/10/2024',
-      time: '20:00 - 02:00',
-      location: 'Casa de Eventos X',
+      title: 'CARNA WILD',
+      date: '27/02/2025',
+      time: '14:00 - 20:00',
+      location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
+      description: 'Beleza, Brasil— vamos FESTEJAR! O CarnaWild está chegando ao League of Legends: Wild Rift e trazendo desafios incríveis, recompensas incríveis e muitas vibes de Carnaval.',
+      image: '/img/AGENDA/PCOC6006.JPG',
+      status: 'past',
+      link: 'https://galeria.cosnection.com.br/halloween2024'
+    },
+    {
+      id: 'evt004',
+      title: 'OSCAR DAY',
+      date: '13/12/2024',
+      time: '14:00 - 20:00',
+      location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
       description: 'Nossa festa temática de Halloween com muitos cosplays de terror e fantasia. Venha fantasiado!',
-      image: 'assets/img/agenda/halloween.jpg',
+      image: '/img/AGENDA/Proposta Coca Cola - 2025.jpg',
       status: 'past',
       link: 'https://galeria.cosnection.com.br/halloween2024'
     }

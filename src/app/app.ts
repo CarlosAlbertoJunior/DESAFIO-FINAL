@@ -9,6 +9,7 @@ import { WhatsappButton } from './components/whatsapp-button/whatsapp-button';
 
 
 
+
 @Component({
   selector: 'app-root',     // O seletor HTML que você usará para este componente (ex: <app-root></app-root>)
   standalone: true,         // Indica que este é um componente autônomo (Angular 17+)
@@ -16,6 +17,7 @@ import { WhatsappButton } from './components/whatsapp-button/whatsapp-button';
     CommonModule,
     RouterOutlet,
     Menu,
+
     Footer,
     WhatsappButton
 

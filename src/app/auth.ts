@@ -1,5 +1,6 @@
 // src/app/auth.ts
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -35,7 +36,7 @@ export class AuthService {
   private _isLoggedIn = false;
   private _currentUser: UserData | null = null;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,private http: HttpClient) {
     if (typeof localStorage !== 'undefined') {
       const storedUser = localStorage.getItem('currentUser');
       if (storedUser) {
