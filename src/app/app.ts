@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common'; // Módulo comum do Angular (par
 import { RouterOutlet } from '@angular/router';
 import { Menu } from "./components/menu/menu";
 import { Footer } from "./components/footer/footer"; // Necessário para o roteamento do Angular
+import { WhatsappButton } from './components/whatsapp-button/whatsapp-button';
 
 
 
@@ -16,6 +17,7 @@ import { Footer } from "./components/footer/footer"; // Necessário para o rotea
     RouterOutlet,
     Menu,
     Footer,
+    WhatsappButton
 
 ],
   templateUrl: './app.html',

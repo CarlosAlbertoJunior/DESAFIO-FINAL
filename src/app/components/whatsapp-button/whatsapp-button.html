@@ -1,0 +1,23 @@
+<a (click)="toggleChat()"
+   class="floating-whatsapp-btn d-flex align-items-center justify-content-center"
+   aria-label="Fale conosco pelo WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<div *ngIf="isChatOpen" class="whatsapp-chatbox rounded shadow-lg animate__animated animate__fadeInUp">
+  <div class="chatbox-header d-flex justify-content-between align-items-center p-3">
+    <h5 class="m-0 text-light">Atendimento WhatsApp</h5>
+    <button (click)="toggleChat()" class="btn-close-chat text-light" aria-label="Fechar Chat">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+  <div class="chatbox-body p-3">
+    <p class="text-muted small mb-2">Digite sua mensagem e clique em enviar:</p>
+    <textarea [(ngModel)]="userMessage" class="form-control" rows="4" placeholder="Sua mensagem..."></textarea>
+  </div>
+  <div class="chatbox-footer p-3 text-end">
+    <button (click)="startChat()" class="btn btn-success">
+      <i class="bi bi-whatsapp me-2"></i> Enviar pelo WhatsApp
+    </button>
+  </div>
+</div>

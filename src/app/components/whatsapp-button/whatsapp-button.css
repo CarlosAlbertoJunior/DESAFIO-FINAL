@@ -1,0 +1,127 @@
+/* src/app/components/whatsapp-button/whatsapp-button.component.css */
+
+/* Estilos do Botão Flutuante do WhatsApp (já existentes) */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1050;
+  background-color: #25D366;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+}
+
+.floating-whatsapp-btn i.bi {
+  font-size: 2.2em;
+}
+
+/* --- Estilos da Caixa de Chat do WhatsApp --- */
+.whatsapp-chatbox {
+  position: fixed;
+  bottom: 90px; /* Posiciona acima do botão flutuante */
+  right: 25px;
+  z-index: 1049; /* Um pouco menor que o botão para ficar abaixo dele */
+  width: 320px; /* Largura da caixa de chat */
+  background-color: #2f3640; /* Cor de fundo escura (ajuste) */
+  color: white;
+  border-radius: 12px; /* Cantos arredondados */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada */
+  overflow: hidden; /* Garante que o conteúdo não vaze */
+  /* Se usar animate.css, ele cuidará da animação de entrada/saída */
+}
+
+.chatbox-header {
+  background-color: #3b434e; /* Fundo do cabeçalho */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatbox-header h5 {
+  color: var(--cor-fonte-principal); /* Cor do título do cabeçalho */
+}
+
+.btn-close-chat {
+  background: none;
+  border: none;
+  font-size: 1.5em;
+  color: var(--cor-fonte-principal);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.btn-close-chat:hover {
+  opacity: 1;
+}
+
+.chatbox-body {
+  background-color: #2f3640; /* Fundo do corpo */
+}
+
+.chatbox-body p {
+  color: var(--cor-fonte-secundaria); /* Cor do texto de instrução */
+}
+
+.chatbox-body .form-control {
+  background-color: #4b545f; /* Fundo da caixa de texto */
+  border: 1px solid #5a626a;
+  color: white;
+  resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.chatbox-body .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.chatbox-body .form-control:focus {
+  background-color: #4b545f;
+  border-color: var(--cor-span); /* Borda ao focar */
+  box-shadow: 0 0 0 0.25rem rgba(var(--cor-span-rgb), 0.25); /* Sombra de foco */
+  color: white;
+}
+
+.chatbox-footer {
+  background-color: #3b434e; /* Fundo do rodapé */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chatbox-footer .btn-success {
+  background-color: #25D366 !important; /* Botão de enviar verde */
+  border-color: #25D366 !important;
+  color: white !important;
+  font-weight: bold;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chatbox-footer .btn-success:hover {
+  background-color: #1DA64E !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajustes Responsivos para Telas Menores */
+@media (max-width: 575.98px) {
+  .floating-whatsapp-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+  .floating-whatsapp-btn i.bi {
+    font-size: 1.8em;
+  }
+
+  .whatsapp-chatbox {
+    width: calc(100% - 30px); /* Ocupa quase toda a largura */
+    bottom: 75px; /* Ajuste a posição */
+    right: 15px;
+  }
+}

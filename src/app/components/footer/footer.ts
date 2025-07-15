@@ -1,6 +1,7 @@
 // src/app/footer/footer.component.ts
 import { Component, OnInit } from '@angular/core'; // Adicione OnInit
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -9,7 +10,11 @@ import { CommonModule } from '@angular/common';
   templateUrl: './footer.html',
   styleUrls: ['./footer.css']
 })
-export class Footer implements OnInit { // Implemente OnInit
+export class Footer implements OnInit {
+
+  constructor( private router: Router){}
+  onContato(): void { this.router.navigate(['/contato']); }
+ // Implemente OnInit
   currentYear: number = 0; // Variável para armazenar o ano atual
 
   ngOnInit(): void {

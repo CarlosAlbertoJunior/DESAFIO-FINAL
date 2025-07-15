@@ -1,0 +1,181 @@
+/* src/app/agenda/agenda.component.css */
+
+/* --- Hero Section da Agenda --- */
+.hero-agenda-page {
+  background-image: url('/img/AGENDA/PCOC7128.jpg'); /* Substitua pela sua imagem */
+  background-size: cover;
+  background-position: center;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.hero-agenda-page .overlay {
+  background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro */
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  z-index: 0;
+}
+.hero-agenda-page .content-center {
+  position: relative;
+  z-index: 1;
+}
+.hero-agenda-page h1 {
+  color: var(--cor-ouro); /* Exemplo: Título em ouro */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+.hero-agenda-page p.lead {
+  color: var(--cor-fonte-principal);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- Seção de Próximos Eventos (Linha do Tempo/Lista) --- */
+.section-upcoming-events {
+  background-color: var(--cor-corpo); /* Fundo azul escuro */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  padding: 3rem 0;
+}
+.section-upcoming-events h2 {
+  color: var(--cor-ouro) !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+
+.event-item {
+  background-color: rgba(0, 0, 0, 0.7); /* Fundo escuro transparente para itens */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--cor-fonte-principal);
+}
+.event-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.5);
+}
+.event-item h3 {
+  color: var(--cor-span) !important; /* Títulos dos eventos em cor-span */
+}
+.event-item p.text-secondary {
+  color: var(--cor-fonte-principal) !important; /* Localização em aliceblue */
+}
+.event-item p.text-muted {
+  color: var(--cor-fonte-secundaria) !important; /* Descrição em cinza claro */
+}
+.event-item .event-date-time {
+  color: var(--cor-ouro) !important; /* Data/hora em ouro */
+  font-weight: bold;
+}
+.event-item .btn-outline-info {
+  border-color: var(--cor-span) !important;
+  color: var(--cor-span) !important;
+}
+.event-item .btn-outline-info:hover {
+  background-color: var(--cor-span) !important;
+  color: var(--cor-preto) !important;
+}
+
+/* --- Seção de Eventos Passados (Cards) --- */
+.section-past-events {
+  background-color: var(--cor-preto); /* Fundo preto para a seção */
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  padding: 3rem 0;
+}
+.section-past-events h2 {
+  color: var(--cor-ouro) !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.event-card {
+  background-color: rgba(0, 0, 0, 0.7) !important; /* Fundo dos cards de evento passado */
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
+}
+.event-card .card-img-top {
+  height: 180px; /* Altura fixa para imagem do card */
+  object-fit: cover;
+}
+.event-card .card-title {
+  color: var(--cor-span) !important; /* Títulos dos cards em cor-span */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.event-card .card-text.small {
+  color: var(--cor-fonte-secundaria) !important; /* Data/local em cinza claro */
+}
+.event-card .card-text.text-secondary {
+  color: var(--cor-fonte-principal) !important; /* Descrição em aliceblue */
+}
+.event-card .btn-outline-light {
+  border-color: var(--cor-ouro) !important;
+  color: var(--cor-ouro) !important;
+}
+.event-card .btn-outline-light:hover {
+  background-color: var(--cor-ouro) !important;
+  color: var(--cor-preto) !important;
+}
+
+/* --- CTA Final --- */
+.cta-agenda {
+  background-color: var(--cor-button); /* Fundo do CTA em cor-button */
+  color: var(--cor-fonte-principal);
+  border: 2px solid var(--cor-ouro);
+}
+.cta-agenda h3 {
+  color: var(--cor-ouro) !important;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.cta-agenda .btn-outline-light {
+  border-color: var(--cor-fonte-principal) !important;
+  color: var(--cor-fonte-principal) !important;
+}
+.cta-agenda .btn-outline-light:hover {
+  background-color: var(--cor-fonte-principal) !important;
+  color: var(--cor-button) !important;
+}
+
+/* --- Ajustes Responsivos --- */
+@media (max-width: 767.98px) {
+  .hero-agenda-page {
+    height: 40vh;
+  }
+  .hero-agenda-page h1 {
+    font-size: 2.5rem;
+  }
+  .hero-agenda-page p.lead {
+    font-size: 1rem;
+  }
+
+  .event-item {
+    padding: 1.5rem;
+  }
+  .event-item h3 {
+    font-size: 1.2rem;
+  }
+  .event-item p {
+    font-size: 0.9rem;
+  }
+  .event-card .card-img-top {
+    height: 150px;
+  }
+  .event-card .card-title {
+    font-size: 1.3rem;
+  }
+  .event-card .card-text {
+    font-size: 0.85rem;
+  }
+  .cta-agenda {
+    padding: 2rem;
+  }
+  .cta-agenda h3 {
+    font-size: 1.8rem;
+  }
+}

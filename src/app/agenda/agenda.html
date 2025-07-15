@@ -1,1 +1,66 @@
-<p>agenda works!</p>
+<section class="hero-agenda-page">
+  <div class="overlay"></div>
+  <div class="container content-center">
+    <h1 class="display-3 fw-bold text-light animate__animated animate__fadeInDown">Nossa Agenda de Eventos</h1>
+    <p class="lead text-light mt-3 animate__animated animate__fadeInUp">Fique por dentro dos próximos encontros, e reviva os melhores momentos dos que já passaram!</p>
+  </div>
+</section>
+
+<section class="container my-5 py-5 section-upcoming-events">
+  <h2 class="display-5 fw-bold text-center text-info mb-5">Próximos Eventos</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div *ngIf="upcomingEvents.length > 0; else noUpcomingEvents" class="event-timeline">
+        <div *ngFor="let event of upcomingEvents" class="event-item mb-4 p-4 rounded-3 shadow-sm">
+          <div class="event-date-time text-muted mb-2">
+            <i class="bi bi-calendar-event me-2"></i> {{ event.date }} às {{ event.time }}
+          </div>
+          <h3 class="h4 fw-bold text-primary mb-2">{{ event.title }}</h3>
+          <p class="text-secondary mb-2">{{ event.location }}</p>
+          <p class="text-muted">{{ event.description }}</p>
+          <a *ngIf="event.link" [href]="event.link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-info mt-2">
+            Saiba Mais / Inscreva-se <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <ng-template #noUpcomingEvents>
+        <div class="alert alert-info text-center" role="alert">
+          Nenhum evento futuro agendado no momento. Fique de olho!
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</section>
+
+<section class="container my-5 py-5 section-past-events">
+  <h2 class="display-5 fw-bold text-center text-info mb-5">Eventos Que Marcaram</h2>
+
+  <div *ngIf="pastEvents.length > 0; else noPastEvents" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div *ngFor="let event of pastEvents" class="col">
+      <div class="card h-100 bg-dark text-light border-0 shadow-sm event-card">
+        <img *ngIf="event.image" [src]="event.image" class="card-img-top" [alt]="'Foto do evento ' + event.title">
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-info">{{ event.title }}</h5>
+          <p class="card-text text-muted small mb-1">{{ event.date }} - {{ event.location }}</p>
+          <p class="card-text text-secondary">{{ event.description | slice:0:100 }}...</p>
+          <a *ngIf="event.link" [href]="event.link" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-light mt-2">
+            Ver Fotos / Saiba Mais <i class="bi bi-box-arrow-up-right"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template #noPastEvents>
+    <div class="alert alert-secondary text-center" role="alert">
+      Em breve, galeria de nossos eventos anteriores!
+    </div>
+  </ng-template>
+</section>
+
+<section class="container my-5 py-5 text-center">
+  <div class="cta-agenda bg-dark p-5 rounded-3 shadow-lg">
+    <h3 class="display-6 fw-bold text-light mb-4">Tem uma ideia de evento ou quer nos convidar?</h3>
+    <a routerLink="/contato" class="btn btn-outline-light btn-lg">Fale Conosco!</a>
+  </div>
+</section>

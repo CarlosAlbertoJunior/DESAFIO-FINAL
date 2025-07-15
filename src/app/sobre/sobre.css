@@ -1,0 +1,221 @@
+/* src/app/sobre/sobre.component.css */
+
+/* --- VARIÁVEIS CSS UTILIZADAS NESSAS SEÇÕES --- */
+/* (Se você já tem essas variáveis no seu styles.css global,
+   pode removê-las daqui para evitar duplicação,
+   mas mantenha-as se quiser que sejam específicas para este componente) */
+:root {
+  --cor-fonte-principal: aliceblue;
+  --cor-fonte-secundaria: #eeeeee;
+  --cor-font-cinza: #393c42;
+  --cor-preto: #000000;
+  --cor-corpo: #09122c; /* Fundo azul escuro das seções */
+  --cor-span: #4ab5f3; /* Cor para destaques */
+  --cor-button: #071952; /* Cor para botões */
+  --cor-ouro: #ffbf10; /* Cor para títulos em destaque */
+}
+
+/* --- SEÇÃO 1: Hero Section (Conheça a Cosnection) --- */
+.hero-about-us {
+    background-image: url('/img/SOBRE/@orgulho geek dia1_17.jpg'); /* Sua imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    height: 110vh; /* Altura da seção */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden; /* Para garantir que o overlay não vaze */
+}
+.hero-about-us .overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Overlay escuro para texto claro */
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 0;
+}
+.hero-about-us .content-center {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+/* Se usar animate.css, certifique-se de que está importado globalmente */
+
+/* --- SEÇÃO 2: Nossa Essência --- */
+
+.section-our-essence h2 {
+    color: var(--cor-span) !important; /* Título em cor-span para destaque */
+}
+.section-our-essence .blockquote {
+    background-color: rgba(var(--cor-span-rgb), 0.05); /* Fundo sutil com base na cor-span */
+    border-color: var(--cor-span) !important; /* Borda com cor-span */
+    padding: 1.5rem;
+    border-radius: 0 8px 8px 0;
+}
+.section-our-essence .blockquote p {
+    color: #393c42 !important; /* Texto da citação em cinza claro */
+}
+.section-our-essence .blockquote-footer {
+    color: #393c42 !important; /* Nome do autor em aliceblue */
+}
+.section-our-essence p.lead {
+    color: var(--cor-preto) !important; /* Parágrafo lead em aliceblue */
+}
+.section-our-essence p.text-muted {
+    color: var(--cor-corpo) !important; /* Parágrafo muted em cinza claro */
+}
+
+
+/* --- SEÇÃO 3: Cosnection: Uma Década de Legado e Paixão (com Cards de Números) --- */
+.section-legacy {
+    background-color: var(--cor-corpo); /* Fundo azul escuro para a seção */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    position: relative;
+}
+
+.section-legacy h2 {
+    color: var(--cor-ouro) !important; /* Título da seção em ouro */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.section-legacy p.lead {
+    color: var(--cor-fonte-secundaria) !important; /* Parágrafo lead em aliceblue */
+}
+
+.legacy-card {
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo dos cards mais escuro e um pouco transparente */
+    color: var(--cor-fonte-principal);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.legacy-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.85); /* Fica mais opaco no hover */
+}
+.legacy-card h3.display-4 {
+    color: var(--cor-ouro) !important; /* Cor ouro para os números */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.legacy-card p.h5 {
+    color: var(--cor-span) !important; /* Cor span para os títulos menores */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.legacy-card p.text-muted {
+    color: var(--cor-fonte-secundaria) !important; /* Cor secundária para descrições */
+}
+
+.cta-legacy {
+    background-color: var(--cor-button); /* Fundo azul escuro para a CTA final */
+    color: var(--cor-fonte-principal);
+    padding: 3rem;
+    border-radius: 12px;
+    border: 2px solid var(--cor-ouro); /* Borda ouro para destacar */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    margin-top: 5rem;
+}
+.cta-legacy h3.display-5 {
+    color: var(--cor-ouro) !important; /* Título final em ouro */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.cta-legacy p.lead {
+    color: var(--cor-fonte-principal) !important;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+.cta-legacy .text-span {
+    color: var(--cor-span) !important; /* Cor span para o destaque final */
+}
+
+/* --- SEÇÃO 4: O Que Nos Move: Nossos Pilares Fundamentais (com Cards de Ícones) --- */
+.section-our-pillars { /* Nova classe adicionada no HTML */
+    background-color: var(--cor-corpo); /* Fundo azul escuro para a seção */
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+.section-our-pillars h2 {
+    color: var(--cor-span) !important; /* Título da seção em ouro */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+.pillar-card { /* Reutilizando a classe pillar-card, mas com estilos específicos para esta seção */
+    background-color: rgba(0, 0, 0, 0.7); /* Fundo do card (azul escuro) */
+    color: var(--cor-fonte-principal); /* Cor do texto no card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.pillar-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+.pillar-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px var(--cor-span));
+    transition: transform 0.3s ease;
+}
+.pillar-card:hover .pillar-icon {
+    transform: scale(1.1);
+}
+
+.pillar-card h3 {
+    color: var(--cor-fonte-secundaria) !important; /* Títulos dos pilares em ouro */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.pillar-card p {
+    color: var(--cor-fonte-secundaria) !important; /* Parágrafos dos pilares em cinza claro */
+}
+
+
+/* --- AJUSTES RESPONSIVOS GERAIS PARA AS SEÇÕES ACIMA --- */
+@media (max-width: 767.98px) {
+    .hero-about-us {
+        height: 80vh; /* Altura reduzida para mobile */
+    }
+    .hero-about-us h1 {
+        font-size: 2.5rem;
+    }
+    .hero-about-us p {
+        font-size: 1rem;
+    }
+
+    .section-our-essence img {
+        margin-bottom: 1.5rem;
+    }
+    .section-our-essence h2 {
+        font-size: 2.2rem;
+    }
+    .section-our-essence .blockquote p {
+        font-size: 1rem;
+    }
+
+    .legacy-card {
+        padding: 1.5rem;
+    }
+    .legacy-card h3.display-4 {
+        font-size: 2.5rem;
+    }
+    .legacy-card p.h5 {
+        font-size: 1.1rem;
+    }
+    .cta-legacy {
+        padding: 2rem;
+    }
+    .cta-legacy h3.display-5 {
+        font-size: 2.2rem;
+    }
+    .cta-legacy p.lead {
+        font-size: 1rem;
+    }
+
+    .pillar-card {
+        padding: 1.5rem;
+    }
+    .pillar-icon {
+        width: 80px;
+        height: 80px;
+    }
+    .pillar-card h3 {
+        font-size: 1.2rem;
+    }
+}

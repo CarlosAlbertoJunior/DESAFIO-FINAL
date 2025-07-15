@@ -1,39 +1,93 @@
 <footer class="footer bg-dark py-4 mt-auto">
-  <div class="container text-center">
-    <div class="row justify-content-center">
-      <div class="col-12 col-md-8 col-lg-6">
-        <div class="logo-footer mb-3">
-          <img src="/img/LOGO MENU-RODAPÉ/ESPECIAL.webp"
-               class="img-fluid footer-main-logo mb-3"
-               alt="Logo Rodapé"
+  <div class="container text-light">
+    <div class="row pt-3 pb-4 align-items-start">
+      <div class="col-12 col-md-4 mb-4 mb-md-0 text-center text-md-start">
+        <div class="logo-footer">
+          <img
+            src="/img/LOGO MENU-RODAPÉ/ESPECIAL.webp"
+            class="img-fluid footer-main-logo"
+            alt="Cosnection Logo Rodapé"
           />
+        </div>
+      </div>
 
-          <div class="btn-social d-flex justify-content-center gap-3 mb-3">
-            <a href="https://www.instagram.com/cosnesction/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center">
-              <img src="img/LOGO MENU-RODAPÉ/insta.png" alt="Instagram" class="social-icon">
+      <div class="col-12 col-md-8 text-center text-md-end">
+        <div class="footer-info-group">
+          <div
+            class="btn-social d-flex justify-content-center justify-content-md-end gap-3 mb-3"
+          >
+            <a
+              href="https://www.instagram.com/cosnesction/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center"
+            >
+              <img
+                src="img/LOGO MENU-RODAPÉ/insta.png"
+                alt="Instagram"
+                class="social-icon"
+              />
             </a>
-            <a href="http://youtube.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center">
-              <img src="img/LOGO MENU-RODAPÉ/youtube.png" alt="Youtube" class="social-icon">
+            <a
+              href="http://youtube.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center"
+            >
+              <img
+                src="img/LOGO MENU-RODAPÉ/youtube.png"
+                alt="Youtube"
+                class="social-icon"
+              />
             </a>
-            <a href="https://discord.gg/AccFuy7ppP" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center">
-              <img src="img/LOGO MENU-RODAPÉ/discord.png" alt="Discord" class="social-icon">
+            <a
+              href="https://discord.gg/AccFuy7ppP"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center"
+            >
+              <img
+                src="img/LOGO MENU-RODAPÉ/discord.png"
+                alt="Discord"
+                class="social-icon"
+              />
             </a>
-            <a href="https://www.twitch.tv/cloudincn" target="_blank" rel="noopener noreferrer" class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center">
-              <img src="img/LOGO MENU-RODAPÉ/twitch.png" alt="Twitch" class="social-icon">
+            <a
+              href="https://www.twitch.tv/cloudincn"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-outline-light social-btn rounded-circle p-2 d-flex align-items-center justify-content-center"
+            >
+              <img
+                src="img/LOGO MENU-RODAPÉ/twitch.png"
+                alt="Twitch"
+                class="social-icon"
+              />
             </a>
           </div>
 
-          <div class="infosRodape text-light">
-            <p class="mb-1">CNPJ: 47.695.537/0001-87</p>
-            <p class="mb-0">COSNECTION PRODUÇÃO E ENTRETENIMENTOS</p>
+          <div class="contact-info mb-3 text-start text-md-end">
+            <h5 class="fw-bold mb-2">Contato</h5>
+            <p class="mb-1" style="cursor: pointer;" (click)="onContato()">
+              <i class="bi bi-whatsapp me-2"></i> Grupo Cosplay
+            </p>
+            <p class="mb-1">
+              <i class="bi bi-envelope me-2"></i> producao&#64;cosnection.com.br
+            </p>
+            <p class="mb-0">
+              <i class="bi bi-geo-alt me-2"></i> Salvador, Bahia, Brasil
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row mt-3">
-      <div class="col-12">
-        <div class="linha-footer text-light">
+    <hr class="border-secondary my-3" />
+    <div class="row pt-2">
+      <div class="col-12 text-center">
+        <div class="linha-footer">
+          <p class="mb-1">CNPJ: 47.695.537/0001-87</p>
+          <p class="mb-0">COSNECTION PRODUÇÃO E ENTRETENIMENTOS</p>
           <p class="mb-0">© {{ currentYear }} Todos os direitos reservados</p>
         </div>
       </div>
