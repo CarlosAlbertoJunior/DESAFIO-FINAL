@@ -1,1 +1,62 @@
-<p>fotos works!</p>
+<section class="hero-page-header">
+  <div class="overlay"></div>
+  <div class="container content-center">
+    <h1
+      class="display-3 fw-bold text-light animate__animated animate__fadeInDown"
+    >
+      Nossa Galeria de Fotos
+    </h1>
+    <p class="lead text-light mt-3 animate__animated animate__fadeInUp">
+      Momentos inesquecíveis, cosplays épicos e a energia dos nossos eventos
+      capturados em imagens.
+    </p>
+  </div>
+</section>
+
+<section class="container my-5 py-5 gallery-section">
+  <h2 class="display-5 fw-bold text-center text-info mb-4">
+    Explore Nossas Memórias
+  </h2>
+
+  <div class="text-center mb-5">
+    <label for="categoryFilter" class="form-label text-light me-2"
+      >Filtrar por:</label
+    >
+    <select
+      id="categoryFilter"
+      [(ngModel)]="selectedCategory"
+      (change)="applyFilter()"
+      class="form-select d-inline-block w-auto"
+    >
+      <option value="all">Todas as Categorias</option>
+      <option *ngFor="let cat of categories | slice : 1" [value]="cat">
+        {{ cat | titlecase }}
+      </option>
+    </select>
+  </div>
+
+  <h3 class="h3 fw-bold text-light text-center mb-4">Albuns da Galeria</h3>
+  <div
+    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 photo-grid-standard"
+  >
+    <div class="col" *ngFor="let photo of filteredPhotos">
+      <div
+        class="gallery-item card bg-dark text-light border-0 shadow"
+        (click)="openLightbox(photo)"
+      >
+        <img [src]="photo.url" class="card-img-top" [alt]="photo.alt" />
+        <div class="gallery-overlay">
+          <h5 class="overlay-title">{{ photo.eventName || "Detalhes" }}</h5>
+          <p class="overlay-text">{{ photo.alt }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    *ngIf="filteredPhotos.length === 0"
+    class="alert alert-warning text-center mt-4"
+  >
+    Nenhuma foto encontrada para a categoria selecionada.
+  </div>
+</section>

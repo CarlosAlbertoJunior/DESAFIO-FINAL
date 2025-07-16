@@ -4,136 +4,185 @@
 /* Se não estiverem no global, adicione um :root {} aqui com as que são usadas */
 
 .footer.bg-dark {
-  background-color: var(--cor-preto) !important; /* Garante fundo preto */
+  background-color: var(--cor-preto) !important;
+  /* Garante fundo preto */
 }
 
 /* Estilos da Logo Principal */
 .footer-main-logo {
-  max-width: 230px; /* Tamanho da logo principal (ajuste conforme necessário) */
+  max-width: 230px;
+  /* Tamanho da logo principal (ajuste conforme necessário) */
   height: auto;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3)); /* Efeito de brilho */
-  margin-bottom: 1rem; /* Adiciona espaço abaixo da logo no mobile, ou se o layout for vertical */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+  /* Efeito de brilho */
+  margin-bottom: 1rem;
+  /* Adiciona espaço abaixo da logo no mobile, ou se o layout for vertical */
 }
 
 /* Estilos dos Botões Sociais */
 .social-btn {
   width: 40px;
   height: 40px;
-  border-color: var(--cor-fonte-bordas) !important; /* Borda branca */
-  color: var(--cor-fonte-bordas) !important; /* Cor do ícone */
-  background-color: transparent !important; /* Fundo transparente */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição para escala e sombra */
+  border-color: var(--cor-fonte-bordas) !important;
+  /* Borda branca */
+  color: var(--cor-fonte-bordas) !important;
+  /* Cor do ícone */
+  background-color: transparent !important;
+  /* Fundo transparente */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Transição para escala e sombra */
 }
+
 .social-btn:hover {
-  transform: scale(1.1); /* Amplia o botão */
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Brilho suave */
+  transform: scale(1.1);
+  /* Amplia o botão */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  /* Brilho suave */
 }
+
 .social-icon {
   width: 24px;
   height: 24px;
   /* filter: invert(1); se seus ícones PNG/SVG forem pretos e você quiser brancos */
-  transition: transform 0.3s ease-in-out; /* Transição para escala do ícone */
+  transition: transform 0.3s ease-in-out;
+  /* Transição para escala do ícone */
 }
+
 .social-btn:hover .social-icon {
-  transform: scale(1.15); /* Ícone amplia um pouco mais */
+  transform: scale(1.15);
+  /* Ícone amplia um pouco mais */
 }
 
 /* Estilos para as Informações de Contato */
 .contact-info {
-  margin-top: 1.5rem; /* Espaçamento acima das informações de contato */
+  margin-top: 1.5rem;
+  /* Espaçamento acima das informações de contato */
   margin-bottom: 1.5rem;
 }
+
 .contact-info h5 {
-  color: var(--cor-ouro) !important; /* Título "Fale Conosco" em ouro */
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  color: var(--cor-ouro) !important;
+  /* Título "Fale Conosco" em ouro */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
+
 .contact-info p {
-  color: var(--cor-fonte-principal) !important; /* Texto de contato em aliceblue */
+  color: var(--cor-fonte-principal) !important;
+  /* Texto de contato em aliceblue */
   font-size: 0.95rem;
-  line-height: 1.5; /* Espaçamento entre linhas */
+  line-height: 1.5;
+  /* Espaçamento entre linhas */
 }
-.contact-info i.bi { /* Estilo para os ícones do Bootstrap Icons */
-    font-size: 1.1em;
-    vertical-align: middle;
-    color: var(--cor-span) !important; /* Cor dos ícones de contato */
+
+.contact-info i.bi {
+  /* Estilo para os ícones do Bootstrap Icons */
+  font-size: 1.1em;
+  vertical-align: middle;
+  color: var(--cor-span) !important;
+  /* Cor dos ícones de contato */
 }
 
 /* Estilos para CNPJ e Nome da Empresa */
 .infosRodape p {
-  color: var(--cor-fonte-principal) !important; /* Cor do texto (aliceblue) */
+  color: var(--cor-fonte-principal) !important;
+  /* Cor do texto (aliceblue) */
   font-size: 0.9em;
 }
 
 /* Estilos para a Linha de Direitos Autorais */
 .linha-footer p {
-  color: var(--cor-fonte-principal) !important; /* Cor do texto (aliceblue) */
+  color: var(--cor-fonte-principal) !important;
+  /* Cor do texto (aliceblue) */
   font-size: 0.8em;
 }
 
 /* --- AJUSTES RESPONSIVOS --- */
-@media (max-width: 767.98px) { /* Para telas pequenas (sm e xs) */
+@media (max-width: 767.98px) {
+  /* Para telas pequenas (sm e xs) */
 
   /* Ajusta o padding vertical da linha principal no mobile */
   .row.pt-3.pb-4.align-items-start {
-      padding-top: 1.5rem !important; /* Menos padding no topo */
-      padding-bottom: 1.5rem !important; /* Menos padding no bottom */
+    padding-top: 1.5rem !important;
+    /* Menos padding no topo */
+    padding-bottom: 1.5rem !important;
+    /* Menos padding no bottom */
   }
 
   /* CENTRALIZA O CONTEÚDO NAS COLUNAS MOBILE */
   /* A coluna da Logo */
   .col-12.col-md-4 {
-      text-align: center !important; /* Centraliza o conteúdo da coluna da logo */
-      margin-bottom: 1rem !important; /* Ajusta margem inferior */
+    text-align: center !important;
+    /* Centraliza o conteúdo da coluna da logo */
+    margin-bottom: 1rem !important;
+    /* Ajusta margem inferior */
   }
+
   /* A coluna das Informações à Direita */
   .col-12.col-md-8 {
-      text-align: center !important; /* Centraliza o conteúdo da coluna de informações */
+    text-align: center !important;
+    /* Centraliza o conteúdo da coluna de informações */
   }
 
   /* Reduz o tamanho da logo principal */
   .footer-main-logo {
-    max-width: 150px; /* Proporção menor para mobile (ajuste conforme necessário) */
+    max-width: 150px;
+    /* Proporção menor para mobile (ajuste conforme necessário) */
     /* `display: block; margin: auto;` não é necessário se o pai tiver text-align: center */
   }
 
   /* Reduz o tamanho dos botões sociais */
   .social-btn {
-    width: 36px; /* Tamanho menor para os botões */
-    height: 36px; /* Tamanho menor para os botões */
+    width: 36px;
+    /* Tamanho menor para os botões */
+    height: 36px;
+    /* Tamanho menor para os botões */
   }
+
   .social-icon {
-    width: 20px; /* Ícone menor */
-    height: 20px; /* Ícone menor */
+    width: 20px;
+    /* Ícone menor */
+    height: 20px;
+    /* Ícone menor */
   }
+
   /* Garante que os botões sociais estejam centralizados no mobile */
   .btn-social {
-      justify-content: center !important; /* Já está no HTML, mas forçando aqui para garantir */
+    justify-content: center !important;
+    /* Já está no HTML, mas forçando aqui para garantir */
   }
 
   /* Reduz o tamanho da fonte das informações de contato */
   .contact-info {
-       text-align: center !important;
-      margin-bottom: 1rem !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
   }
+
   .contact-info h5 {
-      font-size: 1rem; /* Título "Fale Conosco" menor */
+    font-size: 1rem;
+    /* Título "Fale Conosco" menor */
   }
+
   .contact-info p {
-    font-size: 0.85rem; /* Fonte menor */
+    font-size: 0.85rem;
+    /* Fonte menor */
   }
+
   .contact-info i.bi {
-    font-size: 1em; /* Ícones menores */
+    font-size: 1em;
+    /* Ícones menores */
   }
 
   /* Reduz o tamanho da fonte do CNPJ e Nome da Empresa */
 
   .infosRodape p {
-    font-size: 0.8em; /* Fonte menor */
+    font-size: 0.8em;
+    /* Fonte menor */
   }
 
   /* Reduz o tamanho da fonte dos Direitos Autorais */
   .linha-footer p {
-    font-size: 0.7em; /* Fonte menor */
+    font-size: 0.7em;
+    /* Fonte menor */
   }
 }
