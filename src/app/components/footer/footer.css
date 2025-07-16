@@ -96,6 +96,20 @@
   /* Cor do texto (aliceblue) */
   font-size: 0.8em;
 }
+.sponsor-logo {
+  max-height: 220px; /* Altura máxima da logo, ajuste se necessário */
+  /* background-color: #ffffff;  */
+  padding: 10px; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  transition: all 0.3s ease-in-out;
+  filter: grayscale(100%); /* Deixa a logo em escala de cinza para uniformidade */
+}
+
+.sponsor-logo:hover {
+  filter: grayscale(0%); /* Restaura a cor ao passar o mouse */
+  transform: scale(1.05); /* Leve ampliação */
+  box-shadow: 0 0 15px var(--cor-ouro); /* Usa a cor de destaque do seu site */
+}
 
 /* --- AJUSTES RESPONSIVOS --- */
 @media (max-width: 767.98px) {

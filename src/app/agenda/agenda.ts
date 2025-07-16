@@ -8,7 +8,7 @@ import { EventService } from '../event.service'; // Importa o EventService
 @Component({
   selector: 'app-agenda',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './agenda.html',
   styleUrls: ['./agenda.css']
 })

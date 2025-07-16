@@ -22,7 +22,7 @@ export class EventService {
       description: 'Em comemoração ao dia do cosplay, o Parque shopping Bahia e a Cosnection prepararam um mega evento para todos os amantes da cultura geek!!',
       image: 'assets/img/agenda/summer-fest.jpg', // Certifique-se de que a imagem existe!
       status: 'upcoming',
-      link: 'https://forms.gle/exemplo-inscricao'
+      link: 'https://www.instagram.com/p/DLay3gRvS1L/'
     },
     {
       id: 'evt002',
@@ -33,7 +33,7 @@ export class EventService {
       description: 'Prepare seu melhor cosplay para o nosso concurso temático. Prêmios incríveis te esperam!',
       image: 'assets/img/agenda/batalha-cosplay.jpg',
       status: 'upcoming',
-      link: 'https://docs.google.com/forms/exemplo-batalha'
+      // link: 'https://www.instagram.com/cosnection'
     },
     {
       id: 'evt003',
@@ -44,7 +44,7 @@ export class EventService {
       description: 'Um dia inteiro de painéis, workshops, feira de artistas e muito networking geek. Não perca!',
       image: '/img/AGENDA/@orgulho geek dia2_1435.jpg',
       status: 'past',
-      link: 'https://galeria.cosnection.com.br/geekconecta2024'
+      link: 'https://www.instagram.com/p/DKNikE4BVu4/'
     },
     {
       id: 'evt004',
@@ -55,7 +55,7 @@ export class EventService {
       description: 'Beleza, Brasil— vamos FESTEJAR! O CarnaWild está chegando ao League of Legends: Wild Rift e trazendo desafios incríveis, recompensas incríveis e muitas vibes de Carnaval.',
       image: '/img/AGENDA/PCOC6006.JPG',
       status: 'past',
-      link: 'https://galeria.cosnection.com.br/halloween2024'
+      link: 'https://www.instagram.com/p/DHPOlcApm70/?img_index=1'
     },
     {
       id: 'evt004',
@@ -66,7 +66,7 @@ export class EventService {
       description: 'Nossa festa temática de Halloween com muitos cosplays de terror e fantasia. Venha fantasiado!',
       image: '/img/AGENDA/Proposta Coca Cola - 2025.jpg',
       status: 'past',
-      link: 'https://galeria.cosnection.com.br/halloween2024'
+      // link: 'https://www.instagram.com/cosnection'
     }
     // ADICIONE MAIS EVENTOS AQUI SE DESEJAR:
     // {
