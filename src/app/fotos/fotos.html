@@ -1,62 +1,55 @@
 <section class="hero-page-header">
   <div class="overlay"></div>
   <div class="container content-center">
-    <h1
-      class="display-3 fw-bold text-light animate__animated animate__fadeInDown"
-    >
-      Nossa Galeria de Fotos
-    </h1>
-    <p class="lead text-light mt-3 animate__animated animate__fadeInUp">
-      Momentos inesquecíveis, cosplays épicos e a energia dos nossos eventos
-      capturados em imagens.
-    </p>
+    <h1 class="display-3 fw-bold animate__animated animate__fadeInDown">Nossa Galeria de Fotos</h1>
+    <p class="lead mt-3 animate__animated animate__fadeInUp">Momentos inesquecíveis, cosplays épicos e a energia dos nossos eventos capturados em imagens.</p>
   </div>
 </section>
 
 <section class="container my-5 py-5 gallery-section">
-  <h2 class="display-5 fw-bold text-center text-info mb-4">
-    Explore Nossas Memórias
-  </h2>
-
-  <div class="text-center mb-5">
-    <label for="categoryFilter" class="form-label text-light me-2"
-      >Filtrar por:</label
-    >
-    <select
-      id="categoryFilter"
-      [(ngModel)]="selectedCategory"
-      (change)="applyFilter()"
-      class="form-select d-inline-block w-auto"
-    >
-      <option value="all">Todas as Categorias</option>
-      <option *ngFor="let cat of categories | slice : 1" [value]="cat">
-        {{ cat | titlecase }}
-      </option>
-    </select>
-  </div>
-
-  <h3 class="h3 fw-bold text-light text-center mb-4">Albuns da Galeria</h3>
-  <div
-    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 photo-grid-standard"
-  >
-    <div class="col" *ngFor="let photo of filteredPhotos">
-      <div
-        class="gallery-item card bg-dark text-light border-0 shadow"
-        (click)="openLightbox(photo)"
-      >
-        <img [src]="photo.url" class="card-img-top" [alt]="photo.alt" />
+  <h2 class="display-5 fw-bold text-center mb-5">Explore Nossos Álbuns</h2>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 photo-grid-standard">
+    <div class="col" *ngFor="let album of albums">
+      <div class="gallery-item card bg-dark text-light border-0 shadow" (click)="openAlbumModal(album, albumModalElement)">
+        <img [src]="album.coverImage" class="card-img-top" [alt]="album.title" />
         <div class="gallery-overlay">
-          <h5 class="overlay-title">{{ photo.eventName || "Detalhes" }}</h5>
-          <p class="overlay-text">{{ photo.alt }}</p>
+          <h5 class="overlay-title">{{ album.title }}</h5>
+          <p class="overlay-text">{{ album.description }}</p>
         </div>
       </div>
     </div>
   </div>
-
-  <div
-    *ngIf="filteredPhotos.length === 0"
-    class="alert alert-warning text-center mt-4"
-  >
-    Nenhuma foto encontrada para a categoria selecionada.
-  </div>
 </section>
+
+<div #albumModalElement class="modal fade" id="albumModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-dark text-light">
+      <div class="modal-header border-secondary">
+        <h5 class="modal-title">{{ selectedAlbum?.title }}</h5>
+        <button *ngIf="modalView === 'single'" type="button" class="btn btn-outline-light me-auto ms-2" (click)="showGridView()">
+          <i class="bi bi-arrow-left"></i> Voltar
+        </button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" [ngSwitch]="modalView">
+
+        <div *ngSwitchCase="'grid'" class="row g-3">
+          <div *ngFor="let photo of selectedAlbum?.photos" class="col-sm-6 col-md-4">
+            <img [src]="photo" class="img-fluid rounded shadow-sm modal-thumbnail" [alt]="selectedAlbum?.title"
+                 (click)="showSinglePhoto(photo)">
+          </div>
+        </div>
+          <div *ngIf="selectedAlbum?.driveUrl" class="modal-footer border-secondary">
+        <a [href]="selectedAlbum?.driveUrl" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          <i class="bi bi-google"></i> Ver álbum completo no Drive
+        </a>
+      </div>
+
+        <div *ngSwitchCase="'single'" class="text-center">
+          <img *ngIf="singlePhotoUrl" [src]="singlePhotoUrl" class="img-fluid rounded shadow-lg" [alt]="selectedAlbum?.title">
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
