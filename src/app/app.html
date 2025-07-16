@@ -2,5 +2,5 @@
 
 <main class="main-content-wrapper"> <router-outlet></router-outlet>
 </main>
-<app-whatsapp-button></app-whatsapp-button>
+<app-whatsapp-button *ngIf="isDesktop"></app-whatsapp-button>
 <app-footer></app-footer>

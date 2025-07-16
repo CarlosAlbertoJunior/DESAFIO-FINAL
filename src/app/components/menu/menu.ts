@@ -3,9 +3,9 @@
 import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs';
-import { AuthService } from '../../auth'; // <--- IMPORTE O AUTHSERVICE AQUI!
+import { AuthService } from '../../auth';
 
 @Component({
   selector: 'app-menu',
@@ -14,21 +14,16 @@ import { AuthService } from '../../auth'; // <--- IMPORTE O AUTHSERVICE AQUI!
     CommonModule,
     NgbDropdownModule,
     NgbCollapseModule,
-    RouterLink,
-
-    // Não precisa de RouterLink, pois está usando (click) e Router.navigate
   ],
   templateUrl: './menu.html',
   styleUrls: ['./menu.css']
 })
 export class Menu implements OnInit, OnDestroy {
 
-
   isMenuCollapsed = true;
   isScrolled = false;
   routerSubscription: any;
 
-  // Injetamos o AuthService aqui
   constructor(private router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -54,9 +49,14 @@ export class Menu implements OnInit, OnDestroy {
     this.checkScroll();
   }
 
+  // --- AQUI ESTÁ A MUDANÇA ---
   private checkScroll() {
     const scrollThreshold = 50;
-    this.isScrolled = window.pageYOffset > scrollThreshold;
+    // Verifica se a largura da janela é maior que 991px (ponto de quebra do Bootstrap para 'lg')
+    const isDesktop = window.innerWidth > 991;
+
+    // A classe 'scrolled' só será aplicada se for desktop E a página tiver rolado
+    this.isScrolled = isDesktop && window.pageYOffset > scrollThreshold;
   }
 
   // Seus métodos de navegação existentes
@@ -73,17 +73,13 @@ export class Menu implements OnInit, OnDestroy {
   onHome(): void { this.router.navigate(['/home']); }
   onCadastro(): void { this.router.navigate(['/cadastro']); }
   onLogin(): void { this.router.navigate(['/login']); }
-  onAdminPanel() {this.router.navigate(['/admin']);
-}
+  onAdminPanel() {this.router.navigate(['/admin']); }
 
-  // NOVO MÉTODO para lidar com o clique em 'Sair'
   onLogout(): void {
     this.authService.logout();
-    // O AuthService já redireciona para /cadastro após o logout
   }
 
-  // NOVO MÉTODO para navegar para 'Meu Perfil'
   onMeuPerfil(): void {
-    this.router.navigate(['/perfil']); // Você precisará criar uma rota para '/perfil' se ainda não o fez
+    this.router.navigate(['/perfil']);
   }
 }

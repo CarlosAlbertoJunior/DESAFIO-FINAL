@@ -1,4 +1,3 @@
-
 :root {
   --menu-background: #b5b5b6;
   --menu-text-light: #f8f9fa;
@@ -8,7 +7,6 @@
   --brand-text-color: #ffffff;
   --border-color-light: rgba(255, 255, 255, 0.1);
   --button-outline-success: #28a745;
-
   --cor-fonte-principal: aliceblue;
   --cor-fonte-secundaria: #eeeeee;
   --cor-fonte-bordas: white;
@@ -18,87 +16,85 @@
   --cor-corpo: #09122c;
   --cor-span: #4ab5f3;
   --cor-button: #071952;
-  --cor-ouro:#ffbf10;
+  --cor-ouro: #ffbf10;
+}
+a{
+  text-decoration: none;
 }
 
-
-/* Estilos para o componente Navbar */
 .navbar {
   background-color: #f8f9fa;
   padding: 1rem 0;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-/* Estilo para a marca (logo/texto "CN") */
 .navbar-brand {
-  /* display: flex; */
   align-items: center;
   font-weight: bold;
-  color: var(--cor-preto); /* Cor do texto da marca */
-  font-size: 1.5rem; /* Tamanho da fonte */
+  color: var(--cor-preto);
+  font-size: 1.5rem;
 }
+
 .navbar-brand p {
   padding: 0.2em;
 }
 
 .navbar-brand img {
-  height: 100px; /* Altura da imagem do logo */
-  margin-right: 10px; /* Espaçamento à direita da imagem */
+  height: 100px;
+  margin-right: 10px;
   padding: 0;
+  transition: height 0.3s ease-in-out, margin 0.3s ease-in-out;
 }
 
 .navbar-brand:hover {
-  color: var(--cor-preto); /* Cor ao passar o mouse na marca */
+  color: var(--cor-preto);
 }
 
-/* Estilos para o botão de toggle (hambúrguer) */
 .navbar-toggler {
-  border-color: rgba(255, 255, 255, 0.1); /* Borda do botão */
+  border-color: rgba(255, 255, 255, 0.1);
 }
+
 .dropdown-menu {
   background-color: var(--cor-fonte-secundaria);
-  border: 1px solid rgba(0, 0, 0, 0.2); /* Borda suave */
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); /* Sombra para o dropdown */
-  padding: 0.5rem 0; /* Espaçamento interno */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  padding: 0.5rem 0;
   cursor: pointer;
 }
+
 .dropdown-item {
-  color: #020202; /* Cor do texto dos itens (quase branco) */
-  background-color: transparent; /* Garante que o fundo padrão não interfira */
-  padding: 0.5rem 1.5rem; /* Espaçamento interno de cada item */
-  transition: all 0.2s ease-in-out; /* Transição suave para hover */
-
+  color: #020202;
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s ease-in-out;
 }
+
 .dropdown-item:hover,
-.dropdown-item:focus { /* Bootstrap usa :focus para navegação com teclado */
-  color: #ffbf10; /* Cor do texto ao passar o mouse (azul primário) */
-  background-color: rgba(255, 255, 255, 0.1); /* Fundo levemente visível no hover */
-
+.dropdown-item:focus {
+  color: #ffbf10;
+  background-color: rgba(255, 255, 255, 0.1);
 }
+
 .dropdown-divider {
-  border-top-color: rgba(255, 255, 255, 0.15); /* Cor da linha divisória */
+  border-top-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Se houver algum item ativo (embora menos comum em dropdowns puros, pode ocorrer) */
 .dropdown-item.active {
-  color: #ffffff; /* Texto branco puro */
-  background-color: #007bff; /* Fundo azul para o item ativo */
+  color: #ffffff;
+  background-color: #007bff;
 }
 
 .navbar-toggler-icon {
-  /* Para mudar a cor do ícone do hambúrguer, você precisa ajustar o 'stroke' no SVG */
-  /* Troque o '#f8f9fa' (branco) pela cor desejada para o ícone */
- background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar-toggler:focus {
-  box-shadow: 0 0 0 0.25rem rgba(13, 102, 253, 0.5); /* Sombra ao focar (azul) */
+  box-shadow: 0 0 0 0.25rem rgba(13, 102, 253, 0.5);
 }
 
-
-/* Estilos para a lista de navegação (ul) */
 .navbar-nav .nav-item {
-  margin-right: 20px; /* Espaço maior entre os itens do menu */
+  margin-right: 20px;
 }
 
 .navbar-nav .nav-item:last-child {
@@ -106,59 +102,56 @@
 }
 
 .navbar-nav .nav-link {
-  color: var(--cor-preto); /* Cor padrão dos links */
+  color: var(--cor-preto);
   font-weight: 500;
-  padding: 0.8rem 1.2rem; /* Padding um pouco maior */
-  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease; /* Transições suaves */
+  padding: 0.8rem 1.2rem;
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom 0.3s ease;
   cursor: pointer;
 }
 
 .navbar-nav .nav-link:hover {
-  color: #ffbf10; /* Cor ao passar o mouse */
-  /* background-color: rgba(255, 255, 255, 0.15); Fundo levemente visível no hover */
-  border-radius: 4px; /* Bordas mais arredondadas */
+  color: #ffbf10;
+  border-radius: 4px;
 }
 
 .navbar-nav .nav-link.active {
-  color: #ffffff; /* Cor do link ativo */
+  color: #ffffff;
   font-weight: bold;
   font-size: 1.2rem;
-  border-bottom: 3px solid #000000; /* Linha inferior com a cor de hover */
-  /* background-color: rgba(255, 255, 255, 0.08); Fundo sutil para o ativo */
-  border-radius: 8px 8px 0 0; /* Apenas as bordas superiores arredondadas */
+  border-bottom: 3px solid #000000;
+  border-radius: 8px 8px 0 0;
 }
 
 .navbar-nav .nav-link.disabled {
-  color: #6c757d; /* Cor para links desabilitados */
-  pointer-events: none; /* Desabilita interações do mouse */
-  opacity: 0.6; /* Menos visível */
+  color: #6c757d;
+  pointer-events: none;
+  opacity: 0.6;
 }
 
-
-/* Estilos para o formulário de busca */
 .form-control {
-  border-radius: 25px; /* Bordas bem arredondadas */
-  background-color: rgba(163, 140, 11, 0.2); /* Fundo levemente transparente */
-  border: 1px solid rgb(3, 3, 3); /* Borda sutil */
-  color: #ffffff; /* Cor do texto digitado */
-  padding-left: 15px; /* Padding interno */
+  border-radius: 25px;
+  background-color: rgba(163, 140, 11, 0.2);
+  border: 1px solid rgb(3, 3, 3);
+  color: #ffffff;
+  padding-left: 15px;
 }
 
 .form-control::placeholder {
-  color: rgba(0, 0, 0, 0.7); /* Cor do placeholder */
-  opacity: 1; /* Garante que o placeholder seja visível */
+  color: rgba(0, 0, 0, 0.7);
+  opacity: 1;
 }
 
 .form-control:focus {
-  border-color:   var(--cor-preto); /* Borda azul ao focar */
-  box-shadow: 0 0 0 0.25rem rgba(253, 237, 13, 0.25); /* Sombra suave */
+  border-color: var(--cor-preto);
+  box-shadow: 0 0 0 0.25rem rgba(253, 237, 13, 0.25);
   color: var(--cor-preto);
 }
+
 .event-highlight-container {
-  display: flex; /* Transforma o contêiner em flexbox */
-  align-items: center; /* Centraliza verticalmente os itens */
+  display: flex;
+  align-items: center;
   gap: 8px;
-  text-align: center; /* ESTE É O PRINCIPAL PARA CENTRALIZAR O TEXTO E ELEMENTOS INLINE */
+  text-align: center;
   color: var(--cor-preto);
   border-radius: 8px;
 }
@@ -166,9 +159,8 @@
 .event-highlight-icon img {
   width: auto;
   height: 60px;
-  display: block; /* MUITO IMPORTANTE: Transforma a imagem em um elemento de bloco */
-  /* margin: 0 auto 10px auto; */
-
+  display: block;
+  transition: width 0.3s ease-in-out, margin 0.3s ease-in-out, height 0.3s ease-in-out;
 }
 
 .event-highlight-date {
@@ -177,165 +169,87 @@
   color: var(--cor-preto);
   margin-top: 0;
   margin-bottom: 0;
-}
-
-
-.btn-outline-success {
-  border-radius: 25px; /* Bordas bem arredondadas */
-  border-color: #ffbf10; /* Cor da borda do botão */
-  color: var(--cor-preto); /* Cor do texto do botão */
-  font-weight: 600; /* Negrito */
-  transition: all 0.3s ease; /* Transição suave */
-}
-
-.btn-outline-success:hover {
-  background-color: #28a745; /* Fundo verde no hover */
-  color: #ffffff; /* Texto branco no hover */
-  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3); /* Sombra no hover */
-}
-
-.navbar {
-  /* Transições para as propriedades que vão mudar */
-  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, height 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  padding-top: 1rem;    /* Padding original (como você já tem) */
-  padding-bottom: 1rem; /* Padding original (como você já tem) */
-  background-color: var(--menu-background, #f8f9fa); /* Usando sua variável CSS, se aplicável, ou o valor padrão */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra inicial sutil */
-}
-
-/* Estilos quando o menu está rolado (.scrolled class é aplicada) */
-.navbar.scrolled {
-  padding-top: 0.5rem;    /* Padding menor para o menu encolhido */
-  padding-bottom: 0.5rem; /* Padding menor para o menu encolhido */
-  background-color: rgba(0, 0, 0, 0.95); /* Exemplo: Fundo um pouco mais escuro e opaco. Use 'var(--cor-menu)' se preferir. */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4); /* Sombra mais destacada ao rolar */
-}
-
-/* Ajustes para a imagem da logo dentro do .navbar-brand */
-.navbar-brand img { /* O seletor que você já usa para a logo */
-  height: 100px; /* Altura original da imagem do logo (como você já tem) */
-  transition: height 0.3s ease-in-out, margin 0.3s ease-in-out; /* Adicionar transição para a altura e margem */
-}
-
-.navbar.scrolled .navbar-brand img {
-  height: 60px; /* Altura menor da logo quando rolado (ajuste este valor) */
-  margin-right: 5px; /* Pode diminuir o espaçamento também */
-}
-
-/* Ajustes para os links de navegação (NAV LINKS) */
-.navbar-nav .nav-link {
-  font-size: 1.1rem; /* Tamanho original da fonte dos links */
-  padding: 0.8rem 1.2rem; /* Padding original dos links */
-  transition: font-size 0.3s ease-in-out, padding 0.3s ease-in-out;
-}
-
-.navbar.scrolled .navbar-nav .nav-link {
-  font-size: 0.95rem; /* Tamanho menor da fonte dos links (ajuste este valor) */
-  padding: 0.6rem 0.8rem; /* Padding menor dos links */
-}
-
-/* Ajustes para o ícone e data do evento ao lado da barra de busca */
-.event-highlight-icon img { /* O seletor que você usa para a imagem do ícone */
-
-  transition: width 0.3s ease-in-out, margin 0.3s ease-in-out;
-}
-
-.navbar.scrolled .event-highlight-icon img {
-  width: 40px; /* Tamanho menor */
-  margin-bottom: 5px; /* Pode ajustar a margem inferior também */
-}
-
-.event-highlight-date { /* O texto da data do evento */
-  font-size: 1.2rem; /* Tamanho original */
   transition: font-size 0.3s ease-in-out;
 }
 
+.btn-outline-success {
+  border-radius: 25px;
+  border-color: #ffbf10;
+  color: var(--cor-preto);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+}
+
+.navbar.scrolled {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.navbar.scrolled .navbar-brand img {
+  height: 60px;
+  margin-right: 5px;
+}
+
+.navbar.scrolled .navbar-nav .nav-link {
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+}
+
+.navbar.scrolled .event-highlight-icon img {
+  height: 40px; /* Altura do ícone quando rolado (no desktop) */
+}
+
 .navbar.scrolled .event-highlight-date {
-  font-size: 0.9rem; /* Tamanho menor */
+  font-size: 0.9rem;
 }
 
-/* Media query para responsividade (apenas para garantir que os tamanhos diminuídos se ajustem) */
-@media (min-width: 992px) { /* A partir de 'lg' breakpoint do Bootstrap */
-
-  /* Estilos Padrão do Navbar (já presentes, mas garantindo que transicionem) */
-  .navbar {
-    transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    background-color: var(--cor-menu); /* Fundo preto padrão */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-
-  /* Estilos quando o menu está rolado (.scrolled class é aplicada) */
-  .navbar.scrolled {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: rgba(0, 0, 0, 0.9); /* Mais opaco */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-  }
-
-  /* Ajustes para a imagem da logo dentro do .navbar-brand */
-  .navbar-brand img.navbar-logo {
-    height: 100px; /* Altura original */
-    transition: height 0.3s ease-in-out, margin 0.3s ease-in-out;
-  }
-
-  .navbar.scrolled .navbar-brand img.navbar-logo {
-    height: 60px; /* Altura menor quando rolado */
-    margin-right: 5px;
-  }
-
-  /* Ajustes para os links de navegação (NAV LINKS) */
-  .navbar-nav .nav-link {
-    font-size: 1.1rem; /* Tamanho original da fonte dos links */
-    padding: 0.8rem 1.2rem;
-    transition: font-size 0.3s ease-in-out, padding 0.3s ease-in-out;
-  }
-
-  .navbar.scrolled .navbar-nav .nav-link {
-    font-size: 0.95rem; /* Tamanho menor da fonte dos links */
-    padding: 0.6rem 0.8rem;
-  }
-
-  /* Ajustes para o link ativo quando rolado */
-  .navbar-nav .nav-link.active {
-    font-size: 1.2rem; /* Tamanho original do link ativo */
-    transition: font-size 0.3s ease-in-out; /* Adicionado para a transição do font-size */
-  }
-
-  .navbar.scrolled .navbar-nav .nav-link.active {
-    font-size: 1rem; /* Ajuste para link ativo quando rolado */
-  }
-
-  /* Ajustes para o ícone e data do evento ao lado da barra de busca */
-  .event-highlight-icon img.event-highlight-icon-img {
-    width: 60px; /* Tamanho original */
-    transition: width 0.3s ease-in-out, margin 0.3s ease-in-out;
-  }
-
-  .navbar.scrolled .event-highlight-icon img.event-highlight-icon-img {
-    width: 40px; /* Tamanho menor */
-    /* margin-bottom: 5px; */
-  }
-
-  .event-highlight-date {
-    font-size: 1.2rem; /* Tamanho original */
-    white-space: nowrap; /* Impede que o texto quebre */
-    transition: font-size 0.3s ease-in-out;
-  }
-
-  .navbar.scrolled .event-highlight-date {
-    font-size: 0.9rem; /* Tamanho menor */
-  }
-}
-
-
-/* Media query para telas menores (responsividade) */
 @media (max-width: 991.98px) {
+  /* REGRAS ADICIONADAS PARA O MOBILE */
+
+  .navbar, .navbar.scrolled {
+    padding-top: 0.5rem ;
+    padding-bottom: 0.5rem ;
+    background-color: #f8f9fa ;
+    transition: none ;
+    max-height: 110%;
+
+  }
+  .floating-whatsapp-btn {
+    display: none;
+  }
+
+
+  .navbar-brand img, .navbar.scrolled .navbar-brand img {
+    height: 50px ;
+    transition: none ;
+  }
+
+  .event-highlight-icon img, .navbar.scrolled .event-highlight-icon img {
+    height: 40px ;
+    transition: none ;
+    width: auto ;
+  }
+
+  .event-highlight-date, .navbar.scrolled .event-highlight-date {
+    font-size: 0.9rem ;
+    transition: none ;
+  }
+
+  /* FIM DAS REGRAS ADICIONADAS */
+
   .navbar-nav {
     margin-top: 15px;
     margin-bottom: 15px;
   }
+
   .navbar-nav .nav-item {
     margin-right: 0;
     margin-bottom: 8px;
@@ -344,6 +258,7 @@
   .navbar-collapse {
     text-align: center;
   }
+
   .form-control,
   .btn-outline-success {
     width: calc(100% - 20px);
@@ -351,7 +266,9 @@
     margin-right: 10px;
     margin-top: 10px;
   }
+
   .btn-outline-success {
     margin-bottom: 10px;
   }
+
 }

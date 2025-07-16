@@ -11,6 +11,19 @@
       />
     </a>
 
+    <a class="d-lg-none mx-auto" (click)="onAgenda()">
+        <div class="event-highlight-container">
+          <div class="event-highlight-icon">
+            <img
+              src="/img/LOGO MENU-RODAPÉ/1.webp"
+              alt="Ícone de Calendário"
+              class="event-highlight-icon-img"
+            />
+          </div>
+          <p class="event-highlight-date">JULHO 27/07</p>
+        </div>
+      </a>
+
     <button
       class="navbar-toggler"
       type="button"
@@ -29,55 +42,36 @@
     >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" (click)="onHome()">INICIO</a>
+            <a class="nav-link" (click)="onHome()">INICIO</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onSobre()">SOBRE</a>
+            <a class="nav-link" (click)="onSobre()">SOBRE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onFotos()">FOTOS</a>
+            <a class="nav-link" (click)="onFotos()">FOTOS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onAgenda()">AGENDA</a>
+            <a class="nav-link" (click)="onAgenda()">AGENDA</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="onApoiar()">APOIAR</a>
+            <a class="nav-link" (click)="onApoiar()">APOIAR</a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" (click)="onContato()">CONTATO</a>
-        </li> -->
         <li class="nav-item">
-          <a class="nav-link" (click)="onInscricao()">INSCRIÇÕES/EDITAIS</a>
+            <a class="nav-link" (click)="onInscricao()">INSCRIÇÕES/EDITAIS</a>
         </li>
         <li class="nav-item dropdown" ngbDropdown>
-          <a
-            class="nav-link dropdown-toggle"
-            role="button"
-            id="dropdownCosnecte"
-            ngbDropdownToggle
-            aria-expanded="false"
-          >
-            COSNECT-SE
-          </a>
-          <ul
-            ngbDropdownMenu
-            aria-labelledby="dropdownCosnecte"
-            class="dropdown-menu"
-          >
-            <!-- <li><a class="dropdown-item" (click)="onEventos()">EVENTOS</a></li> -->
-            <li>
-              <a class="dropdown-item" (click)="onCoordenacao()">COORDENAÇÃO</a>
-            </li>
-            <li>
-              <a class="dropdown-item" (click)="onCoslovers()">COS LOVERS</a>
-            </li>
-            <li>
-              <a class="dropdown-item" (click)="onCncosplay()">CN COSPLAY</a>
-            </li>
-          </ul>
+            <a class="nav-link dropdown-toggle" role="button" id="dropdownCosnecte" ngbDropdownToggle aria-expanded="false">
+                COSNECT-SE
+            </a>
+            <ul ngbDropdownMenu aria-labelledby="dropdownCosnecte" class="dropdown-menu">
+                <li><a class="dropdown-item" (click)="onCoordenacao()">COORDENAÇÃO</a></li>
+                <li><a class="dropdown-item" (click)="onCoslovers()">COS LOVERS</a></li>
+                <li><a class="dropdown-item" (click)="onCncosplay()">CN COSPLAY</a></li>
+            </ul>
         </li>
       </ul>
-      <a class="navbar-brand" routerLink="/agenda">
+
+      <a class="navbar-brand d-none d-lg-block" (click)="onAgenda()">
         <div class="event-highlight-container">
           <div class="event-highlight-icon">
             <img
@@ -89,35 +83,29 @@
           <p class="event-highlight-date">JULHO 27/07</p>
         </div>
       </a>
+
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <ng-container *ngIf="!authService.isLoggedIn">
-          <li class="nav-item">
-            <a class="nav-link" (click)="onLogin()">LOGIN</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" (click)="onCadastro()">INSCREVA-SE</a>
-          </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="onLogin()">LOGIN</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" (click)="onCadastro()">INSCREVA-SE</a>
+            </li>
         </ng-container>
 
         <ng-container *ngIf="authService.isLoggedIn && authService.currentUser">
-          <li class="nav-item dropdown" ngbDropdown>
-            <a
-              class="nav-link dropdown-toggle text-success fw-bold"
-              role="button"
-              id="navbarUserDropdown"
-              ngbDropdownToggle
-              aria-expanded="false"
-            >
-              {{ authService.currentUser.nome }}
-            </a>
-            <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-end">
-              <li *ngIf="authService.isAdmin">
-                <a class="dropdown-item" (click)="onAdminPanel()">Painel Admin</a> </li>
-              <li><a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" (click)="onLogout()">Sair</a></li>
-            </ul>
-          </li>
+            <li class="nav-item dropdown" ngbDropdown>
+                <a class="nav-link dropdown-toggle text-success fw-bold" role="button" id="navbarUserDropdown" ngbDropdownToggle aria-expanded="false">
+                    {{ authService.currentUser.nome }}
+                </a>
+                <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-end">
+                    <li *ngIf="authService.isAdmin"><a class="dropdown-item" (click)="onAdminPanel()">Painel Admin</a></li>
+                    <li><a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" (click)="onLogout()">Sair</a></li>
+                </ul>
+            </li>
         </ng-container>
       </ul>
     </div>
