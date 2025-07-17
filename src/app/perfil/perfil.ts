@@ -1,38 +1,43 @@
 // src/app/perfil/perfil.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService, User } from '../auth'; // Importamos o AuthService e a interface User
+import { AuthService, User } from '../auth';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
-  // O template foi movido para um arquivo separado (perfil.html) por organização,
-  // mas você pode manter inline se preferir.
+  imports: [CommonModule],
   templateUrl: './perfil.html',
   styleUrls: ['./perfil.css']
 })
-export class Perfil implements OnInit { // Nome da classe corrigido para o padrão
-
-  // Variável local para armazenar os dados do usuário logado
+export class Perfil implements OnInit {
   currentUser: User | null = null;
 
-  // Injetamos o AuthService e o Router
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // Ao iniciar o componente, nos "inscrevemos" para receber as informações do usuário
-    // e as guardamos na nossa variável local 'currentUser'.
     this.authService.currentUser$.subscribe(user => {
       this.currentUser = user;
     });
   }
 
-  // Função para fazer logout
+  getSeloIcon(selo: string): string {
+    if (!selo) return 'bi-question-circle';
+    const icons: { [key: string]: string } = {
+      'Bronze': 'bi-shield-fill',
+      'Ruby': 'bi-suit-diamond-fill',
+      'Dourada': 'bi-star-fill',
+      'Esmeralda': 'bi-gem'
+    };
+    return icons[selo] || '';
+  }
+
+  getSeloClass(selo: string): string {
+    if (!selo) return '';
+    return 'selo-' + selo.toLowerCase();
+  }
+
   logout(): void {
     this.authService.logout();
   }

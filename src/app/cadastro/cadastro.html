@@ -44,6 +44,15 @@
           </div>
         </div>
       </div>
+      <div class="col-12 mb-3">
+  <label for="anoConheceu" class="form-label">Em que ano você conheceu a Cosnection? <span class="text-danger">*</span></label>
+  <select id="anoConheceu" name="anoConheceu" class="form-select" [(ngModel)]="formData.anoConheceu" required>
+    <option [ngValue]="null" disabled>Selecione um ano...</option>
+    <option *ngFor="let ano of anosDisponiveis" [value]="ano">
+      {{ ano }}
+    </option>
+  </select>
+</div>
 
       <div class="row mb-3 align-items-end">
         <div class="col-md-4 col-12 mb-3 mb-md-0">

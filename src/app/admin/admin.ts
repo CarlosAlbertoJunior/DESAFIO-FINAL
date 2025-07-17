@@ -1,5 +1,4 @@
 // src/app/admin/admin.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -18,28 +17,26 @@ export class Admin implements OnInit {
   selectedUser: User | null = null;
   isCreatingNewUser = false;
 
-  newUser = {
+  // CORREÇÃO: O objeto newUser agora inclui todas as propriedades necessárias
+  newUser: Partial<User> & { password?: string } = {
     nome: '',
-    sobrenome: '',
     email: '',
     password: '',
     isAdmin: false,
-    dataNascimento: '',
-    estado: '',
-    cidade: '',
-    celularWhatsapp: ''
+    anoConheceu: new Date().getFullYear() // Garante que 'anoConheceu' existe
   };
 
-  estados: string[] = [
-    'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS',
-    'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC',
-    'SP', 'SE', 'TO'
-  ];
+  anosDisponiveis: number[] = [];
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadUsers();
+    // Preenche a lista de anos para o formulário de criação
+    const anoAtual = new Date().getFullYear();
+    for (let ano = anoAtual; ano >= 2010; ano--) {
+      this.anosDisponiveis.push(ano);
+    }
   }
 
   loadUsers(): void {
@@ -54,22 +51,22 @@ export class Admin implements OnInit {
   saveUserEdit(): void {
     if (!this.selectedUser) return;
     if (this.authService.updateUser(this.selectedUser)) {
-      alert('Usuário atualizado com sucesso!');
+      alert('Utilizador atualizado com sucesso!');
       this.loadUsers();
       this.selectedUser = null;
     } else {
-      alert('Falha ao atualizar o usuário.');
+      alert('Falha ao atualizar o utilizador.');
     }
   }
 
   deleteUser(id: number): void {
-    if (confirm('Tem certeza que deseja excluir este usuário?')) {
+    if (confirm('Tem a certeza que deseja excluir este utilizador?')) {
       if (this.authService.deleteUser(id)) {
-        alert('Usuário excluído com sucesso.');
+        alert('Utilizador excluído com sucesso.');
         this.loadUsers();
         this.selectedUser = null;
       } else {
-        alert('Falha ao excluir o usuário.');
+        alert('Falha ao excluir o utilizador.');
       }
     }
   }
@@ -86,22 +83,21 @@ export class Admin implements OnInit {
     }
     const createdUser = this.authService.createUser(this.newUser);
     if (createdUser) {
-      alert(`Usuário '${createdUser.nome}' criado com sucesso!`);
+      alert(`Utilizador '${createdUser.nome}' criado com sucesso!`);
       this.loadUsers();
       this.cancel();
       form.resetForm();
     } else {
-      alert('Falha ao criar o novo usuário. O e-mail pode já existir.');
+      alert('Falha ao criar o novo utilizador. O e-mail pode já existir.');
     }
   }
 
   cancel(): void {
     this.selectedUser = null;
     this.isCreatingNewUser = false;
-    this.newUser = { nome: '', sobrenome: '', email: '', password: '', isAdmin: false, dataNascimento: '', estado: '', cidade: '', celularWhatsapp: '' };
+    this.newUser = { nome: '', email: '', password: '', isAdmin: false, anoConheceu: new Date().getFullYear() };
   }
 
-  // FUNÇÃO ADICIONADA PARA CORRIGIR O ERRO
   updateCnCoins(): void {
     if (this.selectedUser) {
       const totalDoado = Number(this.selectedUser.totalDoado) || 0;

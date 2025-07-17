@@ -3,7 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-// Interface Única para o Usuário
+// Tipo para os Selos de Lealdade
+type SeloLealdade = 'Bronze' | 'Ruby' | 'Dourada' | 'Esmeralda';
+
+// Interface Única para o Usuário com Selos
 export interface User {
   id: number;
   nome: string;
@@ -13,9 +16,10 @@ export interface User {
   cnCosplayRank: string;
   cnCoins: number;
   totalDoado: number;
+  anoConheceu: number;
+  selo: SeloLealdade;
 }
 
-// "Banco de dados" de doações
 const DADOS_DOACOES: { name: string, amount: number }[] = [
     { name: 'Andreza Carneiro', amount: 10 },
     { name: 'Rafael Santos', amount: 10 },
@@ -42,28 +46,37 @@ export class AuthService {
   public get isLoggedIn(): boolean { return !!this.currentUserValue; }
   public get isAdmin(): boolean { return !!this.currentUserValue?.isAdmin; }
 
+  private calculateSelo(anoConheceu: number): SeloLealdade {
+    const anosDeLealdade = new Date().getFullYear() - anoConheceu;
+    if (anosDeLealdade >= 15) return 'Esmeralda';
+    if (anosDeLealdade >= 10) return 'Dourada';
+    if (anosDeLealdade >= 5) return 'Ruby';
+    return 'Bronze';
+  }
+
   register(userData: any): { success: boolean; message: string } {
     const users = this.getUsersFromStorage();
     if (users.some(user => user.email === userData.email)) {
       return { success: false, message: 'Este e-mail já está cadastrado.' };
     }
-    const newUser: User = { id: new Date().getTime(), nome: `${userData.nome} ${userData.sobrenome || ''}`.trim(), email: userData.email, password: userData.password, isAdmin: false, cnCosplayRank: 'Não ranqueado', cnCoins: 0, totalDoado: 0 };
+    const nomeCompleto = `${userData.nome} ${userData.sobrenome || ''}`.trim();
+    const selo = this.calculateSelo(userData.anoConheceu);
+    const totalDoado = DADOS_DOACOES.filter(d => d.name.toLowerCase() === nomeCompleto.toLowerCase()).reduce((sum, d) => sum + d.amount, 0);
+    const cnCoins = Math.floor(totalDoado / 10);
+    const newUser: User = { id: new Date().getTime(), nome: nomeCompleto, email: userData.email, password: userData.password, isAdmin: false, cnCosplayRank: 'Não ranqueado', cnCoins, totalDoado, anoConheceu: userData.anoConheceu, selo };
     users.push(newUser);
     this.saveUsersToStorage(users);
-    this.login({ email: newUser.email, password: newUser.password });
-    return { success: true, message: 'Usuário registrado e logado com sucesso!' };
+    this.setSession(newUser);
+    return { success: true, message: 'Utilizador registado e logado com sucesso!' };
   }
 
   login(credentials: { email: string; password?: string }): { success: boolean; message: string } {
-    // A LINHA ABAIXO FOI REMOVIDA PARA NÃO SOBRESCREVER OS DADOS EDITADOS PELO ADMIN
-    // this.syncAllUsersData();
-
     const users = this.getUsersFromStorage();
     let foundUser: User | undefined;
     if (credentials.email === 'admin@cosnection.com.br' && credentials.password === 'Planetalua01#') {
       foundUser = users.find(u => u.email === credentials.email);
       if (!foundUser) {
-        foundUser = { id: 0, nome: 'Admin', email: 'admin@cosnection.com.br', password: 'Planetalua01#', isAdmin: true, cnCosplayRank: 'Admin', cnCoins: 9999, totalDoado: 99999 };
+        foundUser = { id: 0, nome: 'Admin', email: 'admin@cosnection.com.br', password: 'Planetalua01#', isAdmin: true, cnCosplayRank: 'Admin', cnCoins: 9999, totalDoado: 99999, anoConheceu: 2010, selo: 'Dourada' };
         users.push(foundUser);
         this.saveUsersToStorage(users);
       }
@@ -87,16 +100,13 @@ export class AuthService {
     this.currentUserSubject.next(userToStore);
   }
 
-  // --- MÉTODOS COMPLETOS PARA O PAINEL DE ADMIN ---
-
-  getUsers(): User[] {
-    return this.getUsersFromStorage();
-  }
+  getUsers(): User[] { return this.getUsersFromStorage(); }
 
   updateUser(updatedUser: User): boolean {
     let users = this.getUsersFromStorage();
     const index = users.findIndex(u => u.id === updatedUser.id);
     if (index !== -1) {
+      updatedUser.selo = this.calculateSelo(updatedUser.anoConheceu);
       users[index] = { ...users[index], ...updatedUser };
       this.saveUsersToStorage(users);
       if (this.currentUserValue?.id === updatedUser.id) {
@@ -120,37 +130,12 @@ export class AuthService {
 
   createUser(userData: any): User | null {
     const users = this.getUsersFromStorage();
-    if (users.some(user => user.email === userData.email)) {
-      console.error('Tentativa de criar usuário com e-mail duplicado.');
-      return null;
-    }
-    const newUser: User = {
-      id: new Date().getTime(),
-      nome: `${userData.nome} ${userData.sobrenome || ''}`.trim(),
-      email: userData.email,
-      password: userData.password,
-      isAdmin: userData.isAdmin || false,
-      cnCosplayRank: 'Não ranqueado',
-      cnCoins: 0,
-      totalDoado: 0
-    };
+    if (users.some(user => user.email === userData.email)) { return null; }
+    const selo = this.calculateSelo(userData.anoConheceu || new Date().getFullYear());
+    const newUser: User = { id: new Date().getTime(), nome: `${userData.nome} ${userData.sobrenome || ''}`.trim(), email: userData.email, password: userData.password, isAdmin: userData.isAdmin || false, cnCosplayRank: 'Não ranqueado', cnCoins: 0, totalDoado: 0, anoConheceu: userData.anoConheceu, selo: selo };
     users.push(newUser);
     this.saveUsersToStorage(users);
     return newUser;
-  }
-
-  // --- MÉTODOS DE SINCRONIZAÇÃO E ARMAZENAMENTO ---
-
-  private syncAllUsersData(): void {
-    let users = this.getUsersFromStorage();
-    users = users.map(user => {
-      const totalDoado = DADOS_DOACOES
-        .filter(d => d.name.toLowerCase() === user.nome.toLowerCase())
-        .reduce((sum, d) => sum + d.amount, 0);
-      const cnCoins = Math.floor(totalDoado / 10);
-      return { ...user, totalDoado, cnCoins };
-    });
-    this.saveUsersToStorage(users);
   }
 
   private getUsersFromStorage(): User[] {
@@ -163,7 +148,6 @@ export class AuthService {
   }
 }
 
-// Guarda de Rota (AuthGuard)
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
@@ -171,7 +155,6 @@ export class AuthGuard implements CanActivate {
     const isLoggedIn = this.authService.isLoggedIn;
     const isAdmin = this.authService.isAdmin;
     const protectedRoutes = ['/perfil', '/admin'];
-
     if (isLoggedIn && (state.url === '/login' || state.url === '/cadastro')) {
       return this.router.createUrlTree(['/perfil']);
     }
