@@ -1,6 +1,6 @@
 /* Cabeçalho da Página */
 .hero-section {
-  background-image: url('/img/APOIAR/fundo-apoiar.jpg');
+  background-image: url('/img/APOIO/geral.jpg');
   /* <-- Coloque uma imagem de fundo impactante */
   background-size: cover;
   background-position: center;
@@ -199,7 +199,7 @@
 }
 
 .logo-slide {
-  height: 60px;
+  height: 130px;
   /* Altura fixa para todos os slides de logo */
   margin: 0 40px;
   /* Espaçamento entre as logos */
@@ -229,6 +229,23 @@
 
 .left-to-right {
   animation: scroll-ltr 40s linear infinite;
+}
+/* --- Estilos para a Barra de Progresso --- */
+
+.progress-container .fw-bold {
+  color: var(--cor-preto); /* Ajuste a cor se necessário */
+}
+
+.progress {
+  font-size: 1rem; /* Tamanho da porcentagem dentro da barra */
+  background-color: #e9ecef; /* Cor de fundo da barra vazia */
+}
+
+.progress-bar-custom {
+  background-color: var(--cor-ouro) !important; /* Cor principal da barra de progresso */
+  color: var(--cor-preto) !important; /* Cor do texto da porcentagem */
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, .15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent);
+  background-size: 1rem 1rem;
 }
 
 @keyframes scroll-rtl {

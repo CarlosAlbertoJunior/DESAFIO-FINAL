@@ -30,9 +30,7 @@
           <i class="bi bi-stars feature-icon"></i>
           <h4>Crie uma Noite de Gala</h4>
           <p>
-            Ajude-nos a financiar o aluguel do espaço, a decoração e a estrutura
-            técnica para que o <strong>Oscar Day</strong> seja um evento
-            inesquecível para todos.
+            Sua doação transforma o local do evento! Com seu apoio, investimos na decoração e na estrutura técnica para criar um ambiente espetacular, garantindo que o <strong>Oscar Day</strong> seja uma experiência imersiva para todos.
           </p>
         </div>
       </div>
@@ -41,9 +39,7 @@
           <i class="bi bi-people-fill feature-icon"></i>
           <h4>Reúna a Comunidade</h4>
           <p>
-            Garanta que nossa comunidade tenha um momento único para se
-            conectar, celebrar suas conquistas e inspirar novos talentos no
-            <strong>Oscar Day</strong>.
+           Seu apoio conecta pessoas. Ele garante que o <strong>Oscar Day</strong> seja o palco onde nossa comunidade pode se encontrar, celebrar o talento que nos une e fortalecer os laços que fazem da nossa paixão algo tão especial.
           </p>
         </div>
       </div>
@@ -91,11 +87,11 @@
     <h2 class="section-title">Pague com PIX</h2>
     <div class="row align-items-center justify-content-center mt-4">
       <div class="col-md-4 text-center">
-        <!-- <img
-          src="/assets/img/qrcode-pix-exemplo.png"
+        <img
+          src="/img/APOIO/pix.png"
           alt="QR Code PIX"
           class="img-fluid qr-code-img"
-        /> -->
+        />
       </div>
       <div class="col-md-5 text-center text-md-start mt-4 mt-md-0">
         <h4>Aponte a câmera e doe!</h4>
@@ -177,43 +173,70 @@
       </button>
     </div>
   </section>
-  <section class="partners-section text-center my-5">
-    <div class="mb-5">
-      <h2 class="section-title">Patrocínio</h2>
-      <p class="text-muted mb-4">
-        Empresas que investem e acreditam no nosso potencial.
-      </p>
+  <section class="donation-section text-center mb-5">
+  <!-- <h2 class="section-title">Faça uma Doação Única</h2> -->
+  <p class="text-muted mb-4">Faça a sua doação e colabore com nosso OSCAR DAY.</p>
 
-      <div class="logo-carousel-container">
-        <div class="logo-track right-to-left">
-          <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
-            <img [src]="logo.url" [alt]="logo.alt" />
-          </div>
-          <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
-            <img [src]="logo.url" [alt]="logo.alt" />
-          </div>
-        </div>
+  <div class="progress-container mx-auto mb-5" style="max-width: 700px;">
+    <div class="d-flex justify-content-between mb-1">
+      <!-- <span class="fw-bold">Arrecadado: {{ valorArrecadado | currency:'BRL' }}</span> -->
+      <!-- <span class="text-muted">Meta: {{ metaDoacao | currency:'BRL' }}</span> -->
+    </div>
+    <div class="progress" style="height: 25px;">
+      <div class="progress-bar progress-bar-custom"
+           role="progressbar"
+           [style.width]="porcentagemProgresso + '%'"
+           [attr.aria-valuenow]="porcentagemProgresso"
+           aria-valuemin="0"
+           aria-valuemax="100">
+        <strong>{{ porcentagemProgresso.toFixed(0) }}%</strong>
       </div>
     </div>
-
-    <hr class="my-5" />
-
-    <div>
-      <h2 class="section-title">Apoio</h2>
-      <p class="text-muted mb-4">
-        Agradecemos aos nossos amigos e parceiros por todo o suporte.
-      </p>
-
-      <div class="logo-carousel-container">
-        <div class="logo-track left-to-right">
-          <div class="logo-slide" *ngFor="let logo of apoioLogos">
-            <img [src]="logo.url" [alt]="logo.alt" />
-          </div>
-          <div class="logo-slide" *ngFor="let logo of apoioLogos">
-            <img [src]="logo.url" [alt]="logo.alt" />
-          </div>
-        </div>
-      </div>
-    </div>
+  </div>
   </section>
+ <section class="partners-section text-center my-5">
+
+  <div class="mb-5">
+    <h2 class="section-title">Patrocínio</h2>
+    <p class="text-muted mb-4">Empresas que investem e acreditam no nosso potencial.</p>
+
+    <div class="logo-carousel-container">
+      <div class="logo-track right-to-left">
+        <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
+          <a [href]="logo.linkUrl" target="_blank" rel="noopener noreferrer">
+            <img [src]="logo.url" [alt]="logo.alt">
+          </a>
+        </div>
+        <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
+          <a [href]="logo.linkUrl" target="_blank" rel="noopener noreferrer">
+            <img [src]="logo.url" [alt]="logo.alt">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <div>
+    <h2 class="section-title">Apoio</h2>
+    <p class="text-muted mb-4">Agradecemos aos nossos amigos e parceiros por todo o suporte.</p>
+
+    <div class="logo-carousel-container">
+      <div class="logo-track left-to-right">
+        <div class="logo-slide" *ngFor="let logo of apoioLogos">
+          <a [href]="logo.linkUrl" target="_blank" rel="noopener noreferrer">
+            <img [src]="logo.url" [alt]="logo.alt">
+          </a>
+        </div>
+        <div class="logo-slide" *ngFor="let logo of apoioLogos">
+          <a [href]="logo.linkUrl" target="_blank" rel="noopener noreferrer">
+            <img [src]="logo.url" [alt]="logo.alt">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
 </div>
