@@ -1,0 +1,254 @@
+/* Cabeçalho da Página */
+.hero-section {
+  background-image: url('/img/APOIAR/fundo-apoiar.jpg');
+  /* <-- Coloque uma imagem de fundo impactante */
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 0;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 18, 44, 0.7);
+  /* Use sua cor --cor-corpo com transparência */
+}
+
+.content-center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Títulos de Seção */
+.section-title {
+  color: var(--cor-ouro);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Caixas de "Por que apoiar?" */
+.feature-box .feature-icon {
+  font-size: 3rem;
+  color: var(--cor-span);
+  margin-bottom: 1rem;
+}
+
+/* Cartões de Doação */
+.donation-card {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.donation-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.donation-card.selected {
+  border-color: var(--cor-ouro);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(255, 191, 16, 0.4);
+}
+
+/* QR Code */
+.qr-code-img {
+  max-width: 250px;
+  border: 5px solid white;
+  border-radius: 8px;
+}
+
+/* Accordion de FAQ */
+.accordion-button:not(.collapsed) {
+  background-color: rgba(255, 191, 16, 0.1);
+  color: var(--cor-preto);
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 191, 16, 0.3);
+}
+
+/* --- Estilos para o Mural de Apoiadores (Rankings) --- */
+
+.supporter-item {
+  border-left-width: 5px;
+  border-left-style: solid;
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  background-color: #f8f9fa;
+  /* Fundo claro padrão */
+}
+
+.supporter-name {
+  font-weight: 500;
+}
+
+.supporter-item .bi {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  vertical-align: middle;
+}
+
+/* Classes de Cores para os Rankings */
+.supporter-item.ferro {
+  border-left-color: #51484a;
+}
+
+.supporter-item.ferro .bi,
+.supporter-item.ferro .badge {
+  color: #51484a;
+}
+
+.supporter-item.bronze {
+  border-left-color: #cd7f32;
+}
+
+.supporter-item.bronze .bi,
+.supporter-item.bronze .badge {
+  color: #cd7f32;
+}
+
+.supporter-item.prata {
+  border-left-color: #c0c0c0;
+}
+
+.supporter-item.prata .bi,
+.supporter-item.prata .badge {
+  color: #a9a9a9;
+}
+
+.supporter-item.ouro {
+  border-left-color: #ffd700;
+}
+
+.supporter-item.ouro .bi,
+.supporter-item.ouro .badge {
+  color: #ccac00;
+}
+
+.supporter-item.platina {
+  border-left-color: #4e9996;
+}
+
+.supporter-item.platina .bi,
+.supporter-item.platina .badge {
+  color: #4e9996;
+}
+
+.supporter-item.esmeralda {
+  border-left-color: #2ecc71;
+}
+
+.supporter-item.esmeralda .bi,
+.supporter-item.esmeralda .badge {
+  color: #2ecc71;
+}
+
+.supporter-item.diamante {
+  border-left-color: #5f9ea0;
+  background: linear-gradient(145deg, #e6f7ff, #d4f0ff);
+  font-weight: bold;
+}
+
+.supporter-item.diamante .bi,
+.supporter-item.diamante .badge {
+  color: #5f9ea0;
+}
+
+/* --- Estilos para o Carrossel de Logos --- */
+
+.logo-carousel-container {
+  overflow: hidden;
+  padding: 20px 0;
+  background: #f8f9fa;
+  /* Um fundo claro para destacar as logos */
+  border-radius: 8px;
+  position: relative;
+  width: 100%;
+}
+
+/* Efeito de sombra nas laterais para dar profundidade */
+.logo-carousel-container::before,
+.logo-carousel-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+}
+
+.logo-carousel-container::before {
+  left: 0;
+  background: linear-gradient(to left, rgba(248, 249, 250, 0), #f8f9fa);
+}
+
+.logo-carousel-container::after {
+  right: 0;
+  background: linear-gradient(to right, rgba(248, 249, 250, 0), #f8f9fa);
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  /* Faz com que a largura seja o conteúdo total */
+}
+
+.logo-slide {
+  height: 60px;
+  /* Altura fixa para todos os slides de logo */
+  margin: 0 40px;
+  /* Espaçamento entre as logos */
+  display: flex;
+  align-items: center;
+}
+
+.logo-slide img {
+  max-height: 100%;
+  max-width: 150px;
+  /* Largura máxima para logos retangulares */
+  width: auto;
+  /* filter: grayscale(100%); */
+  opacity: 0.8;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.logo-slide:hover img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+
+/* Animações */
+.right-to-left {
+  animation: scroll-rtl 40s linear infinite;
+}
+
+.left-to-right {
+  animation: scroll-ltr 40s linear infinite;
+}
+
+@keyframes scroll-rtl {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+
+  /* Move metade da largura total */
+}
+
+@keyframes scroll-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

@@ -1,1 +1,219 @@
-<p>apoiar works!</p>
+<section class="hero-section text-center text-light">
+  <div class="overlay"></div>
+  <div class="container content-center">
+    <h1 class="display-3 fw-bold">Faça Parte do Oscar Day!</h1>
+    <p class="lead mt-3">
+      Todo o apoio arrecadado será direcionado para a criação do nosso evento de
+      premiação de fim de ano, uma noite de gala para celebrar o melhor da
+      cultura geek e cosplay da Bahia.
+    </p>
+  </div>
+</section>
+
+<div class="container my-5">
+  <section class="text-center mb-5">
+    <h2 class="section-title">Por Que o Seu Apoio é Importante?</h2>
+    <div class="row mt-4">
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <i class="bi bi-trophy-fill feature-icon"></i>
+          <h4>Premie os Talentos</h4>
+          <p>
+            Sua doação será usada para criar troféus e premiações incríveis para
+            os vencedores do <strong>Oscar Day</strong>, celebrando diretamente
+            o talento dos nossos artistas.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <i class="bi bi-stars feature-icon"></i>
+          <h4>Crie uma Noite de Gala</h4>
+          <p>
+            Ajude-nos a financiar o aluguel do espaço, a decoração e a estrutura
+            técnica para que o <strong>Oscar Day</strong> seja um evento
+            inesquecível para todos.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-box">
+          <i class="bi bi-people-fill feature-icon"></i>
+          <h4>Reúna a Comunidade</h4>
+          <p>
+            Garanta que nossa comunidade tenha um momento único para se
+            conectar, celebrar suas conquistas e inspirar novos talentos no
+            <strong>Oscar Day</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- <section class="donation-section text-center mb-5">
+    <h2 class="section-title">Faça uma Doação Única</h2>
+    <p class="text-muted mb-4">
+      Escolha um dos valores abaixo ou defina um valor personalizado.
+    </p>
+    <div class="row justify-content-center">
+      <div
+        class="col-lg-2 col-md-4 col-6 mb-3"
+        *ngFor="let tier of donationTiers"
+      >
+        <div
+          class="card donation-card"
+          [class.selected]="tier === selectedTier"
+          (click)="selectTier(tier)"
+        >
+          <div class="card-body">
+            <p class="h3 fw-bold">R$ {{ tier.amount }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-text">R$</span>
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Ou digite outro valor"
+            [(ngModel)]="customAmount"
+            (focus)="selectedTier = null"
+          />
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <section class="pix-section text-center mb-5">
+    <h2 class="section-title">Pague com PIX</h2>
+    <div class="row align-items-center justify-content-center mt-4">
+      <div class="col-md-4 text-center">
+        <!-- <img
+          src="/assets/img/qrcode-pix-exemplo.png"
+          alt="QR Code PIX"
+          class="img-fluid qr-code-img"
+        /> -->
+      </div>
+      <div class="col-md-5 text-center text-md-start mt-4 mt-md-0">
+        <h4>Aponte a câmera e doe!</h4>
+        <p class="text-muted">Ou use a nossa chave "copia e cola" abaixo:</p>
+        <div class="input-group">
+          <input type="text" class="form-control" [value]="pixKey" readonly />
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            (click)="copyPixKey()"
+          >
+            {{ copyButtonText }}
+          </button>
+        </div>
+        <small class="form-text text-muted mt-2"
+          >As doações são processadas de forma segura. CNPJ:
+          47.695.537/0001-87</small
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="supporter-wall text-center mb-5">
+    <h2 class="section-title">Ranking de Apoiadores do Oscar Day</h2>
+    <p class="text-muted">
+      Um agradecimento especial a todos que estão tornando este evento possível!
+      <br />
+      Após doar, envie seu comprovante para
+      <strong>producao&#64;cosnection.com.br</strong> para ter seu nome aqui.
+    </p>
+
+    <div
+      class="list-group mt-4 supporter-list-container"
+      [ngClass]="{ 'full-view': showAllSupporters }"
+    >
+      <ng-container *ngIf="!showAllSupporters">
+        <div
+          *ngFor="let supporter of supporters | slice : 0 : 10"
+          class="list-group-item d-flex justify-content-between align-items-center supporter-item"
+          [ngClass]="supporter.rank"
+        >
+          <span class="supporter-name">
+            <i class="bi" [ngClass]="getIconForRank(supporter.rank)"></i>
+            {{ supporter.name }}
+          </span>
+          <span class="badge rounded-pill text-capitalize">{{
+            supporter.rank
+          }}</span>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="showAllSupporters">
+        <div
+          *ngFor="let supporter of supporters"
+          class="list-group-item d-flex justify-content-between align-items-center supporter-item"
+          [ngClass]="supporter.rank"
+        >
+          <span class="supporter-name">
+            <i class="bi" [ngClass]="getIconForRank(supporter.rank)"></i>
+            {{ supporter.name }}
+          </span>
+          <span class="badge rounded-pill text-capitalize">{{
+            supporter.rank
+          }}</span>
+        </div>
+      </ng-container>
+
+      <div *ngIf="supporters.length === 0" class="list-group-item">
+        Seja o primeiro a apoiar e tenha seu nome em destaque!
+      </div>
+    </div>
+
+    <div class="text-center mt-3" *ngIf="supporters.length > 10">
+      <button
+        class="btn btn-outline-secondary"
+        (click)="toggleSupportersView()"
+      >
+        {{ showAllSupporters ? "Mostrar menos" : "Ver todos os apoiadores" }}
+      </button>
+    </div>
+  </section>
+  <section class="partners-section text-center my-5">
+    <div class="mb-5">
+      <h2 class="section-title">Patrocínio</h2>
+      <p class="text-muted mb-4">
+        Empresas que investem e acreditam no nosso potencial.
+      </p>
+
+      <div class="logo-carousel-container">
+        <div class="logo-track right-to-left">
+          <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
+            <img [src]="logo.url" [alt]="logo.alt" />
+          </div>
+          <div class="logo-slide" *ngFor="let logo of patrocinioLogos">
+            <img [src]="logo.url" [alt]="logo.alt" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-5" />
+
+    <div>
+      <h2 class="section-title">Apoio</h2>
+      <p class="text-muted mb-4">
+        Agradecemos aos nossos amigos e parceiros por todo o suporte.
+      </p>
+
+      <div class="logo-carousel-container">
+        <div class="logo-track left-to-right">
+          <div class="logo-slide" *ngFor="let logo of apoioLogos">
+            <img [src]="logo.url" [alt]="logo.alt" />
+          </div>
+          <div class="logo-slide" *ngFor="let logo of apoioLogos">
+            <img [src]="logo.url" [alt]="logo.alt" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
