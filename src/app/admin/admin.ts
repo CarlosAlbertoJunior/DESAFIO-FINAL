@@ -18,12 +18,11 @@ export class Admin implements OnInit {
   selectedUser: User | null = null;
   isCreatingNewUser = false;
 
-  // Objeto para o novo formulário, agora com todos os campos
   newUser = {
     nome: '',
     sobrenome: '',
     email: '',
-    password: '', // Adicionamos campo de senha
+    password: '',
     isAdmin: false,
     dataNascimento: '',
     estado: '',
@@ -31,7 +30,6 @@ export class Admin implements OnInit {
     celularWhatsapp: ''
   };
 
-  // Lista de estados para o dropdown
   estados: string[] = [
     'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS',
     'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC',
@@ -90,7 +88,7 @@ export class Admin implements OnInit {
     if (createdUser) {
       alert(`Usuário '${createdUser.nome}' criado com sucesso!`);
       this.loadUsers();
-      this.cancel(); // Limpa e fecha o formulário
+      this.cancel();
       form.resetForm();
     } else {
       alert('Falha ao criar o novo usuário. O e-mail pode já existir.');
@@ -100,7 +98,14 @@ export class Admin implements OnInit {
   cancel(): void {
     this.selectedUser = null;
     this.isCreatingNewUser = false;
-    // Reseta o objeto newUser para o estado inicial
     this.newUser = { nome: '', sobrenome: '', email: '', password: '', isAdmin: false, dataNascimento: '', estado: '', cidade: '', celularWhatsapp: '' };
+  }
+
+  // FUNÇÃO ADICIONADA PARA CORRIGIR O ERRO
+  updateCnCoins(): void {
+    if (this.selectedUser) {
+      const totalDoado = Number(this.selectedUser.totalDoado) || 0;
+      this.selectedUser.cnCoins = Math.floor(totalDoado / 10);
+    }
   }
 }

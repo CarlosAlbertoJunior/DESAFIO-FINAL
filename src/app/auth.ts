@@ -55,7 +55,9 @@ export class AuthService {
   }
 
   login(credentials: { email: string; password?: string }): { success: boolean; message: string } {
-    this.syncAllUsersData();
+    // A LINHA ABAIXO FOI REMOVIDA PARA NÃO SOBRESCREVER OS DADOS EDITADOS PELO ADMIN
+    // this.syncAllUsersData();
+
     const users = this.getUsersFromStorage();
     let foundUser: User | undefined;
     if (credentials.email === 'admin@cosnection.com.br' && credentials.password === 'Planetalua01#') {
@@ -95,13 +97,10 @@ export class AuthService {
     let users = this.getUsersFromStorage();
     const index = users.findIndex(u => u.id === updatedUser.id);
     if (index !== -1) {
-      // Mantém a senha original se não for alterada no formulário de edição
-      updatedUser.password = updatedUser.password || users[index].password;
-      users[index] = updatedUser;
+      users[index] = { ...users[index], ...updatedUser };
       this.saveUsersToStorage(users);
-      // Se o usuário atualizado for o que está logado, atualiza a sessão
       if (this.currentUserValue?.id === updatedUser.id) {
-        this.setSession(updatedUser);
+        this.setSession(users[index]);
       }
       return true;
     }
