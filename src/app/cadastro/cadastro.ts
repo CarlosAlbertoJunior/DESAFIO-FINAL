@@ -3,7 +3,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-
+import { Router } from '@angular/router'; // Importe o Router para o redirecionamento
+import { AuthService } from '../auth'; // Importe o nosso AuthService
 
 @Component({
   selector: 'app-cadastro',
@@ -12,10 +13,10 @@ import { FormsModule, NgForm } from '@angular/forms';
     CommonModule,
     FormsModule
   ],
-  templateUrl: './cadastro.html', // Verifique se o nome do arquivo HTML está correto
-  styleUrls: ['./cadastro.css'] // Verifique se o nome do arquivo CSS está correto
+  templateUrl: './cadastro.html',
+  styleUrls: ['./cadastro.css']
 })
-export class Cadastro implements OnInit {
+export class Cadastro implements OnInit { // Nome da classe corrigido
 
   formData = {
     nome: '',
@@ -27,7 +28,7 @@ export class Cadastro implements OnInit {
     celularWhatsapp: '',
     senha: '',
     repetirSenha: '',
-    lgpdAceita: false // <-- Nova propriedade para o consentimento LGPD
+    lgpdAceita: false
   };
 
   estados: string[] = [
@@ -37,56 +38,62 @@ export class Cadastro implements OnInit {
   ];
 
   processandoCadastro: boolean = false;
-  cadastroSucesso: boolean = false; // <-- Nova propriedade para controlar a mensagem de sucesso
+  cadastroError: string | null = null; // Para mensagens de erro
+  cadastroSucesso: any;
 
-  constructor() { }
+  // Injetamos o AuthService e o Router no construtor
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void { }
 
-  onSubmit(form: NgForm) {
-    this.cadastroSucesso = false; // Reseta a mensagem de sucesso a cada tentativa de submissão
+  onSubmit(form: NgForm): void {
+    this.cadastroError = null; // Limpa erros anteriores
 
     if (form.invalid) {
-      // Marca campos como 'touched' para exibir feedback de validação
-      form.controls['nome']?.markAsTouched();
-      form.controls['sobrenome']?.markAsTouched();
-      form.controls['email']?.markAsTouched();
-      form.controls['senha']?.markAsTouched();
-      form.controls['repetirSenha']?.markAsTouched();
-      form.controls['lgpdAceita']?.markAsTouched(); // Marca o LGPD como tocado
-
-      console.warn('Formulário inválido! Por favor, corrija os erros.');
+      console.warn('Formulário inválido!');
+      this.cadastroError = 'Por favor, corrija os campos destacados.';
       return;
     }
 
-    // Validação LGPD
     if (!this.formData.lgpdAceita) {
-      alert('É necessário aceitar os termos da LGPD para prosseguir.');
+      this.cadastroError = 'É necessário aceitar os termos da LGPD para prosseguir.';
       return;
     }
 
-    // Validação de senhas personalizada
     if (this.formData.senha !== this.formData.repetirSenha) {
-      alert('Erro: As senhas não coincidem!');
-      form.controls['repetirSenha']?.setErrors({ 'mismatch': true });
+      this.cadastroError = 'As senhas não coincidem.';
       return;
     }
 
     this.processandoCadastro = true;
 
-    console.log('Dados do formulário para envio:', this.formData);
+    // --- CORREÇÃO PRINCIPAL AQUI ---
+    // Removemos o setTimeout e chamamos o AuthService de verdade
 
-    // Simulação de chamada de API e login automático
-    setTimeout(() => {
-      console.log('Cadastro simulado concluído!');
-      // Não usamos mais alert() aqui!
-      this.cadastroSucesso = true; // Exibe a mensagem de sucesso na página
-      this.processandoCadastro = false;
-      form.resetForm(); // Limpa o formulário
+    // Preparamos os dados para o serviço
+    const userData = {
+      nome: `${this.formData.nome} ${this.formData.sobrenome}`,
+      email: this.formData.email,
+      password: this.formData.senha
+    };
 
-      // Se houver uma lógica de login automático e redirecionamento, ela viria aqui.
-      // Exemplo: this.router.navigate(['/home']);
+    // Chamamos o método de registro do nosso serviço
+    const result = this.authService.register(userData);
 
-    }, 2000);
+    // Verificamos o resultado da operação
+    if (result.success) {
+      // SUCESSO! O AuthService já fez o login automático.
+      // Agora só precisamos redirecionar o usuário para o perfil.
+      console.log('Cadastro e login automático realizados. Redirecionando...');
+      this.router.navigate(['/perfil']);
+    } else {
+      // Se o registro falhou (ex: e-mail já existe), mostramos o erro.
+      this.cadastroError = result.message;
+    }
+
+    this.processandoCadastro = false;
   }
 }

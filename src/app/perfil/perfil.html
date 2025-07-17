@@ -1,1 +1,51 @@
-<p>perfil works!</p>
+<!-- src/app/perfil/perfil.html -->
+<div class="container my-5 pt-5">
+
+  <!-- Usamos *ngIf para mostrar o conteúdo apenas se 'currentUser' não for nulo -->
+  <ng-container *ngIf="currentUser; else naoLogado">
+    <div class="row">
+      <div class="col-lg-4 text-center">
+        <!-- Avatar e informações básicas -->
+        <img src="https://i.pravatar.cc/150?u={{currentUser.email}}" class="img-fluid rounded-circle shadow-sm mb-3" alt="Avatar do Usuário">
+        <h2 class="fw-bold">{{ currentUser.nome }}</h2>
+        <p class="text-muted">{{ currentUser.email }}</p>
+        <button class="btn btn-sm btn-outline-danger mt-2" (click)="logout()">Sair</button>
+      </div>
+
+      <div class="col-lg-8 mt-4 mt-lg-0">
+        <h3>Seu Painel Cosnection</h3>
+        <hr>
+        <!-- Card para o Ranking -->
+        <div class="card mb-3 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title d-flex align-items-center">
+              <i class="bi bi-trophy-fill me-2 text-primary"></i>
+              Ranking CN Cosplay
+            </h5>
+            <p class="card-text display-6 fw-bold text-primary">{{ currentUser.cnCosplayRank }}</p>
+            <small class="text-muted">Sua colocação nos últimos eventos competitivos.</small>
+          </div>
+        </div>
+        <!-- Card para os CN Coins -->
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title d-flex align-items-center">
+              <i class="bi bi-coin me-2 text-warning"></i>
+              Saldo de CN Coins
+            </h5>
+            <p class="card-text display-6 fw-bold text-warning">{{ currentUser.cnCoins }}</p>
+            <small class="text-muted">Você ganhou {{ currentUser.cnCoins }} coins por ter doado um total de {{ currentUser.totalDoado | currency:'BRL' }}. (1 coin a cada R$ 10)</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Template que aparece se o usuário não estiver logado -->
+  <ng-template #naoLogado>
+    <div class="text-center p-5">
+      <h2 class="mb-3">Acesso Negado</h2>
+      <p class="lead text-muted">Você precisa fazer login para acessar seu perfil.</p>
+    </div>
+  </ng-template>
+</div>

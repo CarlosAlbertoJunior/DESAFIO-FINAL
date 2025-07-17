@@ -1,211 +1,187 @@
 // src/app/auth.ts
-
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
-// Interface de dados do usuário ATUALIZADA
-interface UserData {
-  nome: string;
-  email: string;
-  token?: string;
-  isAdmin?: boolean; // <--- NOVA PROPRIEDADE: Indica se o usuário é admin
-}
-
-// Simulação de base de dados de usuários (para AdminPanelComponent)
-interface MockUser {
+// Interface Única para o Usuário
+export interface User {
   id: number;
   nome: string;
   email: string;
+  password?: string;
   isAdmin: boolean;
+  cnCosplayRank: string;
+  cnCoins: number;
+  totalDoado: number;
 }
 
-const MOCK_USERS: MockUser[] = [
-  { id: 1, nome: 'Admin Principal', email: 'admin@cosnection.com.br', isAdmin: true },
-  { id: 2, nome: 'Usuário Teste 1', email: 'usuario1@teste.com', isAdmin: false },
-  { id: 3, nome: 'Usuário Teste 2', email: 'usuario2@teste.com', isAdmin: false }
+// "Banco de dados" de doações
+const DADOS_DOACOES: { name: string, amount: number }[] = [
+    { name: 'Andreza Carneiro', amount: 10 },
+    { name: 'Rafael Santos', amount: 10 },
+    { name: 'Chefinhodzaum', amount: 60 },
+    { name: 'Mireli', amount: 70 },
+    { name: 'Elisa Cruz', amount: 635 },
+    { name: 'Cloud', amount: 635 },
+    { name: 'Loggya', amount: 300 },
+    { name: 'Zuza', amount: 10 },
 ];
-let nextUserId = 4; // Para novos cadastros simulados
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class AuthService {
-  private _isLoggedIn = false;
-  private _currentUser: UserData | null = null;
+  private currentUserSubject: BehaviorSubject<User | null>;
+  public currentUser$: Observable<User | null>;
 
-  constructor(private router: Router,private http: HttpClient) {
-    if (typeof localStorage !== 'undefined') {
-      const storedUser = localStorage.getItem('currentUser');
-      if (storedUser) {
-        this._currentUser = JSON.parse(storedUser);
-        this._isLoggedIn = true;
+  constructor(private router: Router) {
+    const storedUser = (typeof localStorage !== 'undefined') ? localStorage.getItem('currentUser') : null;
+    this.currentUserSubject = new BehaviorSubject<User | null>(storedUser ? JSON.parse(storedUser) : null);
+    this.currentUser$ = this.currentUserSubject.asObservable();
+  }
+
+  public get currentUserValue(): User | null { return this.currentUserSubject.value; }
+  public get isLoggedIn(): boolean { return !!this.currentUserValue; }
+  public get isAdmin(): boolean { return !!this.currentUserValue?.isAdmin; }
+
+  register(userData: any): { success: boolean; message: string } {
+    const users = this.getUsersFromStorage();
+    if (users.some(user => user.email === userData.email)) {
+      return { success: false, message: 'Este e-mail já está cadastrado.' };
+    }
+    const newUser: User = { id: new Date().getTime(), nome: `${userData.nome} ${userData.sobrenome || ''}`.trim(), email: userData.email, password: userData.password, isAdmin: false, cnCosplayRank: 'Não ranqueado', cnCoins: 0, totalDoado: 0 };
+    users.push(newUser);
+    this.saveUsersToStorage(users);
+    this.login({ email: newUser.email, password: newUser.password });
+    return { success: true, message: 'Usuário registrado e logado com sucesso!' };
+  }
+
+  login(credentials: { email: string; password?: string }): { success: boolean; message: string } {
+    this.syncAllUsersData();
+    const users = this.getUsersFromStorage();
+    let foundUser: User | undefined;
+    if (credentials.email === 'admin@cosnection.com.br' && credentials.password === 'Planetalua01#') {
+      foundUser = users.find(u => u.email === credentials.email);
+      if (!foundUser) {
+        foundUser = { id: 0, nome: 'Admin', email: 'admin@cosnection.com.br', password: 'Planetalua01#', isAdmin: true, cnCosplayRank: 'Admin', cnCoins: 9999, totalDoado: 99999 };
+        users.push(foundUser);
+        this.saveUsersToStorage(users);
       }
+    } else {
+      foundUser = users.find(user => user.email === credentials.email && user.password === credentials.password);
     }
-  }
-
-  get isLoggedIn(): boolean {
-    return this._isLoggedIn;
-  }
-
-  get currentUser(): UserData | null {
-    return this._currentUser;
-  }
-
-  // Novo getter para verificar se o usuário atual é admin
-  get isAdmin(): boolean {
-    return this._currentUser ? this._currentUser.isAdmin === true : false;
-  }
-
-  register(userData: any): Observable<any> {
-    console.log('AuthService: Simulação de registro para', userData.email);
-    // Simula a adição de um novo usuário à lista de usuários mock
-    const newUser: MockUser = {
-      id: nextUserId++,
-      nome: userData.nome,
-      email: userData.email,
-      isAdmin: false // Novos usuários não são admin por padrão
-    };
-    MOCK_USERS.push(newUser);
-    console.log('AuthService: Usuário adicionado à lista mock:', newUser);
-
-    return of({ success: true, message: 'Usuário registrado com sucesso!' }).pipe(
-      delay(500)
-    );
-  }
-
-  login(email: string, senha: string, userData: UserData): Observable<UserData> {
-    console.log('AuthService: Tentando fazer login...', email);
-
-    // Validação de credenciais para admin
-    if (email === 'admin@cosnection.com.br' && senha === 'Planetalua01#') {
-      const user: UserData = {
-        nome: 'Admin', // Nome fixo para o admin
-        email: email,
-        token: 'fake-admin-jwt-token-123',
-        isAdmin: true // <--- DEFINIDO COMO ADMIN
-      };
-      return of(user).pipe(
-        delay(500),
-        tap(loggedInUser => {
-          this._isLoggedIn = true;
-          this._currentUser = loggedInUser;
-          if (typeof localStorage !== 'undefined') {
-            localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-          }
-          console.log('AuthService: Login ADMIN bem-sucedido!', loggedInUser);
-        })
-      );
-    }
-    // Validação de credenciais para usuários comuns (simulados)
-    else if (MOCK_USERS.some(u => u.email === email && u.isAdmin === false && senha === '12345678')) { // Senha padrão para usuários comuns
-      const loggedInMockUser = MOCK_USERS.find(u => u.email === email);
-      if (loggedInMockUser) {
-        const user: UserData = {
-          nome: loggedInMockUser.nome,
-          email: loggedInMockUser.email,
-          token: 'fake-user-jwt-token-456',
-          isAdmin: false
-        };
-        return of(user).pipe(
-          delay(500),
-          tap(loggedInUser => {
-            this._isLoggedIn = true;
-            this._currentUser = loggedInUser;
-            if (typeof localStorage !== 'undefined') {
-              localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
-            }
-            console.log('AuthService: Login de usuário comum bem-sucedido!', loggedInUser);
-          })
-        );
-      }
-    }
-    // Credenciais inválidas para qualquer outro caso
-    return new Observable<UserData>(observer => {
-      observer.error(new Error('Credenciais inválidas.'));
-    }).pipe(delay(500));
+    if (foundUser) { this.setSession(foundUser); return { success: true, message: 'Login bem-sucedido!' }; }
+    return { success: false, message: 'E-mail ou senha inválidos.' };
   }
 
   logout(): void {
-    this._isLoggedIn = false;
-    this._currentUser = null;
-    if (typeof localStorage !== 'undefined') {
-      localStorage.removeItem('currentUser');
-    }
-    this.router.navigate(['/home']); // Redireciona para o login após o logout
-    console.log('AuthService: Usuário deslogado.');
+    if (typeof localStorage !== 'undefined') { localStorage.removeItem('currentUser'); localStorage.removeItem('authToken'); }
+    this.currentUserSubject.next(null);
+    this.router.navigate(['/home']);
   }
 
-  // === MÉTODOS PARA GERENCIAMENTO DE USUÁRIOS (para AdminPanelComponent) ===
-  getUsers(): Observable<MockUser[]> {
-    return of(MOCK_USERS).pipe(delay(200)); // Simula buscar todos os usuários
+  private setSession(user: User): void {
+    const userToStore = { ...user };
+    delete userToStore.password;
+    if (typeof localStorage !== 'undefined') { localStorage.setItem('currentUser', JSON.stringify(userToStore)); localStorage.setItem('authToken', `fake-jwt-token-for-${user.id}`); }
+    this.currentUserSubject.next(userToStore);
   }
 
-  getUserById(id: number): Observable<MockUser | undefined> {
-    const user = MOCK_USERS.find(u => u.id === id);
-    return of(user).pipe(delay(100)); // Simula buscar um usuário
+  // --- MÉTODOS COMPLETOS PARA O PAINEL DE ADMIN ---
+
+  getUsers(): User[] {
+    return this.getUsersFromStorage();
   }
 
-  updateUser(updatedUser: MockUser): Observable<boolean> {
-    const index = MOCK_USERS.findIndex(u => u.id === updatedUser.id);
+  updateUser(updatedUser: User): boolean {
+    let users = this.getUsersFromStorage();
+    const index = users.findIndex(u => u.id === updatedUser.id);
     if (index !== -1) {
-      MOCK_USERS[index] = { ...updatedUser }; // Atualiza o usuário
-      console.log('AuthService: Usuário atualizado (mock):', MOCK_USERS[index]);
-      return of(true).pipe(delay(300));
+      // Mantém a senha original se não for alterada no formulário de edição
+      updatedUser.password = updatedUser.password || users[index].password;
+      users[index] = updatedUser;
+      this.saveUsersToStorage(users);
+      // Se o usuário atualizado for o que está logado, atualiza a sessão
+      if (this.currentUserValue?.id === updatedUser.id) {
+        this.setSession(updatedUser);
+      }
+      return true;
     }
-    return of(false).pipe(delay(300));
+    return false;
   }
 
-  deleteUser(id: number): Observable<boolean> {
-    const initialLength = MOCK_USERS.length;
-    const newUsers = MOCK_USERS.filter(u => u.id !== id);
-    MOCK_USERS.splice(0, MOCK_USERS.length, ...newUsers); // Remove o usuário
-    console.log('AuthService: Usuário deletado (mock). Nova lista:', MOCK_USERS);
-    return of(MOCK_USERS.length < initialLength).pipe(delay(300));
+  deleteUser(id: number): boolean {
+    let users = this.getUsersFromStorage();
+    const initialLength = users.length;
+    users = users.filter(u => u.id !== id);
+    if (users.length < initialLength) {
+      this.saveUsersToStorage(users);
+      return true;
+    }
+    return false;
   }
 
-  createUser(userData: { nome: string, email: string, isAdmin: boolean }): Observable<MockUser> {
-    const newUser: MockUser = {
-      id: nextUserId++,
-      nome: userData.nome,
+  createUser(userData: any): User | null {
+    const users = this.getUsersFromStorage();
+    if (users.some(user => user.email === userData.email)) {
+      console.error('Tentativa de criar usuário com e-mail duplicado.');
+      return null;
+    }
+    const newUser: User = {
+      id: new Date().getTime(),
+      nome: `${userData.nome} ${userData.sobrenome || ''}`.trim(),
       email: userData.email,
-      isAdmin: userData.isAdmin
+      password: userData.password,
+      isAdmin: userData.isAdmin || false,
+      cnCosplayRank: 'Não ranqueado',
+      cnCoins: 0,
+      totalDoado: 0
     };
-    MOCK_USERS.push(newUser);
-    console.log('AuthService: Novo usuário criado (mock):', newUser);
-    return of(newUser).pipe(delay(300));
+    users.push(newUser);
+    this.saveUsersToStorage(users);
+    return newUser;
+  }
+
+  // --- MÉTODOS DE SINCRONIZAÇÃO E ARMAZENAMENTO ---
+
+  private syncAllUsersData(): void {
+    let users = this.getUsersFromStorage();
+    users = users.map(user => {
+      const totalDoado = DADOS_DOACOES
+        .filter(d => d.name.toLowerCase() === user.nome.toLowerCase())
+        .reduce((sum, d) => sum + d.amount, 0);
+      const cnCoins = Math.floor(totalDoado / 10);
+      return { ...user, totalDoado, cnCoins };
+    });
+    this.saveUsersToStorage(users);
+  }
+
+  private getUsersFromStorage(): User[] {
+    const data = (typeof localStorage !== 'undefined') ? localStorage.getItem('users') : '[]';
+    return JSON.parse(data || '[]');
+  }
+
+  private saveUsersToStorage(users: User[]): void {
+    if (typeof localStorage !== 'undefined') { localStorage.setItem('users', JSON.stringify(users)); }
   }
 }
 
-// Seu GUARDA DE ROTA AuthGuard
-@Injectable({
-  providedIn: 'root'
-})
+// Guarda de Rota (AuthGuard)
+@Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
+    const isLoggedIn = this.authService.isLoggedIn;
+    const isAdmin = this.authService.isAdmin;
+    const protectedRoutes = ['/perfil', '/admin'];
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
-    if (this.authService.isLoggedIn && (state.url === '/login' || state.url === '/cadastro')) {
-      console.log('AuthGuard: Usuário logado tentando acessar login/cadastro. Redirecionando para home.');
-      return this.router.createUrlTree(['/home']);
+    if (isLoggedIn && (state.url === '/login' || state.url === '/cadastro')) {
+      return this.router.createUrlTree(['/perfil']);
     }
-
-    if (!this.authService.isLoggedIn && (state.url !== '/login' && state.url !== '/cadastro' && state.url !== '/admin')) {
-      console.log('AuthGuard: Usuário NÃO está logado tentando acessar rota protegida. Redirecionando para login.');
+    if (protectedRoutes.some(r => state.url.startsWith(r)) && !isLoggedIn) {
       return this.router.createUrlTree(['/login']);
     }
-
-    // Adicionado: Se estiver tentando acessar '/admin' e NÃO for admin, redireciona
-    if (state.url === '/admin' && !this.authService.isAdmin) {
-      console.log('AdminGuard: Usuário NÃO é admin tentando acessar painel admin. Redirecionando para home.');
-      return this.router.createUrlTree(['/home']); // Redireciona para home ou login, conforme preferir
+    if (state.url.startsWith('/admin') && !isAdmin) {
+      return this.router.createUrlTree(['/home']);
     }
-
     return true;
   }
 }

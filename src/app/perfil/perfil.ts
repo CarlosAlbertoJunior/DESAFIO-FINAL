@@ -1,37 +1,39 @@
 // src/app/perfil/perfil.component.ts
 
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Para *ngIf, *ngFor
-import { RouterLink } from '@angular/router'; // Para o link de voltar à home
-import { AuthService } from '../auth'; // Importe o AuthService para pegar dados do usuário
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService, User } from '../auth'; // Importamos o AuthService e a interface User
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
   imports: [
-    CommonModule,
-    RouterLink // Para usar routerLink no template
+    CommonModule
   ],
-  template: `
-    <div class="container my-5">
-      <div class="card p-5 shadow-lg bg-light text-center">
-        <h2 class="mb-4">Olá, {{ authService.currentUser?.nome || 'Usuário' }}!</h2>
-        <p class="lead">Esta é a sua página de perfil.</p>
-        <p *ngIf="authService.currentUser">
-          Seu e-mail cadastrado é: <strong>{{ authService.currentUser.email }}</strong>
-        </p>
-        <p>Aqui você poderá visualizar e editar suas informações pessoais no futuro.</p>
-        <button class="btn btn-secondary mt-3" [routerLink]="['/home']">Voltar para a Home</button>
-      </div>
-    </div>
-  `,
+  // O template foi movido para um arquivo separado (perfil.html) por organização,
+  // mas você pode manter inline se preferir.
+  templateUrl: './perfil.html',
   styleUrls: ['./perfil.css']
 })
-export class Perfil implements OnInit {
+export class Perfil implements OnInit { // Nome da classe corrigido para o padrão
 
-  constructor(public authService: AuthService) { } // Injeta o AuthService
+  // Variável local para armazenar os dados do usuário logado
+  currentUser: User | null = null;
+
+  // Injetamos o AuthService e o Router
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
-    // Lógica adicional pode ser adicionada aqui, como carregar dados do perfil do backend
+    // Ao iniciar o componente, nos "inscrevemos" para receber as informações do usuário
+    // e as guardamos na nossa variável local 'currentUser'.
+    this.authService.currentUser$.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
+
+  // Função para fazer logout
+  logout(): void {
+    this.authService.logout();
   }
 }

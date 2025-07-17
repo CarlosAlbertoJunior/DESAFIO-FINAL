@@ -12,17 +12,17 @@
     </a>
 
     <a class="d-lg-none mx-auto" (click)="onAgenda()">
-        <div class="event-highlight-container">
-          <div class="event-highlight-icon">
-            <img
-              src="/img/LOGO MENU-RODAPÉ/1.webp"
-              alt="Ícone de Calendário"
-              class="event-highlight-icon-img"
-            />
-          </div>
-          <p class="event-highlight-date">JULHO 27/07</p>
+      <div class="event-highlight-container">
+        <div class="event-highlight-icon">
+          <img
+            src="/img/LOGO MENU-RODAPÉ/1.webp"
+            alt="Ícone de Calendário"
+            class="event-highlight-icon-img"
+          />
         </div>
-      </a>
+        <p class="event-highlight-date">JULHO 27/07</p>
+      </div>
+    </a>
 
     <button
       class="navbar-toggler"
@@ -85,27 +85,27 @@
       </a>
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <ng-container *ngIf="!authService.isLoggedIn">
-            <li class="nav-item">
-                <a class="nav-link" (click)="onLogin()">LOGIN</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="onCadastro()">INSCREVA-SE</a>
-            </li>
+        <ng-container *ngIf="!(authService.currentUser$ | async)">
+          <li class="nav-item">
+            <a class="nav-link" (click)="onLogin()">LOGIN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onCadastro()">INSCREVA-SE</a>
+          </li>
         </ng-container>
 
-        <ng-container *ngIf="authService.isLoggedIn && authService.currentUser">
-            <li class="nav-item dropdown" ngbDropdown>
-                <a class="nav-link dropdown-toggle text-success fw-bold" role="button" id="navbarUserDropdown" ngbDropdownToggle aria-expanded="false">
-                    {{ authService.currentUser.nome }}
-                </a>
-                <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-end">
-                    <li *ngIf="authService.isAdmin"><a class="dropdown-item" (click)="onAdminPanel()">Painel Admin</a></li>
-                    <li><a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" (click)="onLogout()">Sair</a></li>
-                </ul>
-            </li>
+        <ng-container *ngIf="authService.currentUser$ | async as user">
+          <li class="nav-item dropdown" ngbDropdown>
+            <a class="nav-link dropdown-toggle text-success fw-bold" role="button" id="navbarUserDropdown" ngbDropdownToggle aria-expanded="false">
+              {{ user.nome }}
+            </a>
+            <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-end">
+              <li *ngIf="user.isAdmin"><a class="dropdown-item" (click)="onAdminPanel()">Painel Admin</a></li>
+              <li><a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" (click)="onLogout()">Sair</a></li>
+            </ul>
+          </li>
         </ng-container>
       </ul>
     </div>
