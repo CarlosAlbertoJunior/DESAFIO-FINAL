@@ -2,8 +2,7 @@
 
 /* Cabeçalho (Hero) */
 .hero-section {
-  background-image: url('/assets/img/coslovers/background.jpg');
-  /* <-- Coloque uma imagem de fundo legal */
+  background-image: url('/img/COS LOVERS/capa.jpg');
   background-size: cover;
   background-position: center;
   padding: 8rem 0;

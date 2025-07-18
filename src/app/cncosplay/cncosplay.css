@@ -1,0 +1,144 @@
+/* Secção 1: Cabeçalho (Hero) */
+.hero-section {
+  background-image: url('/img/COS LOVERS/CN.png'); /* <-- Coloque uma imagem de fundo */
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 0;
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 18, 44, 0.7);
+}
+.content-center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Título Padrão das Secções */
+.section-title {
+  color: var(--cor-ouro);
+  font-weight: bold;
+}
+
+/* Secção 2: Cards do Top 5 */
+.player-card {
+  position: relative;
+  border-width: 4px;
+  border-style: solid;
+  transition: transform 0.3s ease;
+}
+.player-card:hover {
+  transform: translateY(-10px);
+}
+.player-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+  position: relative; /* Adicionado para criar contexto de empilhamento */
+  z-index: 1; /* Define uma camada inferior */
+}
+.rank-position {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  background-color: var(--cor-preto);
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  border: 4px solid white;
+  z-index: 2;
+}
+
+
+/* Cores das bordas para o pódio */
+.player-card.rank-1 { border-color: #1ee004; } /* Bronze */
+.player-card.rank-1 .rank-position { background-color: #1ee004; color: var(--cor-preto); }
+
+.player-card.rank-2 { border-color: #a70000; } /* Bronze */
+.player-card.rank-2 .rank-position { background-color: #a70000; }
+
+.player-card.rank-3 { border-color: #ffd700; } /* Ouro */
+.player-card.rank-3 .rank-position { background-color: #ffd700; color: var(--cor-preto); }
+
+.player-card.rank-4 { border-color: #c0c0c0; } /* Prata */
+.player-card.rank-4 .rank-position { background-color: #c0c0c0; color: var(--cor-preto); }
+
+.player-card.rank-5 { border-color: #cd7f32; } /* Bronze */
+.player-card.rank-5 .rank-position { background-color: #cd7f32; }
+
+/* Secção 3: Lista de Destaques */
+.ranking-list-item {
+  font-size: 1.2rem;
+  padding: 1rem;
+  transition: background-color 0.2s ease-in-out;
+}
+.ranking-list-item:hover {
+  background-color: #f8f9fa;
+}
+.player-name {
+  font-weight: 500;
+}
+
+/* ESTILOS PARA INDICADORES DE RANKING */
+.rank-change-indicator {
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+}
+.rank-change-indicator .bi {
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.rank-change-indicator.up {
+  color: #198754; /* Verde */
+  background-color: rgb(255, 255, 255);
+}
+.rank-change-indicator.down {
+  color: #dc3545; /* Vermelho */
+  background-color: rgb(255, 255, 255);
+}
+.rank-change-indicator.same {
+  color: #6c757d; /* Cinza */
+  background-color: rgb(255, 255, 255);
+}
+
+/* ESTILOS PARA INDICADORES DE BÓNUS E CONTAINER */
+.indicators-container {
+  display: flex;
+  gap: 5px; /* Espaçamento entre os indicadores */
+}
+.card-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 3; /* Aumentado para ficar acima de tudo */
+}
+.bonus-indicator {
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  color: #6f42c1; /* Roxo */
+  background-color: rgb(255, 255, 255);
+}
+.bonus-indicator .bi {
+  font-size: 1rem;
+  margin-right: 4px;
+}
