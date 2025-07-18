@@ -28,7 +28,7 @@ export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   // Rotas da Aplicação (algumas protegidas pelo AuthGuard, outras públicas)
-  { path: 'home', component: Home}, // Exemplo: Home precisa de login
+  { path: 'home', component: Home }, // Exemplo: Home precisa de login
   { path: 'sobre', component: Sobre },
   { path: 'fotos', component: Fotos },
   { path: 'agenda', component: Agenda },

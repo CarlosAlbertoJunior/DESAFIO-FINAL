@@ -1,0 +1,105 @@
+/* src/app/cos-lovers/cos-lovers.css */
+
+/* Cabeçalho (Hero) */
+.hero-section {
+  background-image: url('/assets/img/coslovers/background.jpg');
+  /* <-- Coloque uma imagem de fundo legal */
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 0;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 18, 44, 0.7);
+}
+
+.content-center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Cards dos Cos Lovers */
+.cos-lover-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.cos-lover-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  border-color: var(--cor-ouro);
+}
+
+.lover-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid white;
+  margin-top: -60px;
+  /* Efeito para a foto "flutuar" sobre o card */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.quote-text {
+  font-style: italic;
+  color: #6c757d;
+}
+
+.social-link {
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--cor-span);
+}
+
+/* Modal e Galeria */
+.lover-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1055;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.lover-modal-content {
+  width: 90%;
+  max-width: 800px;
+  /* Modal mais largo para a galeria */
+  max-height: 90vh;
+}
+
+.lover-modal-content .card-body {
+  overflow-y: auto;
+  /* Adiciona scroll se a galeria for muito grande */
+}
+
+.gallery-photo {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

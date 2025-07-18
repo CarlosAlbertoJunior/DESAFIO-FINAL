@@ -1,1 +1,105 @@
-<p>CosLovers</p>
+<!-- src/app/cos-lovers/cos-lovers.html -->
+
+<!-- Cabeçalho da Página -->
+<section class="hero-section text-center text-light">
+  <div class="overlay"></div>
+  <div class="container content-center">
+    <h1 class="display-3 fw-bold">Nossos Cos Lovers</h1>
+    <p class="lead mt-3">
+      Conheça os artistas e criadores de conteúdo que representam a paixão e a
+      criatividade da nossa comunidade.
+    </p>
+  </div>
+</section>
+
+<!-- Grelha de Cards -->
+<div class="container my-5">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let lover of cosLovers">
+      <div class="card cos-lover-card h-100" (click)="openLoverModal(lover)">
+        <div class="card-header text-center">
+          <img
+            [src]="lover.mainPhotoUrl"
+            class="lover-photo rounded-circle"
+            [alt]="lover.name"
+          />
+          <h5 class="card-title fw-bold mt-3 mb-1">{{ lover.name }}</h5>
+          <p class="card-subtitle text-primary fw-semibold">
+            {{ lover.title }}
+          </p>
+        </div>
+        <div class="card-body text-center">
+          <blockquote class="blockquote mb-0">
+            <p class="quote-text">"{{ lover.quote }}"</p>
+            <!-- AQUI ESTÁ A MUDANÇA -->
+            <footer *ngIf="lover.quoteAuthor" class="blockquote-footer mt-2">
+              <cite title="Autor">{{ lover.quoteAuthor }}</cite>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="card-footer text-center">
+          <a
+            *ngIf="lover.socials.instagram"
+            [href]="lover.socials.instagram"
+            target="_blank"
+            class="social-link mx-2 fs-4"
+            ><i class="bi bi-instagram"></i
+          ></a>
+          <a
+            *ngIf="lover.socials.twitch"
+            [href]="lover.socials.twitch"
+            target="_blank"
+            class="social-link mx-2 fs-4"
+            ><i class="bi bi-twitch"></i
+          ></a>
+          <a
+            *ngIf="lover.socials.twitter"
+            [href]="lover.socials.twitter"
+            target="_blank"
+            class="social-link mx-2 fs-4"
+            ><i class="bi bi-twitter"></i
+          ></a>
+          <a
+            *ngIf="lover.socials.facebook"
+            [href]="lover.socials.facebook"
+            target="_blank"
+            class="social-link mx-2 fs-4"
+            ><i class="bi bi-facebook"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para a Galeria do Cos Lover -->
+<div class="lover-modal" *ngIf="isModalVisible" (click)="closeLoverModal()">
+  <div
+    class="lover-modal-content card shadow-lg"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="mb-0" *ngIf="selectedLover">
+        {{ selectedLover.name }} - Galeria
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        (click)="closeLoverModal()"
+      ></button>
+    </div>
+    <div class="card-body" *ngIf="selectedLover">
+      <div class="row g-3">
+        <div class="col-md-6" *ngFor="let photo of selectedLover.galleryUrls">
+          <img [src]="photo" class="gallery-photo img-fluid rounded" />
+        </div>
+        <div
+          *ngIf="selectedLover.galleryUrls.length === 0"
+          class="col-12 text-center text-muted"
+        >
+          <p>Nenhuma foto na galeria ainda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
