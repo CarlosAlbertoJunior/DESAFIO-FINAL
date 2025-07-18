@@ -33,7 +33,7 @@ export class Coslovers implements OnInit {
     {
       name: 'Cloud',
       title: 'Fundador & Cosplayer',
-      mainPhotoUrl: 'assets/img/coslovers/cloud.jpg',
+      mainPhotoUrl: '/img/SOBRE/sobre.png',
       quote: 'A vida sem propósito é uma vida sem sentido.',
       quoteAuthor: 'The Flash',
       selos: [
