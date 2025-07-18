@@ -17,22 +17,24 @@ export class Cadastro implements OnInit {
   formData = {
     nome: '',
     sobrenome: '',
-    dataNascimento: '',
-    estado: '',
-    cidade: '',
     email: '',
-    celularWhatsapp: '',
     senha: '',
     repetirSenha: '',
+    celularWhatsapp: '',
     anoConheceu: null as number | null,
     lgpdAceita: false
+    // ... outros campos que possa ter
   };
 
+  // NOVAS PROPRIEDADES para controlar a visibilidade
+  showPassword = false;
+  showRepeatPassword = false;
+
   anosDisponiveis: number[] = [];
-  estados: string[] = [ 'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO' ];
   processandoCadastro = false;
   cadastroError: string | null = null;
   cadastroSucesso = false;
+  nomeField: any;
 
   constructor(private authService: AuthService, private router: Router) { }
 

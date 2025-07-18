@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 // Tipo para os Selos de Lealdade
 type SeloLealdade = 'Bronze' | 'Ruby' | 'Dourada' | 'Esmeralda';
 
-// Interface Única para o Usuário com Selos
+// Interface Única para o Utilizador com Selos
 export interface User {
   id: number;
   nome: string;
@@ -21,14 +21,14 @@ export interface User {
 }
 
 const DADOS_DOACOES: { name: string, amount: number }[] = [
-    { name: 'Andreza Carneiro', amount: 10 },
-    { name: 'Rafael Santos', amount: 10 },
-    { name: 'Chefinhodzaum', amount: 60 },
-    { name: 'Mireli', amount: 70 },
-    { name: 'Elisa Cruz', amount: 635 },
-    { name: 'Cloud', amount: 635 },
-    { name: 'Loggya', amount: 300 },
-    { name: 'Zuza', amount: 10 },
+  { name: 'Andreza Carneiro', amount: 10 },
+  { name: 'Rafael Santos', amount: 10 },
+  { name: 'Chefinhodzaum', amount: 60 },
+  { name: 'Mireli', amount: 70 },
+  { name: 'Elisa Cruz', amount: 635 },
+  { name: 'Cloud', amount: 635 },
+  { name: 'Loggya', amount: 300 },
+  { name: 'Zuza', amount: 10 },
 ];
 
 @Injectable({ providedIn: 'root' })
@@ -63,7 +63,20 @@ export class AuthService {
     const selo = this.calculateSelo(userData.anoConheceu);
     const totalDoado = DADOS_DOACOES.filter(d => d.name.toLowerCase() === nomeCompleto.toLowerCase()).reduce((sum, d) => sum + d.amount, 0);
     const cnCoins = Math.floor(totalDoado / 10);
-    const newUser: User = { id: new Date().getTime(), nome: nomeCompleto, email: userData.email, password: userData.password, isAdmin: false, cnCosplayRank: 'Não ranqueado', cnCoins, totalDoado, anoConheceu: userData.anoConheceu, selo };
+
+    const newUser: User = {
+      id: new Date().getTime(),
+      nome: nomeCompleto,
+      email: userData.email,
+      password: userData.senha,
+      isAdmin: false,
+      cnCosplayRank: 'Não ranqueado',
+      cnCoins,
+      totalDoado,
+      anoConheceu: userData.anoConheceu,
+      selo
+    };
+
     users.push(newUser);
     this.saveUsersToStorage(users);
     this.setSession(newUser);
@@ -150,7 +163,7 @@ export class AuthService {
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree {
     const isLoggedIn = this.authService.isLoggedIn;
     const isAdmin = this.authService.isAdmin;

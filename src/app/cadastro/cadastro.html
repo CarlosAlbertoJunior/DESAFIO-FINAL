@@ -1,161 +1,195 @@
+<!-- src/app/cadastro/cadastro.html -->
 <div class="container my-5">
   <div class="card p-4 shadow-sm">
-    <h2 class="text-center mb-4">CADASTRO DE USUÁRIO</h2>
-    <hr class="mb-4">
+    <h2 class="text-center mb-4">CADASTRO DE UTILIZADOR</h2>
+    <hr class="mb-4" />
 
-    <div *ngIf="cadastroSucesso" class="alert alert-success alert-dismissible fade show" role="alert">
+    <div *ngIf="cadastroSucesso" class="alert alert-success" role="alert">
       <strong>Cadastro realizado com sucesso!</strong> Bem-vindo(a)!
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
     </div>
 
-    <form (ngSubmit)="onSubmit(cadastroForm)" #cadastroForm="ngForm" class="needs-validation" novalidate>
+    <div *ngIf="cadastroError" class="alert alert-danger" role="alert">
+      {{ cadastroError }}
+    </div>
 
+    <form (ngSubmit)="onSubmit(cadastroForm)" #cadastroForm="ngForm" novalidate>
       <div class="row mb-3">
         <div class="col-md-6 col-12">
-          <label for="nome" class="form-label">NOME <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="nome" name="nome"
-                 placeholder="Informe seu Nome"
-                 [(ngModel)]="formData.nome"
-                 required
-                 #nomeField="ngModel"
-                 [class.is-invalid]="nomeField.invalid && (nomeField.dirty || nomeField.touched)"
-                 [class.is-valid]="nomeField.valid && (nomeField.dirty || nomeField.touched)">
-          <div class="invalid-feedback" *ngIf="nomeField.invalid && (nomeField.dirty || nomeField.touched)">
-            <div *ngIf="nomeField.errors?.['required']">Nome é obrigatório.</div>
-          </div>
-          <div class="valid-feedback" *ngIf="nomeField.valid && (nomeField.dirty || nomeField.touched)">
-            Parece bom!
-          </div>
+          <label for="nome" class="form-label"
+            >NOME <span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            name="nome"
+            placeholder="Informe o seu Nome"
+            [(ngModel)]="formData.nome"
+            required
+            #nomeField="ngModel"
+          />
         </div>
         <div class="col-md-6 col-12">
-          <label for="sobrenome" class="form-label">SOBRENOME <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" id="sobrenome" name="sobrenome"
-                 placeholder="Informe seu Sobrenome"
-                 [(ngModel)]="formData.sobrenome"
-                 required
-                 #sobrenomeField="ngModel"
-                 [class.is-invalid]="sobrenomeField.invalid && (sobrenomeField.dirty || sobrenomeField.touched)"
-                 [class.is-valid]="sobrenomeField.valid && (sobrenomeField.dirty || sobrenomeField.touched)">
-          <div class="invalid-feedback" *ngIf="sobrenomeField.invalid && (sobrenomeField.dirty || sobrenomeField.touched)">
-            <div *ngIf="sobrenomeField.errors?.['required']">Sobrenome é obrigatório.</div>
-          </div>
-          <div class="valid-feedback" *ngIf="sobrenomeField.valid && (sobrenomeField.dirty || sobrenomeField.touched)">
-            Parece bom!
-          </div>
-        </div>
-      </div>
-      <div class="col-12 mb-3">
-  <label for="anoConheceu" class="form-label">Em que ano você conheceu a Cosnection? <span class="text-danger">*</span></label>
-  <select id="anoConheceu" name="anoConheceu" class="form-select" [(ngModel)]="formData.anoConheceu" required>
-    <option [ngValue]="null" disabled>Selecione um ano...</option>
-    <option *ngFor="let ano of anosDisponiveis" [value]="ano">
-      {{ ano }}
-    </option>
-  </select>
-</div>
-
-      <div class="row mb-3 align-items-end">
-        <div class="col-md-4 col-12 mb-3 mb-md-0">
-          <label for="dataNascimento" class="form-label">DATA DE NASCIMENTO</label>
-          <div class="input-group">
-            <input type="date" class="form-control" id="dataNascimento" name="dataNascimento"
-                   [(ngModel)]="formData.dataNascimento">
-            </div>
-        </div>
-        <div class="col-md-4 col-12 mb-3 mb-md-0">
-          <label for="estado" class="form-label">ESTADO</label>
-          <select class="form-select" id="estado" name="estado" [(ngModel)]="formData.estado">
-            <option value="">Selecione seu Estado</option>
-            <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
-          </select>
-        </div>
-        <div class="col-md-4 col-12">
-          <label for="cidade" class="form-label">CIDADE</label>
-          <input type="text" class="form-control" id="cidade" name="cidade"
-                 placeholder="Informe sua cidade" [(ngModel)]="formData.cidade">
+          <label for="sobrenome" class="form-label"
+            >SOBRENOME <span class="text-danger">*</span></label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="sobrenome"
+            name="sobrenome"
+            placeholder="Informe o seu Sobrenome"
+            [(ngModel)]="formData.sobrenome"
+            required
+            #sobrenomeField="ngModel"
+          />
         </div>
       </div>
 
       <div class="row mb-3">
         <div class="col-md-6 col-12">
-          <label for="email" class="form-label">E-MAIL <span class="text-danger">*</span></label>
-          <input type="email" class="form-control" id="email" name="email"
-                 placeholder="Informe seu E-mail"
-                 [(ngModel)]="formData.email"
-                 required email
-                 #emailField="ngModel"
-                 [class.is-invalid]="emailField.invalid && (emailField.dirty || emailField.touched)"
-                 [class.is-valid]="emailField.valid && (emailField.dirty || emailField.touched)">
-          <div class="invalid-feedback" *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
-            <div *ngIf="emailField.errors?.['required']">E-mail é obrigatório.</div>
-            <div *ngIf="emailField.errors?.['email']">Por favor, insira um e-mail válido.</div>
-          </div>
-          <div class="valid-feedback" *ngIf="emailField.valid && (emailField.dirty || emailField.touched)">
-            E-mail válido!
-          </div>
+          <label for="email" class="form-label"
+            >E-MAIL <span class="text-danger">*</span></label
+          >
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Informe o seu E-mail"
+            [(ngModel)]="formData.email"
+            required
+            email
+            #emailField="ngModel"
+          />
         </div>
         <div class="col-md-6 col-12">
-          <label for="celularWhatsapp" class="form-label">CELULAR/WHATSAPP</label>
-          <input type="text" class="form-control" id="celularWhatsapp" name="celularWhatsapp"
-                 placeholder="(__) _____-____"
-                 [(ngModel)]="formData.celularWhatsapp">
+          <label for="celularWhatsapp" class="form-label"
+            >CELULAR/WHATSAPP</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="celularWhatsapp"
+            name="celularWhatsapp"
+            placeholder="(__) _____-____"
+            [(ngModel)]="formData.celularWhatsapp"
+          />
         </div>
       </div>
 
       <div class="row mb-4">
         <div class="col-md-6 col-12">
-          <label for="senha" class="form-label">SENHA <span class="text-danger">*</span></label>
-          <input type="password" class="form-control" id="senha" name="senha"
-                 placeholder="Informe sua Senha"
-                 [(ngModel)]="formData.senha"
-                 required minlength="8"
-                 #senhaField="ngModel"
-                 [class.is-invalid]="senhaField.invalid && (senhaField.dirty || senhaField.touched)"
-                 [class.is-valid]="senhaField.valid && (senhaField.dirty || senhaField.touched)">
-          <div class="invalid-feedback" *ngIf="senhaField.invalid && (senhaField.dirty || senhaField.touched)">
-            <div *ngIf="senhaField.errors?.['required']">Senha é obrigatória.</div>
-            <div *ngIf="senhaField.errors?.['minlength']">A senha deve ter no mínimo {{ senhaField.errors?.['minlength']?.requiredLength }} caracteres.</div>
+          <label for="senha" class="form-label"
+            >SENHA <span class="text-danger">*</span></label
+          >
+          <div class="input-group">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control"
+              id="senha"
+              name="senha"
+              placeholder="Informe a sua Senha"
+              [(ngModel)]="formData.senha"
+              required
+              minlength="8"
+              #senhaField="ngModel"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="showPassword = !showPassword"
+            >
+              <i
+                class="bi"
+                [ngClass]="showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"
+              ></i>
+            </button>
           </div>
-          <small class="form-text text-muted">Sua senha deve ter no mínimo 8 dígitos.</small>
-          <div class="valid-feedback" *ngIf="senhaField.valid && (senhaField.dirty || senhaField.touched)">
-            Senha forte o suficiente!
-          </div>
+          <small class="form-text text-muted"
+            >A sua senha deve ter no mínimo 8 dígitos.</small
+          >
         </div>
         <div class="col-md-6 col-12">
-          <label for="repetirSenha" class="form-label">REPETIR SENHA <span class="text-danger">*</span></label>
-          <input type="password" class="form-control" id="repetirSenha" name="repetirSenha"
-                 placeholder="Repita sua Senha"
-                 [(ngModel)]="formData.repetirSenha"
-                 required
-                 #repetirSenhaField="ngModel"
-                 [class.is-invalid]="(repetirSenhaField.invalid && (repetirSenhaField.dirty || repetirSenhaField.touched)) || (repetirSenhaField.dirty && formData.senha !== formData.repetirSenha)"
-                 [class.is-valid]="repetirSenhaField.valid && (repetirSenhaField.dirty || repetirSenhaField.touched) && formData.senha === formData.repetirSenha">
-          <div class="invalid-feedback" *ngIf="(repetirSenhaField.invalid && (repetirSenhaField.dirty || repetirSenhaField.touched)) || (repetirSenhaField.dirty && formData.senha !== formData.repetirSenha)">
-            <div *ngIf="repetirSenhaField.errors?.['required']">Repetir senha é obrigatório.</div>
-            <div *ngIf="repetirSenhaField.dirty && formData.senha !== formData.repetirSenha">As senhas não coincidem.</div>
-          </div>
-          <small class="form-text text-muted">Tome cuidado para manter as senhas iguais.</small>
-          <div class="valid-feedback" *ngIf="repetirSenhaField.valid && (repetirSenhaField.dirty || repetirSenhaField.touched) && formData.senha === formData.repetirSenha">
-            As senhas coincidem!
+          <label for="repetirSenha" class="form-label"
+            >REPETIR SENHA <span class="text-danger">*</span></label
+          >
+          <div class="input-group">
+            <input
+              [type]="showRepeatPassword ? 'text' : 'password'"
+              class="form-control"
+              id="repetirSenha"
+              name="repetirSenha"
+              placeholder="Repita a sua Senha"
+              [(ngModel)]="formData.repetirSenha"
+              required
+              #repetirSenhaField="ngModel"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="showRepeatPassword = !showRepeatPassword"
+            >
+              <i
+                class="bi"
+                [ngClass]="
+                  showRepeatPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'
+                "
+              ></i>
+            </button>
           </div>
         </div>
+      </div>
+
+      <div class="col-12 mb-3">
+        <label for="anoConheceu" class="form-label"
+          >Em que ano você conheceu a Cosnection?
+          <span class="text-danger">*</span></label
+        >
+        <select
+          id="anoConheceu"
+          name="anoConheceu"
+          class="form-select"
+          [(ngModel)]="formData.anoConheceu"
+          required
+        >
+          <option [ngValue]="null" disabled>Selecione um ano...</option>
+          <option *ngFor="let ano of anosDisponiveis" [value]="ano">
+            {{ ano }}
+          </option>
+        </select>
       </div>
 
       <div class="form-check mb-4">
-        <input class="form-check-input" type="checkbox" id="lgpdAceita" name="lgpdAceita"
-               [(ngModel)]="formData.lgpdAceita" required #lgpdField="ngModel"
-               [class.is-invalid]="lgpdField.invalid && (lgpdField.dirty || lgpdField.touched)">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="lgpdAceita"
+          name="lgpdAceita"
+          [(ngModel)]="formData.lgpdAceita"
+          required
+          #lgpdField="ngModel"
+        />
         <label class="form-check-label" for="lgpdAceita">
-          Eu li e concordo com a <a href="#" class="text-primary">Política de Privacidade e Termos de Uso</a>. <span class="text-danger">*</span>
+          Eu li e concordo com a
+          <a href="#" class="text-primary"
+            >Política de Privacidade e Termos de Uso</a
+          >. <span class="text-danger">*</span>
         </label>
-        <div class="invalid-feedback" *ngIf="lgpdField.invalid && (lgpdField.dirty || lgpdField.touched)">
-          Você deve aceitar os termos da LGPD para prosseguir.
-        </div>
       </div>
 
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-success btn-lg" [disabled]="cadastroForm.invalid || processandoCadastro">
-          <span *ngIf="processandoCadastro" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        <button
+          type="submit"
+          class="btn btn-success btn-lg"
+          [disabled]="cadastroForm.invalid || processandoCadastro"
+        >
+          <span
+            *ngIf="processandoCadastro"
+            class="spinner-border spinner-border-sm me-2"
+            role="status"
+            aria-hidden="true"
+          ></span>
           SALVAR
         </button>
       </div>

@@ -1,10 +1,9 @@
 // src/app/login/login.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../auth'; // Importa o AuthService
+import { AuthService } from '../auth';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +16,7 @@ import { AuthService } from '../auth'; // Importa o AuthService
   templateUrl: './login.html',
   styleUrls: ['./login.css']
 })
-export class Login implements OnInit { // Nome da classe corrigido
+export class Login implements OnInit {
 
   loginData = {
     email: '',
@@ -25,7 +24,10 @@ export class Login implements OnInit { // Nome da classe corrigido
   };
 
   loginError: string | null = null;
-  processandoLogin: boolean = false;
+  processandoLogin = false;
+
+  // NOVA PROPRIEDADE para controlar a visibilidade
+  showPassword = false;
 
   constructor(
     private authService: AuthService,
@@ -33,7 +35,6 @@ export class Login implements OnInit { // Nome da classe corrigido
   ) { }
 
   ngOnInit(): void {
-    // Se o usuário já estiver logado, redireciona para o perfil
     if (this.authService.isLoggedIn) {
       this.router.navigate(['/perfil']);
     }
@@ -49,24 +50,18 @@ export class Login implements OnInit { // Nome da classe corrigido
       return;
     }
 
-    // --- CORREÇÃO PRINCIPAL AQUI ---
-    // Chamamos o método login com um único objeto de credenciais
     const result = this.authService.login({
       email: this.loginData.email,
       password: this.loginData.senha
     });
 
-    // Verificamos o resultado diretamente, sem .subscribe()
     if (result.success) {
-      console.log('Login bem-sucedido!');
-      // Redireciona para a página correta após o login
       if (this.authService.isAdmin) {
         this.router.navigate(['/admin']);
       } else {
         this.router.navigate(['/perfil']);
       }
     } else {
-      // Se o login falhou, mostra a mensagem de erro retornada pelo serviço
       this.loginError = result.message;
     }
 

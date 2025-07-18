@@ -1,50 +1,76 @@
+<!-- src/app/login/login.html -->
 <div class="container my-5">
-  <div class="card p-4 shadow-sm mx-auto" style="max-width: 450px;">
-    <h2 class="text-center mb-4">LOGIN</h2>
-    <hr class="mb-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card p-4 shadow-sm">
+        <h2 class="text-center mb-4">LOGIN</h2>
+        <hr class="mb-4" />
 
-    <div *ngIf="loginError" class="alert alert-danger" role="alert">
-      {{ loginError }}
+        <div *ngIf="loginError" class="alert alert-danger" role="alert">
+          {{ loginError }}
+        </div>
+
+        <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" novalidate>
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              [(ngModel)]="loginData.email"
+              required
+              email
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha</label>
+            <div class="input-group">
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class="form-control"
+                id="senha"
+                name="senha"
+                [(ngModel)]="loginData.senha"
+                required
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                (click)="showPassword = !showPassword"
+              >
+                <i
+                  class="bi"
+                  [ngClass]="showPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"
+                ></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg"
+              [disabled]="loginForm.invalid || processandoLogin"
+            >
+              <span
+                *ngIf="processandoLogin"
+                class="spinner-border spinner-border-sm me-2"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              ENTRAR
+            </button>
+          </div>
+
+          <div class="text-center mt-3">
+            <p>
+              Não tem uma conta? <a routerLink="/cadastro">Cadastre-se aqui</a>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
-
-    <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="needs-validation" novalidate>
-      <div class="mb-3">
-        <label for="emailLogin" class="form-label">E-MAIL <span class="text-danger">*</span></label>
-        <input type="email" class="form-control" id="emailLogin" name="emailLogin"
-               placeholder="Seu e-mail"
-               [(ngModel)]="loginData.email"
-               required email
-               #emailField="ngModel"
-               [class.is-invalid]="emailField.invalid && (emailField.dirty || emailField.touched)">
-        <div class="invalid-feedback" *ngIf="emailField.invalid && (emailField.dirty || emailField.touched)">
-          <div *ngIf="emailField.errors?.['required']">E-mail é obrigatório.</div>
-          <div *ngIf="emailField.errors?.['email']">Por favor, insira um e-mail válido.</div>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <label for="senhaLogin" class="form-label">SENHA <span class="text-danger">*</span></label>
-        <input type="password" class="form-control" id="senhaLogin" name="senhaLogin"
-               placeholder="Sua senha"
-               [(ngModel)]="loginData.senha"
-               required
-               #senhaField="ngModel"
-               [class.is-invalid]="senhaField.invalid && (senhaField.dirty || senhaField.touched)">
-        <div class="invalid-feedback" *ngIf="senhaField.invalid && (senhaField.dirty || senhaField.touched)">
-          <div *ngIf="senhaField.errors?.['required']">Senha é obrigatória.</div>
-        </div>
-      </div>
-
-      <div class="d-grid gap-2 mt-4">
-        <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginForm.invalid || processandoLogin">
-          <span *ngIf="processandoLogin" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-          ENTRAR
-        </button>
-      </div>
-
-      <p class="text-center mt-3">
-        Não tem uma conta? <a [routerLink]="['/cadastro']">Cadastre-se aqui</a>
-      </p>
-    </form>
   </div>
 </div>
