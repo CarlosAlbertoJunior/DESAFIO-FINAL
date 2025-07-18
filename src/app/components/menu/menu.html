@@ -42,32 +42,68 @@
     >
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-            <a class="nav-link" (click)="onHome()">INICIO</a>
+          <a class="nav-link" (click)="onHome()">INICIO</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="onSobre()">SOBRE</a>
+          <a class="nav-link" (click)="onSobre()">SOBRE</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="onFotos()">FOTOS</a>
+          <a class="nav-link" (click)="onFotos()">FOTOS</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="onAgenda()">AGENDA</a>
+          <a class="nav-link" (click)="onAgenda()">AGENDA</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" (click)="onApoiar()">APOIAR</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" (click)="onInscricao()">INSCRIÇÕES/EDITAIS</a>
+          <a class="nav-link" (click)="onApoiar()">APOIAR</a>
         </li>
         <li class="nav-item dropdown" ngbDropdown>
-            <a class="nav-link dropdown-toggle" role="button" id="dropdownCosnecte" ngbDropdownToggle aria-expanded="false">
-                COSNECT-SE
-            </a>
-            <ul ngbDropdownMenu aria-labelledby="dropdownCosnecte" class="dropdown-menu">
-                <li><a class="dropdown-item" (click)="onCoordenacao()">COORDENAÇÃO</a></li>
-                <li><a class="dropdown-item" (click)="onCoslovers()">COS LOVERS</a></li>
-                <li><a class="dropdown-item" (click)="onCncosplay()">CN COSPLAY</a></li>
-            </ul>
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            id="dropdownInscricoes"
+            ngbDropdownToggle
+            aria-expanded="false"
+          >
+            EDITAIS
+          </a>
+          <ul
+            ngbDropdownMenu
+            aria-labelledby="dropdownInscricoes"
+            class="dropdown-menu"
+          >
+            <li>
+              <a class="dropdown-item" (click)="onInscricao()">Inscrições</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="onRegulamento()">Regulamento</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" ngbDropdown>
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            id="dropdownCosnecte"
+            ngbDropdownToggle
+            aria-expanded="false"
+          >
+            COSNECT-SE
+          </a>
+          <ul
+            ngbDropdownMenu
+            aria-labelledby="dropdownCosnecte"
+            class="dropdown-menu"
+          >
+            <li>
+              <a class="dropdown-item" (click)="onCoordenacao()">Coordenação</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="onCoslovers()">Cos Lovers</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="onCncosplay()">CN Cosplay</a>
+            </li>
+          </ul>
         </li>
       </ul>
 
@@ -96,13 +132,29 @@
 
         <ng-container *ngIf="authService.currentUser$ | async as user">
           <li class="nav-item dropdown" ngbDropdown>
-            <a class="nav-link dropdown-toggle text-success fw-bold" role="button" id="navbarUserDropdown" ngbDropdownToggle aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle text-success fw-bold"
+              role="button"
+              id="navbarUserDropdown"
+              ngbDropdownToggle
+              aria-expanded="false"
+            >
               {{ user.nome }}
             </a>
-            <ul ngbDropdownMenu aria-labelledby="navbarUserDropdown" class="dropdown-menu dropdown-menu-end">
-              <li *ngIf="user.isAdmin"><a class="dropdown-item" (click)="onAdminPanel()">Painel Admin</a></li>
-              <li><a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
+            <ul
+              ngbDropdownMenu
+              aria-labelledby="navbarUserDropdown"
+              class="dropdown-menu dropdown-menu-end"
+            >
+              <li *ngIf="user.isAdmin">
+                <a class="dropdown-item" (click)="onAdminPanel()"
+                  >Painel Admin</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="onMeuPerfil()">Meu Perfil</a>
+              </li>
+              <li><hr class="dropdown-divider" /></li>
               <li><a class="dropdown-item" (click)="onLogout()">Sair</a></li>
             </ul>
           </li>

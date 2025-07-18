@@ -1,0 +1,105 @@
+/* src/app/coordenacao/coordenacao.css */
+
+/* Secção 1: Cabeçalho (Hero) */
+.hero-section {
+  background-image: url('/assets/img/team/team-background.jpg');
+  /* <-- Coloque a sua imagem de equipa aqui */
+  background-size: cover;
+  background-position: center;
+  padding: 8rem 0;
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(9, 18, 44, 0.7);
+}
+
+.content-center {
+  position: relative;
+  z-index: 1;
+}
+
+/* Título Padrão das Secções */
+.section-title {
+  color: var(--cor-ouro);
+  font-weight: bold;
+}
+
+/* Secção 3: Cards da Equipa */
+.team-card {
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.team-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.team-card .card-img-top {
+  height: 300px;
+  object-fit: cover;
+  object-position: top;
+  /* Foca no rosto */
+}
+
+.team-card .social-icons .social-link {
+  font-size: 1.5rem;
+  margin: 0 10px;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.team-card .social-icons .social-link:hover {
+  color: var(--cor-span);
+}
+
+/* Secção 4: Ícones dos Valores */
+.value-icon {
+  font-size: 3rem;
+  color: var(--cor-span);
+  margin-bottom: 1rem;
+}
+
+/* Modal da Biografia */
+.member-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1055;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.member-modal-content {
+  width: 90%;
+  max-width: 500px;
+}
+
+.modal-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 5px solid white;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

@@ -73,7 +73,9 @@ export class Menu implements OnInit, OnDestroy {
   onHome(): void { this.router.navigate(['/home']); }
   onCadastro(): void { this.router.navigate(['/cadastro']); }
   onLogin(): void { this.router.navigate(['/login']); }
-  onAdminPanel() {this.router.navigate(['/admin']); }
+  onAdminPanel() { this.router.navigate(['/admin']); }
+  onRegulamento(): void { this.router.navigate(['/regulamento']); }
+
 
   onLogout(): void {
     this.authService.logout();
