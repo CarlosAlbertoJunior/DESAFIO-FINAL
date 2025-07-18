@@ -61,6 +61,11 @@
   color: var(--cor-span);
 }
 
+.selo-img {
+  height: 70px;
+  width: auto;
+}
+
 /* Modal e Galeria */
 .lover-modal {
   position: fixed;

@@ -8,12 +8,13 @@ interface CosLover {
   title: string;
   mainPhotoUrl: string;
   quote: string;
-  quoteAuthor?: string; // <-- NOVA PROPRIEDADE (opcional)
+  quoteAuthor?: string;
+  selos?: string[]; // <-- Propriedade dos selos adicionada
   socials: {
     instagram?: string;
     twitch?: string;
     twitter?: string;
-    facebook?: string;
+    facebook?: string; // <-- Sua adição do Facebook mantida
   };
   galleryUrls: string[];
 }
@@ -28,17 +29,21 @@ interface CosLover {
 export class Coslovers implements OnInit {
 
   // Lista com os Cos Lovers. Preencha com os dados reais.
-  public cosLovers: CosLover[] = [
+  public coslovers: CosLover[] = [
     {
       name: 'Cloud',
       title: 'Fundador & Cosplayer',
       mainPhotoUrl: 'assets/img/coslovers/cloud.jpg',
       quote: 'A vida sem propósito é uma vida sem sentido.',
-      quoteAuthor: 'The Flash', // <-- AUTOR ADICIONADO
+      quoteAuthor: 'The Flash',
+      selos: [
+        'assets/img/selos/selo-campeao.png',
+        'assets/img/selos/selo-10-anos.png'
+      ],
       socials: {
         twitch: 'https://twitch.tv/cloudincn',
         instagram: 'https://instagram.com/cloud',
-        facebook: 'https://instagram.com/cloud',
+        facebook: 'https://facebook.com/cloud',
       },
       galleryUrls: [
         'assets/img/coslovers/gallery/cloud1.jpg',
@@ -49,9 +54,13 @@ export class Coslovers implements OnInit {
     {
       name: 'Elisa Cruz',
       title: 'Apresentadora & Cosplayer',
-      mainPhotoUrl: 'assets/img/coslovers/elisa.jpg',
+      mainPhotoUrl: '/img/SOBRE/elisa.png',
       quote: 'Criando histórias, vivendo sonhos e inspirando o futuro.',
-      quoteAuthor: 'Walt Disney', // <-- AUTOR ADICIONADO
+      quoteAuthor: 'Walt Disney',
+      selos: [
+        '/img/SOBRE/9.png',
+        'assets/img/selos/selo-juri.png'
+      ],
       socials: {
         instagram: 'https://instagram.com/elisacruz',
         twitter: 'https://twitter.com/elisacruz'
