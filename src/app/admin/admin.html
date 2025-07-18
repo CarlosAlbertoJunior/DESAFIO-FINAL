@@ -29,7 +29,12 @@
         <div class="row">
            <div class="col-md-6 mb-3">
             <label for="newPassword" class="form-label">Senha Provisória</label>
-            <input type="password" id="newPassword" name="password" class="form-control" [(ngModel)]="newUser.password" required minlength="6">
+            <div class="input-group">
+              <input [type]="showNewUserPassword ? 'text' : 'password'" id="newPassword" name="password" class="form-control" [(ngModel)]="newUser.password" required minlength="6">
+              <button class="btn btn-outline-secondary" type="button" (click)="showNewUserPassword = !showNewUserPassword">
+                <i class="bi" [ngClass]="showNewUserPassword ? 'bi-eye-slash-fill' : 'bi-eye-fill'"></i>
+              </button>
+            </div>
           </div>
           <div class="col-md-6 mb-3">
             <label for="anoConheceu" class="form-label">Ano que Conheceu</label>

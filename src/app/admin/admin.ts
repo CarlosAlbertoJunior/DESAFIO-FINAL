@@ -27,6 +27,7 @@ export class Admin implements OnInit {
   };
 
   anosDisponiveis: number[] = [];
+  showNewUserPassword: any;
 
   constructor(private authService: AuthService) { }
 
