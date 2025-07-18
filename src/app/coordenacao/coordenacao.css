@@ -2,7 +2,7 @@
 
 /* Secção 1: Cabeçalho (Hero) */
 .hero-section {
-  background-image: url('/assets/img/team/team-background.jpg');
+  background-image: url('/img/COORDENAÇÃO/capa.png');
   /* <-- Coloque a sua imagem de equipa aqui */
   background-size: cover;
   background-position: center;
@@ -26,7 +26,7 @@
 
 /* Título Padrão das Secções */
 .section-title {
-  color: var(--cor-ouro);
+  color: var(--cor-span);
   font-weight: bold;
 }
 
