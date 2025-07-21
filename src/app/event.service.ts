@@ -63,7 +63,7 @@ export class EventService {
       date: '13/12/2024',
       time: '14:00 - 20:00',
       location: 'Parque Shopping Bahia - Lauro de Freitas/BA',
-      description: 'Nossa festa temática de Halloween com muitos cosplays de terror e fantasia. Venha fantasiado!',
+      description: 'Nossa festa de confraternização e premiação do CN Cosplay em grande estilo',
       image: '/img/AGENDA/Proposta Coca Cola - 2025.jpg',
       status: 'past',
       // link: 'https://www.instagram.com/cosnection'

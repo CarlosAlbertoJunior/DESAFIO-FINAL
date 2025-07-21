@@ -15,9 +15,9 @@
 <!-- Grelha de Cards -->
 <div class="container my-5">
   <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4" *ngFor="let lover of coslovers">
-      <div class="card cos-lover-card h-100" (click)="openLoverModal(lover)">
-        <div class="card-header text-center">
+    <div class="col-lg-4 col-md-6 mb-4"  *ngFor="let lover of coslovers">
+      <div class="card cos-lover-card h-100"   (click)="openLoverModal(lover)">
+        <div class="card-header text-center"  >
           <img
             [src]="lover.mainPhotoUrl"
             class="lover-photo rounded-circle"
@@ -25,12 +25,12 @@
           />
           <div
             *ngIf="lover.selos && lover.selos.length > 0"
-            class="selos-container mt-3"
-          >
+            class="selos-container mt-3" style="background-color: rgb(11, 31, 61);"
+          ><h5 class="card-title fw-bold mt-3 mb-1" style="color: var(--cor-ouro)">{{ lover.selosTitulo }}</h5>
             <img
               *ngFor="let seloUrl of lover.selos"
               [src]="seloUrl"
-              class="selo-img"
+              class="selo-img" style="height:50px;"
               alt="Selo de conquista"
             />
           </div>

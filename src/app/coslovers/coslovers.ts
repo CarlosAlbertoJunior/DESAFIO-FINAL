@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 // Interface para estruturar os dados de cada Cos Lover
 interface CosLover {
   name: string;
+  selosTitulo: string;
   title: string;
   mainPhotoUrl: string;
   quote: string;
@@ -31,14 +32,27 @@ export class Coslovers implements OnInit {
   // Lista com os Cos Lovers. Preencha com os dados reais.
   public coslovers: CosLover[] = [
     {
+      selosTitulo: 'Selos',
       name: 'Cloud',
-      title: 'Fundador & Cosplayer',
-      mainPhotoUrl: '/img/SOBRE/sobre.png',
-      quote: 'A vida sem propósito é uma vida sem sentido.',
-      quoteAuthor: 'The Flash',
+      title: 'Produtor Geek, Programador, Músico & Cosplay',
+      mainPhotoUrl: '/img/COORDENAÇÃO/cloud.jpg',
+      quote: 'A vida sem paixão é uam vida sem propósito.',
+      quoteAuthor: 'vikings',
       selos: [
-        'assets/img/selos/selo-campeao.png',
-        'assets/img/selos/selo-10-anos.png'
+        '/img/COS LOVERS/SELOS/master.png',
+        '/img/COS LOVERS/SELOS/juri.png',
+        '/img/COS LOVERS/SELOS/1ano.png',
+        '/img/COS LOVERS/SELOS/af.png',
+        '/img/COS LOVERS/SELOS/ccxp.png',
+        '/img/COS LOVERS/SELOS/lbc.png',
+        '/img/COS LOVERS/SELOS/museu.png',
+        '/img/COS LOVERS/SELOS/top5.png',
+        '/img/COS LOVERS/SELOS/wcs.png',
+        '/img/COS LOVERS/SELOS/1lugar.png',
+        '/img/COS LOVERS/SELOS/5anos.png',
+        '/img/COS LOVERS/SELOS/logobranca.png',
+        '/img/COS LOVERS/SELOS/10anos.png',
+
       ],
       socials: {
         twitch: 'https://twitch.tv/cloudincn',
@@ -52,14 +66,15 @@ export class Coslovers implements OnInit {
       ]
     },
     {
+      selosTitulo: 'Selos',
       name: 'Elisa Cruz',
-      title: 'Apresentadora & Cosplayer',
-      mainPhotoUrl: '/img/SOBRE/elisa.png',
+      title: 'Produtora Geek, Administradora, Pulblicitária & Cosplay',
+      mainPhotoUrl: 'img/COORDENAÇÃO/Elisa.jpg',
       quote: 'Criando histórias, vivendo sonhos e inspirando o futuro.',
       quoteAuthor: 'Walt Disney',
       selos: [
-        '/img/SOBRE/9.png',
-        'assets/img/selos/selo-juri.png'
+        '/img/COS LOVERS/SELOS/logobranca.png',
+        '/img/COS LOVERS/SELOS/10anos.png',
       ],
       socials: {
         instagram: 'https://instagram.com/elisacruz',

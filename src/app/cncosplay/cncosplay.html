@@ -5,32 +5,60 @@
   <div class="overlay"></div>
   <div class="container content-center">
     <h1 class="display-3 fw-bold">Ranking Oficial do Campeonato CN Cosplay</h1>
-    <p class="lead mt-3">Acompanhe a jornada dos melhores cosplayers da Bahia! Aqui, cada ponto conquistado é um passo mais perto da glória no Oscar Day.</p>
+    <p class="lead mt-3">
+      Acompanhe a jornada dos melhores cosplayers da Bahia! Aqui, cada ponto
+      conquistado é um passo mais perto da glória no Oscar Day.
+    </p>
   </div>
 </section>
 
 <div class="container my-5">
   <!-- Secção 2: O Pódio dos Campeões (Top 5) -->
   <section class="top5-section my-5">
-    <h2 class="display-5 fw-bold text-info mb-4 text-center" >O Pódio dos Campeões</h2>
+    <h2 class="display-5 fw-bold text-info mb-4 text-center">
+      O Pódio dos Campeões
+    </h2>
     <div class="row mt-4 justify-content-center">
       <div class="col-lg-4 col-md-6 mb-4" *ngFor="let player of top5Players">
-        <div class="card player-card h-100 shadow" [ngClass]="'rank-' + player.position">
+        <div
+          class="card player-card h-100 shadow"
+          [ngClass]="'rank-' + player.position"
+        >
           <div class="rank-position">{{ player.position }}º</div>
           <!-- Container para os indicadores -->
           <div class="indicators-container card-indicator">
-            <div *ngIf="player.rankChange" class="rank-change-indicator" [ngClass]="player.rankChange.direction">
-              <i *ngIf="player.rankChange.direction === 'up'" class="bi bi-arrow-up-short"></i>
-              <i *ngIf="player.rankChange.direction === 'down'" class="bi bi-arrow-down-short"></i>
-              <i *ngIf="player.rankChange.direction === 'same'" class="bi bi-dash-lg"></i>
-              <span *ngIf="player.rankChange.direction !== 'same'">{{ player.rankChange.value }}</span>
+            <div
+              *ngIf="player.rankChange"
+              class="rank-change-indicator"
+              [ngClass]="player.rankChange.direction"
+            >
+              <i
+                *ngIf="player.rankChange.direction === 'up'"
+                class="bi bi-arrow-up-short"
+              ></i>
+              <i
+                *ngIf="player.rankChange.direction === 'down'"
+                class="bi bi-arrow-down-short"
+              ></i>
+              <i
+                *ngIf="player.rankChange.direction === 'same'"
+                class="bi bi-dash-lg"
+              ></i>
+              <span *ngIf="player.rankChange.direction !== 'same'">{{
+                player.rankChange.value
+              }}</span>
             </div>
             <!-- Informativo de pontos extras -->
             <div *ngIf="player.bonus?.type === 'juiz'" class="bonus-indicator">
-              <i class="bi bi-gavel"></i> +{{ player.bonus?.value }} <!-- CORREÇÃO AQUI -->
+              <i class="bi bi-gavel"></i> +{{ player.bonus?.value }}
+              <!-- CORREÇÃO AQUI -->
             </div>
           </div>
-          <img [src]="player.photoUrl" class="player-photo" [alt]="player.name">
+          <img
+            [src]="player.photoUrl"
+            class="player-photo"
+            [alt]="player.name"
+          />
           <div class="card-body text-center">
             <h4 class="card-title fw-bold">{{ player.name }}</h4>
             <p class="card-text fs-5">
@@ -45,27 +73,58 @@
 
   <!-- Secção 3: Destaques da Temporada (6º ao 12º lugar) -->
   <section class="highlights-section my-5">
-    <h2 class="display-5 fw-bold text-info mb-4 text-center" style="font-size: 2rem;">Destaques da Temporada</h2>
+    <h2
+      class="display-5 fw-bold text-info mb-4 text-center"
+      style="font-size: 2rem"
+    >
+      Destaques da Temporada
+    </h2>
     <div class="row justify-content-center mt-4">
       <div class="col-lg-8">
         <ul class="list-group shadow">
-          <li *ngFor="let player of otherPlayers" class="list-group-item d-flex justify-content-between align-items-center ranking-list-item">
+          <li
+            *ngFor="let player of otherPlayers"
+            class="list-group-item d-flex justify-content-between align-items-center ranking-list-item"
+          >
             <div class="d-flex align-items-center">
-              <span class="player-name me-3"><strong>{{ player.position }}º</strong> {{ player.name }}</span>
+              <span class="player-name me-3"
+                ><strong>{{ player.position }}º</strong> {{ player.name }}</span
+              >
               <!-- Container para os indicadores na lista -->
               <div class="indicators-container list-indicator">
-                <div *ngIf="player.rankChange" class="rank-change-indicator" [ngClass]="player.rankChange.direction">
-                  <i *ngIf="player.rankChange.direction === 'up'" class="bi bi-arrow-up-short"></i>
-                  <i *ngIf="player.rankChange.direction === 'down'" class="bi bi-arrow-down-short"></i>
-                  <i *ngIf="player.rankChange.direction === 'same'" class="bi bi-dash-lg"></i>
-                  <span *ngIf="player.rankChange.direction !== 'same'">{{ player.rankChange.value }}</span>
+                <div
+                  *ngIf="player.rankChange"
+                  class="rank-change-indicator"
+                  [ngClass]="player.rankChange.direction"
+                >
+                  <i
+                    *ngIf="player.rankChange.direction === 'up'"
+                    class="bi bi-arrow-up-short"
+                  ></i>
+                  <i
+                    *ngIf="player.rankChange.direction === 'down'"
+                    class="bi bi-arrow-down-short"
+                  ></i>
+                  <i
+                    *ngIf="player.rankChange.direction === 'same'"
+                    class="bi bi-dash-lg"
+                  ></i>
+                  <span *ngIf="player.rankChange.direction !== 'same'">{{
+                    player.rankChange.value
+                  }}</span>
                 </div>
-                <div *ngIf="player.bonus?.type === 'juiz'" class="bonus-indicator">
-                  <i class="bi bi-gavel"></i> +{{ player.bonus?.value }} <!-- CORREÇÃO AQUI -->
+                <div
+                  *ngIf="player.bonus?.type === 'juiz'"
+                  class="bonus-indicator"
+                >
+                  <i class="bi bi-gavel"></i> +{{ player.bonus?.value }}
+                  <!-- CORREÇÃO AQUI -->
                 </div>
               </div>
             </div>
-            <span class="badge bg-primary rounded-pill">{{ player.points }} Pontos</span>
+            <span class="badge bg-primary rounded-pill"
+              >{{ player.points }} Pontos</span
+            >
           </li>
         </ul>
       </div>
@@ -73,40 +132,167 @@
   </section>
 
   <!-- Secção 4: Como Funciona a Pontuação? -->
- <section class="faq-section my-5">
-    <h2 class="display-5 fw-bold text-info mb-4 text-center" style="font-size: 2rem;">Como Funciona a Pontuação?</h2>
+  <section class="faq-section my-5">
+    <h2
+      class="display-5 fw-bold text-info mb-4 text-center"
+      style="font-size: 2rem"
+    >
+      Como Funciona o CN Cosplay?
+    </h2>
     <div class="row justify-content-center mt-4">
       <div class="col-lg-8">
         <div class="accordion" id="faqAccordion">
           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingOne"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">Como acumulo pontos?</button></h2>
-            <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">Os pontos são ganhos com base na participação e colocação nos concursos e desfiles oficiais da Cosnection ao longo do ano.</div>
+            <h2 class="accordion-header" id="headingOne">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+              >
+                Como acumulo pontos?
+              </button>
+            </h2>
+            <div
+              id="collapseOne"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Os pontos são ganhos com base na participação e colocação nos
+                concursos e desfiles oficiais da Cosnection ao longo do ano.
+              </div>
             </div>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingTwo"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">Quando o ranking é atualizado?</button></h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">O ranking é atualizado na semana seguinte a cada evento oficial, garantindo que a classificação esteja sempre em dia.</div>
+            <h2 class="accordion-header" id="headingTwo">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+              >
+                Quando o ranking é atualizado?
+              </button>
+            </h2>
+            <div
+              id="collapseTwo"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                O ranking é atualizado na semana seguinte a cada evento oficial,
+                garantindo que a classificação esteja sempre em dia.
+              </div>
             </div>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingThree"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">Qual é o prémio final?</button></h2>
-            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">Os melhores cosplayers do ranking serão celebrados e premiados no nosso grande evento de fim de ano, o <strong>Oscar Day</strong>!</div>
+            <h2 class="accordion-header" id="headingThree">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+              >
+                Qual é o prémio final?
+              </button>
+            </h2>
+            <div
+              id="collapseThree"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Os melhores cosplayers do ranking serão celebrados e premiados
+                no nosso grande evento de fim de ano, o
+                <strong>Oscar Day</strong>!
+              </div>
             </div>
           </div>
-          <!-- NOVAS PERGUNTAS -->
           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFour"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">Como faço para participar?</button></h2>
-            <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">É muito simples! Basta inscrever-se nos desfiles e concursos de cosplay dos nossos eventos oficiais. No formulário de inscrição, marque a opção que indica que deseja participar do Campeonato CN Cosplay para que os seus pontos sejam contabilizados no ranking.</div>
+            <h2 class="accordion-header" id="headingFour">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFour"
+              >
+                Como faço para participar?
+              </button>
+            </h2>
+            <div
+              id="collapseFour"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                É muito simples! Basta inscrever-se nos desfiles e concursos de
+                cosplay dos nossos eventos oficiais. No formulário de inscrição,
+                marque a opção que indica que deseja participar do Campeonato CN
+                Cosplay para que os seus pontos sejam contabilizados no ranking.
+              </div>
             </div>
           </div>
           <div class="accordion-item">
-            <h2 class="accordion-header" id="headingFive"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">Posso usar o mesmo cosplay sempre?</button></h2>
-            <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">Sim, mas com algumas regras para incentivar a criatividade! Você pode usar o mesmo cosplay e obter a pontuação completa em até duas edições. A partir da terceira vez, a forma de pontuar muda. Para voltar a pontuar normalmente com o mesmo personagem, é necessário apresentar uma mudança completa de skin (roupa integral).</div>
+            <h2 class="accordion-header" id="headingFive">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseFive"
+              >
+                Posso usar o mesmo cosplay sempre?
+              </button>
+            </h2>
+            <div
+              id="collapseFive"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                Sim, mas com algumas regras para incentivar a criatividade! Você
+                pode usar o mesmo cosplay e obter a pontuação completa em até
+                duas edições. A partir da terceira vez, a forma de pontuar muda.
+                Para voltar a pontuar normalmente com o mesmo personagem, é
+                necessário apresentar uma mudança completa de skin (roupa
+                integral).
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingSix">
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseSix"
+              >
+                Como consigo os pontos Extras?
+              </button>
+            </h2>
+            <div
+              id="collapseSix"
+              class="accordion-collapse collapse"
+              data-bs-parent="#faqAccordion"
+            >
+              <div class="accordion-body">
+                O Campeonato CN Cosplay oferece oportunidades de pontuação extra
+                para reconhecer a dedicação e o envolvimento dos participantes: <br>
+                Pontos Extras em Eventos Especiais (+5 Pontos): Cosplayers podem
+                conquistar 5 pontos extras em eventos específicos nos quais a
+                Cosnection for convidada para coordenar. A elegibilidade desses
+                eventos para a bonificação será comunicada previamente pela
+                organização. <br> Pontuação de Juiz (+15 Pontos Garantidos):
+                Cosplayers que atuarem como jurados em uma edição do campeonato
+                recebem uma nota mínima garantida de 15 pontos no concurso. Essa
+                pontuação é um incentivo pela sua contribuição e é atribuída a:
+                O vencedor da edição anterior, que automaticamente se torna juiz
+                na próxima, o cosplayer sorteado entre os participantes e outros
+                cosplayers que estejam participando do CN Cosplay e sejam
+                convidados pela produção para compor a banca de jurados. Essa
+                pontuação garantida visa valorizar a experiência e o papel
+                crucial dos juízes no desenvolvimento da comunidade cosplay.
+              </div>
             </div>
           </div>
         </div>
@@ -117,9 +303,14 @@
   <!-- Secção 5: Chamada para Ação -->
   <section class="cta-section text-center bg-light p-5 rounded">
     <h2 class="section-title">A Próxima Estrela Pode Ser Você!</h2>
-    <p class="lead text-muted mt-3">Acha que tem o que é preciso para entrar no ranking? Participe no nosso próximo evento e comece a sua jornada no Campeonato CN Cosplay!</p>
+    <p class="lead text-muted mt-3">
+      Acha que tem o que é preciso para entrar no ranking? Participe no nosso
+      próximo evento e comece a sua jornada no Campeonato CN Cosplay!
+    </p>
     <div class="mt-4">
-      <a routerLink="/agenda" class="btn btn-primary btn-lg">Ver Próximos Eventos</a>
+      <a routerLink="/agenda" class="btn btn-primary btn-lg"
+        >Ver Próximos Eventos</a
+      >
     </div>
   </section>
 </div>

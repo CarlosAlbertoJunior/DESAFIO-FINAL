@@ -36,7 +36,7 @@ export class Cncosplay implements OnInit {
     { position: 4, name: 'Guilherme Queiroz', points: 45.3, photoUrl: 'img/CN COSPLAY/Gui.jpg', rankChange: { direction: 'up', value: 2}, },
     { position: 5, name: 'Fred Stan', points: 43.7, photoUrl: 'img/CN COSPLAY/fred.jpg', rankChange: { direction: 'up', value: 1 } },
     { position: 6, name: 'Luma Abram cecilia', points: 42.4, rankChange: { direction: 'down', value: 6 } },
-    { position: 7, name: 'Ana Paula Oliveira', points: 40.3, rankChange: { direction: 'down', value: 4 } },
+    { position: 7, name: 'Ana Paula Oliveira', points: 40.8, rankChange: { direction: 'down', value: 4 } },
     { position: 8, name: 'Saimon Roniele', points: 40.3, rankChange: { direction: 'up', value: 12 }, bonus: { type: 'juiz', value: 15 } },
     { position: 9, name: 'Bianca Machado', points: 40.1, rankChange: { direction: 'up', value: 4 } },
     { position: 10, name: 'Clara Guimarães', points: 39.8, rankChange: { direction: 'up', value: 4 } },

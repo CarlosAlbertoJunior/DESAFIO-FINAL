@@ -55,8 +55,8 @@ export class Apoiar implements OnInit {
 
   public patrocinioLogos: Logo[] = [
     { url: '/img/APOIO/PSBColor.png', alt: 'Logo Governo da Bahia', linkUrl: 'https://www.psbba.org.br/' },
-    { url: '/img/APOIO/apoio.png', alt: 'Logo Patrocinador Principal 2', linkUrl: '#' },
-    { url: '/img/APOIO/apoio.png', alt: 'Logo Patrocinador Principal 3', linkUrl: '#' },
+    { url: '/img/APOIO/ford-96.png', alt: 'Logo Patrocinador Principal 2', linkUrl: 'https://www.ford.com.br/' },
+    { url: '/img/APOIO/logo senai.jpeg', alt: 'Logo Patrocinador Principal 3', linkUrl: 'https://universidadesenaicimatec.edu.br/' },
     { url: '/img/APOIO/apoio.png', alt: 'Logo Patrocinador Principal 4', linkUrl: '#' },
     { url: '/img/APOIO/apoio.png', alt: 'Logo Patrocinador Principal 5', linkUrl: '#' },
     { url: '/img/APOIO/apoio.png', alt: 'Logo Patrocinador Principal 6', linkUrl: '#' },
