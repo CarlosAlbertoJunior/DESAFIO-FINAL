@@ -36,7 +36,7 @@ export class Coslovers implements OnInit {
       name: 'Cloud',
       title: 'Produtor Geek, Programador, Músico & Cosplay',
       mainPhotoUrl: '/img/COORDENAÇÃO/cloud.jpg',
-      quote: 'A vida sem paixão é uam vida sem propósito.',
+      quote: 'A vida sem paixão é uma vida sem propósito.',
       quoteAuthor: 'vikings',
       selos: [
         '/img/COS LOVERS/SELOS/master.png',
